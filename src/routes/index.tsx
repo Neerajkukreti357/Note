@@ -5,6 +5,7 @@ import Search from '../screens/search';
 import Favorites from '../screens/favorites';
 import Calendar from '../screens/calendar';
 import type { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
+import BottomTab from '@/components/bottomTab';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +16,10 @@ const NavigationOptions: BottomTabNavigationOptions = {
 
 const RootRoutes = () => {
   return (
-    <Tab.Navigator screenOptions={NavigationOptions}>
+    <Tab.Navigator
+      screenOptions={NavigationOptions}
+      tabBar={props => <BottomTab {...props} />}
+    >
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Favorites" component={Favorites} />
