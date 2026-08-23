@@ -4,12 +4,22 @@ import Home from '../screens/home';
 import Search from '../screens/search';
 import Favorites from '../screens/favorites';
 import Calendar from '../screens/calendar';
+import type { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
+import BottomTab from '@/components/bottomTab';
 
 const Tab = createBottomTabNavigator();
 
-const index = () => {
+const NavigationOptions: BottomTabNavigationOptions = {
+  headerShown: false,
+  animation: 'shift',
+};
+
+const RootRoutes = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={NavigationOptions}
+      tabBar={props => <BottomTab {...props} />}
+    >
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="Favorites" component={Favorites} />
@@ -18,4 +28,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default RootRoutes;
