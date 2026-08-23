@@ -1,22 +1,16 @@
-import { StyleSheet, View } from 'react-native';
+import RootRoutes from '@/routes';
+import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import BootSplash from 'react-native-bootsplash';
 
 function App() {
   return (
-    <SafeAreaProvider>
-      <AppContent />
-    </SafeAreaProvider>
+    <NavigationContainer onReady={() => BootSplash.hide({ fade: true })}>
+      <SafeAreaProvider>
+        <RootRoutes />
+      </SafeAreaProvider>
+    </NavigationContainer>
   );
 }
-
-function AppContent() {
-  return <View style={styles.container}></View>;
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
