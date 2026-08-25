@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     alignItems: 'center',
     paddingVertical: spacing.sm,
+    backgroundColor: AppColors.primary,
   },
   menuBox: {
     flexDirection: 'row',

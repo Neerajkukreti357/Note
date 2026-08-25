@@ -24,7 +24,7 @@ const Header = ({ screenName }: headerProps) => {
         <Text style={styles.heading}>{screenName}</Text>
       </View>
       <Pressable style={styles.plusButton}>
-        <GlowView size={50} color={AppColors.highlightColor} />
+        <GlowView size={35} color={AppColors.highlightColor} />
         <Plus size={24} color={AppColors.heading} />
       </Pressable>
     </View>

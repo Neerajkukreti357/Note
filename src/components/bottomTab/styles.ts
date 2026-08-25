@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     paddingHorizontal: 8,
-    borderColor: AppColors.icon,
-    borderWidth: 2,
+    borderColor: AppColors.lightBorder,
+    borderWidth: 1,
   },
 
   tab: {
