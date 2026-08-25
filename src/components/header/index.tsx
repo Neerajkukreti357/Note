@@ -5,8 +5,9 @@ import styles from './styles';
 import { AppColors } from '@/theme';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import GlowView from '../glowView';
+import { headerProps } from './type';
 
-const Header = () => {
+const Header = ({ screenName }: headerProps) => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
 
@@ -20,7 +21,7 @@ const Header = () => {
         <Pressable onPress={openDrawer}>
           <AlignLeft size={24} color={AppColors.heading} />
         </Pressable>
-        <Text style={styles.heading}>Home</Text>
+        <Text style={styles.heading}>{screenName}</Text>
       </View>
       <Pressable style={styles.plusButton}>
         <GlowView size={50} color={AppColors.highlightColor} />
