@@ -1,0 +1,1 @@
+export { getActiveRouteName } from './getActiveRouteName';

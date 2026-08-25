@@ -3,7 +3,7 @@ const AppColors = {
   secondary: '#1C2538',
   heading: '#D9E2FB',
   text: '#C5C5D8',
-  highlightColor: '#5F57E8',
+  highlightColor: '#554ed5',
   tagBackground: '#30384C',
   tagWork: '#76D4F2',
   tagPriority: '#C5C4D7',

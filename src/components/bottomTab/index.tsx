@@ -8,6 +8,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { AppColors } from '@/theme';
+import GlowView from '../glowView';
 
 const icons = {
   Home: House,
@@ -48,6 +49,7 @@ const TabButton = ({ route, isFocused, onPress }: TabButtonProps) => {
           iconStyle,
         ]}
       >
+        {isFocused && <GlowView size={40} />}
         <Icon
           size={24}
           color={isFocused ? AppColors.primary : AppColors.heading}

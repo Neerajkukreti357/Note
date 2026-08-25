@@ -5,7 +5,7 @@ import Search from '../screens/search';
 import Favorites from '../screens/favorites';
 import Calendar from '../screens/calendar';
 import type { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
-import BottomTab from '@/components/bottomTab';
+import { BottomTab } from '@/components';
 
 const Tab = createBottomTabNavigator();
 
