@@ -7,7 +7,7 @@ const AppColors = {
   tagBackground: '#30384C',
   tagWork: '#76D4F2',
   tagPriority: '#C5C4D7',
-  icon: '#C3C5D8',
+  icon: '#D9E2FB',
   lightBorder: '#c3c5d861',
 };
 

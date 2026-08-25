@@ -1,46 +1,33 @@
 import { StyleSheet } from 'react-native';
 import { fontSize, spacing } from '@/theme/typography';
+import { AppColors } from '@/theme';
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: AppColors.secondary,
     borderRadius: spacing.md,
     borderWidth: 1,
-    borderColor: '#E5E7EB',
-
-    // iOS
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: spacing.xs,
-    },
-    shadowOpacity: 0.08,
-    shadowRadius: spacing.sm,
-
-    // Android
-    elevation: 3,
-
-    overflow: 'hidden',
+    borderColor: AppColors.lightBorder,
   },
 
   header: {
     paddingHorizontal: spacing.md,
     paddingTop: spacing.md,
-    paddingBottom: spacing.sm + spacing.xs,
+    paddingBottom: spacing.xs,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 
   body: {
     paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm + spacing.xs,
+    paddingVertical: spacing.xs,
   },
 
   footer: {
     paddingHorizontal: spacing.md,
     paddingTop: spacing.sm + spacing.xs,
     paddingBottom: spacing.md,
-
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: '#E5E7EB',
   },
 
   // Typography styles

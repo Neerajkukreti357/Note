@@ -52,7 +52,7 @@ const TabButton = ({ route, isFocused, onPress }: TabButtonProps) => {
         {isFocused && <GlowView size={40} />}
         <Icon
           size={24}
-          color={isFocused ? AppColors.primary : AppColors.heading}
+          color={isFocused ? AppColors.primary : AppColors.icon}
         />
       </Animated.View>
     </Pressable>
