@@ -5,7 +5,7 @@ import { AppColors } from '@/theme';
 const styles = StyleSheet.create({
   card: {
     backgroundColor: AppColors.secondary,
-    borderRadius: spacing.md,
+    borderRadius: spacing.sm,
     borderWidth: 1,
     borderColor: AppColors.lightBorder,
   },
@@ -28,6 +28,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingTop: spacing.sm + spacing.xs,
     paddingBottom: spacing.md,
+    flexDirection: 'row',
+    gap: 8,
+    flexWrap: 'wrap',
   },
 
   // Typography styles

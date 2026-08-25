@@ -9,14 +9,24 @@ const style = StyleSheet.create({
     gap: spacing.xs,
   },
   headingText: {
-    fontSize: fontSize.title,
+    fontSize: fontSize.body,
     color: AppColors.icon,
-    fontWeight: 700,
+    fontWeight: 800,
     fontFamily: fontFamily.montserrat.regular,
   },
-  decriptionText: {
+  descriptionText: {
     color: AppColors.icon,
     fontSize: fontSize.description,
+  },
+  checkBox: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+    alignItems: 'center',
+  },
+  theDot: {
+    width: 4,
+    height: 4,
+    borderRadius: '50%',
   },
 });
 

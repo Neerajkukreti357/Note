@@ -11,4 +11,36 @@ const AppColors = {
   lightBorder: '#c3c5d861',
 };
 
+export const badgeColors = {
+  high: {
+    background: '#3A2D3A',
+    text: '#F0B8C8',
+  },
+
+  medium: {
+    background: '#3A352A',
+    text: '#E6C98A',
+  },
+
+  low: {
+    background: '#263546',
+    text: '#8DD7EA',
+  },
+
+  complete: {
+    background: '#283A36',
+    text: '#8FD3B8',
+  },
+
+  pending: {
+    background: '#302C46',
+    text: '#C4B5FD',
+  },
+
+  'partial complete': {
+    background: '#263A40',
+    text: '#7DD3D8',
+  },
+} as const;
+
 export default AppColors;

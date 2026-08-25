@@ -7,6 +7,7 @@ export const fontSize = {
   caption: moderateScale(12), // timestamp, tags
   description: moderateScale(14), // timestamp, tags
   heading: moderateScale(24), // screen headers
+  badge: moderateScale(10),
 };
 
 export const spacing = {

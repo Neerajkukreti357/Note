@@ -1,12 +1,20 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import style from './type';
-import { NoteCard } from '@/components';
+import { CheckBoxNote, SimpleNoteCard } from '@/components';
 
 function Home() {
   return (
     <View style={style.container}>
-      <NoteCard />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={style.contentContainer}
+      >
+        <SimpleNoteCard />
+        <CheckBoxNote />
+        <CheckBoxNote />
+        <SimpleNoteCard />
+      </ScrollView>
     </View>
   );
 }
