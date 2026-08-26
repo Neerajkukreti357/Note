@@ -9,6 +9,8 @@ const AppColors = {
   tagPriority: '#C5C4D7',
   icon: '#D9E2FB',
   lightBorder: '#c3c5d861',
+  selectedMonthColor: '#818CF8',
+  monthTextColor: '#FFFFFF',
 };
 
 export const badgeColors = {

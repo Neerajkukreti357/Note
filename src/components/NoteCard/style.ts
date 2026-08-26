@@ -28,6 +28,15 @@ const style = StyleSheet.create({
     height: 4,
     borderRadius: '50%',
   },
+  bodyStyle: {
+    gap: spacing.xs,
+  },
+  image: {
+    width: '100%',
+    height: 140,
+    borderRadius: 12,
+    marginTop: spacing.md,
+  },
 });
 
 export default style;

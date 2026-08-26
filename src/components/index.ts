@@ -4,4 +4,6 @@ export { default as GlowView } from './glowView/index';
 export { default as Card } from './card/index';
 export { default as SimpleNoteCard } from './NoteCard/simpleNote';
 export { default as CheckBoxNote } from './NoteCard/checkBoxNote';
+export { default as NotesWithImages } from './NoteCard/NotesWithImages';
 export { default as Badges } from './badges/index';
+export { default as CalendarComponent } from './calendar/index';

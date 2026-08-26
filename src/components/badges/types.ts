@@ -1,4 +1,4 @@
-type Priority =
+export type Priority =
   | 'high'
   | 'medium'
   | 'low'

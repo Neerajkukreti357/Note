@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, View } from 'react-native';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { House, Search, Heart, CalendarDays } from 'lucide-react-native';
+import { House, Search, CalendarDays, Zap } from 'lucide-react-native';
 import styles from './styles';
 import Animated, {
   useAnimatedStyle,
@@ -13,7 +13,7 @@ import GlowView from '../glowView';
 const icons = {
   Home: House,
   Search: Search,
-  Favorites: Heart,
+  Priority: Zap,
   Calendar: CalendarDays,
 };
 

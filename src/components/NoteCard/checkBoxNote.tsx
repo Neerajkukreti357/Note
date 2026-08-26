@@ -4,6 +4,7 @@ import { GripVertical, EllipsisVertical } from 'lucide-react-native';
 import style from './style';
 import { AppColors } from '@/theme';
 import Badges from '../badges';
+import { CircleCheckBig, CircleMinus } from 'lucide-react-native';
 
 const CheckBoxNote = () => {
   const checkList = [
@@ -33,19 +34,14 @@ const CheckBoxNote = () => {
         </View>
         <EllipsisVertical size={18} color={AppColors.lightBorder} />
       </Card.Header>
-      <Card.Body>
+      <Card.Body style={style.bodyStyle}>
         {checkList?.map((item, index) => (
           <View style={style.checkBox} key={index + 1}>
-            <View
-              style={[
-                style.theDot,
-                {
-                  backgroundColor: item?.isComplete
-                    ? AppColors.highlightColor
-                    : AppColors.icon,
-                },
-              ]}
-            />
+            {item?.isComplete ? (
+              <CircleCheckBig size={20} color={AppColors.highlightColor} />
+            ) : (
+              <CircleMinus size={20} color={AppColors.lightBorder} />
+            )}
             <Text style={style.descriptionText}>{item?.lable}</Text>
           </View>
         ))}
