@@ -1,15 +1,15 @@
 import RootRoutes from '@/routes';
-import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
 import BootSplash from 'react-native-bootsplash';
 
 function App() {
   return (
-    <NavigationContainer onReady={() => BootSplash.hide({ fade: true })}>
-      <SafeAreaProvider>
+    <SafeAreaProvider>
+      <NavigationContainer onReady={() => BootSplash.hide({ fade: true })}>
         <RootRoutes />
-      </SafeAreaProvider>
-    </NavigationContainer>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 

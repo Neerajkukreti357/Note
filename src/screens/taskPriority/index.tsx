@@ -1,9 +1,9 @@
-import React from 'react';
 import { ScrollView, View } from 'react-native';
-import style from './type';
+import React from 'react';
 import { CheckBoxNote, NotesWithImages, SimpleNoteCard } from '@/components';
+import style from './style';
 
-function Home() {
+const TaskPriority = () => {
   return (
     <View style={style.container}>
       <ScrollView
@@ -18,6 +18,6 @@ function Home() {
       </ScrollView>
     </View>
   );
-}
+};
 
-export default Home;
+export default TaskPriority;
