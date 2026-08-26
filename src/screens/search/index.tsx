@@ -1,10 +1,12 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
+import style from './style';
+import { SearchInput } from '@/components/formComponents';
 
 const Search = () => {
   return (
-    <View>
-      <Text>Search</Text>
+    <View style={style.container}>
+      <SearchInput />
     </View>
   );
 };

@@ -11,6 +11,10 @@ const AppColors = {
   lightBorder: '#c3c5d861',
   selectedMonthColor: '#818CF8',
   monthTextColor: '#FFFFFF',
+  settingButtonBackgroundColor: '#1A2436',
+  brawerBackground: '#0E1729',
+  iconBg: '#2C344A',
+  themeChanger: '#4BD6F5',
 };
 
 export const badgeColors = {
