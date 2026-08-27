@@ -3,9 +3,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './style';
 import { X } from 'lucide-react-native';
 import { AppColors } from '@/theme';
-import { General, GlowView, Tabs } from '@/components';
+import { General, GlowView, Media, Tabs } from '@/components';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
+import CheckList from '@/components/checklist';
 
 const AddScreenNotes = () => {
   const navigation = useNavigation();
@@ -25,7 +26,7 @@ const AddScreenNotes = () => {
 
       <Tabs active={active} setActive={setActive} />
 
-      <General />
+      {active === 0 ? <General /> : active === 1 ? <CheckList /> : <Media />}
     </SafeAreaView>
   );
 };
