@@ -1,17 +1,19 @@
 import React from 'react';
 import Svg, { Defs, RadialGradient, Stop, Circle } from 'react-native-svg';
-import { View } from 'react-native';
+import { StyleProp, View, ViewStyle } from 'react-native';
 import styles from './style';
 import { AppColors } from '@/theme';
 
 const GlowView = ({
   size = 60,
   color = AppColors.tagWork,
-  glowSize = 18, // how far the glow extends beyond the base size
+  glowSize = 18,
+  style, // how far the glow extends beyond the base size
 }: {
   size?: number;
   color?: string;
   glowSize?: number;
+  style?: StyleProp<ViewStyle>;
 }) => {
   const totalSize = size + glowSize * 2;
   const center = totalSize / 2;
@@ -23,6 +25,7 @@ const GlowView = ({
         ...styles.glowBox,
         width: totalSize,
         height: totalSize,
+        ...style,
       }}
     >
       <Svg width={totalSize} height={totalSize}>

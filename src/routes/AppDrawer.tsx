@@ -6,6 +6,7 @@ import { useNavigationState } from '@react-navigation/native';
 import { getCurrentRouteName } from '@/utils';
 import { StyleSheet, View } from 'react-native';
 import { AppColors } from '@/theme';
+import CustomDrawerView from '@/components/drawer';
 
 const Drawer = createDrawerNavigator();
 
@@ -22,7 +23,14 @@ const MainLayout = () => {
 export default function AppDrawer() {
   return (
     <Drawer.Navigator
-      screenOptions={{ headerShown: false, drawerType: 'front' }}
+      screenOptions={{
+        headerShown: false,
+        drawerType: 'front',
+        drawerStyle: {
+          backgroundColor: AppColors.brawerBackground,
+        },
+      }}
+      drawerContent={props => <CustomDrawerView {...props} />}
     >
       <Drawer.Screen name="Home" component={MainLayout} />
       {/* <Drawer.Screen name="Settings" component={SettingsScreen} /> */}

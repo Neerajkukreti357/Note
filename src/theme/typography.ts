@@ -2,6 +2,7 @@
 import { moderateScale, verticalScale, scale } from 'react-native-size-matters';
 
 export const fontSize = {
+  superTitle: moderateScale(25), // note title
   title: moderateScale(20), // note title
   body: moderateScale(16), // note content text
   caption: moderateScale(12), // timestamp, tags
@@ -15,6 +16,7 @@ export const spacing = {
   sm: scale(8),
   md: scale(16),
   lg: scale(24),
+  xl: scale(34),
   cardGap: verticalScale(12), // gap between note cards in a list
 };
 

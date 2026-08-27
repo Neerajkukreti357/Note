@@ -1,8 +1,7 @@
 import { View } from 'react-native';
 import React from 'react';
 import style from './style';
-import { CalendarComponent } from '@/components';
-import TimeLineComponent from '@/components/timeLine';
+import { CalendarComponent, TimeLineComponent } from '@/components';
 
 const Calendar = () => {
   return (

@@ -1,6 +1,6 @@
 import { ScrollView, View } from 'react-native';
 import React from 'react';
-import { CheckBoxNote, NotesWithImages, SimpleNoteCard } from '@/components';
+import { AddMoreItem, NoteWithAudio } from '@/components';
 import style from './style';
 
 const TaskPriority = () => {
@@ -10,11 +10,8 @@ const TaskPriority = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={style.contentContainer}
       >
-        <SimpleNoteCard />
-        <CheckBoxNote />
-        <CheckBoxNote />
-        <NotesWithImages />
-        <SimpleNoteCard />
+        <NoteWithAudio />
+        <AddMoreItem />
       </ScrollView>
     </View>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, View } from 'react-native';
-import style from './type';
 import { CheckBoxNote, NotesWithImages, SimpleNoteCard } from '@/components';
+import style from './style';
 
 function Home() {
   return (
