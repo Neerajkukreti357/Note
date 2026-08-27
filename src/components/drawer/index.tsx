@@ -6,7 +6,6 @@ import {
   ChevronRight,
   FilePlus2,
   Info,
-  LogOut,
   Palette,
   Trash2,
   X,
@@ -14,7 +13,8 @@ import {
 import { BottomButton, DrawerButton } from './type';
 import { AppColors } from '@/theme';
 import { useState } from 'react';
-import AnimatedToggle from '../formComponents/toggle';
+import { badgeColors } from '@/theme/colors';
+import { AnimatedToggle } from '../formComponents';
 
 const CustomDrawerView = (props: DrawerContentComponentProps) => {
   const buttons: DrawerButton[] = [
@@ -47,11 +47,6 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
   const [enabled, setEnabled] = useState(false);
 
   const bottomButtons: BottomButton[] = [
-    {
-      labels: 'Exit App',
-      icon: LogOut,
-      onPress: () => {},
-    },
     {
       labels: 'Close Settings',
       icon: X,
@@ -111,16 +106,18 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
               onPress={item?.onPress}
             >
               <View style={styles.iconContainer}>
-                <Icon
-                  size={19}
-                  color={
-                    item?.labels === 'Theme'
-                      ? AppColors.themeChanger
-                      : AppColors.heading
-                  }
-                />
+                <Icon size={19} color={badgeColors.high?.text} />
               </View>
-              <Text style={styles.bottomLabel}>{item?.labels}</Text>
+              <Text
+                style={[
+                  styles.bottomLabel,
+                  {
+                    color: badgeColors.high.text,
+                  },
+                ]}
+              >
+                {item?.labels}
+              </Text>
             </Pressable>
           );
         })}

@@ -1,12 +1,13 @@
 import { AppColors } from '@/theme';
 import React, { useEffect } from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Pressable } from 'react-native';
 import Animated, {
   interpolate,
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
+  withTiming,
 } from 'react-native-reanimated';
+import styles from './style';
 
 type AnimatedToggleProps = {
   value: boolean;
@@ -14,17 +15,16 @@ type AnimatedToggleProps = {
 };
 
 const TRACK_WIDTH = 46;
-const TRACK_HEIGHT = 26;
 const THUMB_SIZE = 20;
 const PADDING = 3;
 
 const AnimatedToggle = ({ value, onValueChange }: AnimatedToggleProps) => {
   const progress = useSharedValue(value ? 1 : 0);
+  const MAX_TRANSLATE_X = TRACK_WIDTH - THUMB_SIZE - PADDING * 2;
 
   useEffect(() => {
-    progress.value = withSpring(value ? 1 : 0, {
-      damping: 15,
-      stiffness: 180,
+    progress.value = withTiming(value ? 1 : 0, {
+      duration: 200,
     });
   }, [value, progress]);
 
@@ -32,7 +32,7 @@ const AnimatedToggle = ({ value, onValueChange }: AnimatedToggleProps) => {
     const translateX = interpolate(
       progress.value,
       [0, 1],
-      [PADDING, TRACK_WIDTH - THUMB_SIZE - PADDING],
+      [PADDING, PADDING + MAX_TRANSLATE_X],
     );
 
     return {
@@ -63,30 +63,5 @@ const AnimatedToggle = ({ value, onValueChange }: AnimatedToggleProps) => {
     </Pressable>
   );
 };
-
-const styles = StyleSheet.create({
-  pressable: {
-    width: TRACK_WIDTH,
-    height: TRACK_HEIGHT,
-    justifyContent: 'center',
-  },
-
-  track: {
-    width: TRACK_WIDTH,
-    height: TRACK_HEIGHT,
-    borderRadius: TRACK_HEIGHT / 2,
-    justifyContent: 'center',
-  },
-
-  thumb: {
-    position: 'absolute',
-
-    width: THUMB_SIZE,
-    height: THUMB_SIZE,
-    borderRadius: THUMB_SIZE / 2,
-
-    backgroundColor: AppColors.monthTextColor,
-  },
-});
 
 export default AnimatedToggle;
