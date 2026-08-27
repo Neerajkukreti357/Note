@@ -1,4 +1,4 @@
-import RootRoutes from '@/routes';
+import RootRoutes from '@/routes/RootRoutes';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import BootSplash from 'react-native-bootsplash';

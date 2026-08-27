@@ -5,11 +5,11 @@ import styles from './styles';
 import { AppColors } from '@/theme';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import GlowView from '../glowView';
-import { headerProps } from './type';
+import { headerProps, NavigationProp } from './type';
 
 const Header = ({ screenName }: headerProps) => {
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp>();
 
   const openDrawer = () => {
     navigation.dispatch(DrawerActions.openDrawer());
@@ -23,7 +23,12 @@ const Header = ({ screenName }: headerProps) => {
         </Pressable>
         <Text style={styles.heading}>{screenName}</Text>
       </View>
-      <Pressable style={styles.plusButton}>
+      <Pressable
+        style={styles.plusButton}
+        onPress={() => {
+          navigation.navigate('AddNote');
+        }}
+      >
         <GlowView size={35} color={AppColors.highlightColor} />
         <Plus size={24} color={AppColors.heading} />
       </Pressable>

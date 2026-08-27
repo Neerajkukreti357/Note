@@ -13,3 +13,6 @@ export { default as CustomDrawerView } from './drawer/index';
 export { default as NoDataFound } from './noDataFound/index';
 export { default as AddMoreItem } from './addMoreItems/index';
 export { default as AudioPlayer } from './audio/index';
+export { default as Tabs } from './AddScreenTab/index';
+export { default as General } from './general/index';
+export { default as TextEditor } from './TextEditor/index';
