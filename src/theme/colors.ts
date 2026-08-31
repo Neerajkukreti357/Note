@@ -1,4 +1,5 @@
 const AppColors = {
+  lightPrimary: '#1A2237',
   primary: '#0E1525',
   secondary: '#1C2538',
   heading: '#C3C0FF',

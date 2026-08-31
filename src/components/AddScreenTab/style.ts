@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: spacing.xs,
 
-    backgroundColor: AppColors.iconBg,
+    backgroundColor: AppColors.lightPrimary,
     borderRadius: spacing.sm,
 
     position: 'relative',

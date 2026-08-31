@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: AppColors.iconBg,
+    backgroundColor: AppColors.lightPrimary,
     height: '80%',
     borderRadius: spacing.sm,
     marginTop: spacing.md,
