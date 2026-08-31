@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@10play/tentap-editor": "^1.0.1",
+    "@hookform/resolvers": "^5.9.1",
     "@op-engineering/op-sqlite": "^18.1.4",
     "@react-native/new-app-screen": "0.87.0",
     "@react-navigation/bottom-tabs": "^7.18.17",
@@ -21,6 +22,7 @@
     "@simform_solutions/react-native-audio-waveform": "^2.1.6",
     "lucide-react-native": "^1.33.0",
     "react": "19.2.3",
+    "react-hook-form": "^7.87.0",
     "react-native": "0.87.0",
     "react-native-bootsplash": "^7.3.2",
     "react-native-calendars": "^1.1314.0",
@@ -34,10 +36,12 @@
     "react-native-size-matters": "^0.4.2",
     "react-native-svg": "^15.15.5",
     "react-native-webview": "^14.0.1",
-    "react-native-worklets": "^0.12.1"
+    "react-native-worklets": "^0.12.1",
+    "zod": "^4.5.4"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@babel/plugin-transform-export-namespace-from": "^8.0.1",
     "@babel/preset-env": "^7.25.3",
     "@babel/runtime": "^7.25.0",
     "@react-native-community/cli": "20.2.0",

@@ -4,11 +4,13 @@ import {
   RichText,
   TenTapStartKit,
   useEditorBridge,
+  useEditorContent,
 } from '@10play/tentap-editor';
 import { ActivityIndicator, View } from 'react-native';
 import styles from './style';
 import ToolBar from './toolBar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { EditorFieldProps } from './type';
 
 const editorCSS = `
   * {
@@ -48,13 +50,22 @@ const editorCSS = `
   }
 `;
 
-const TextEditor = () => {
+const TextEditor = ({ value, onChange }: EditorFieldProps) => {
   const [loading, setLoading] = useState(true);
   const editor = useEditorBridge({
     autofocus: false,
     avoidIosKeyboard: true,
     bridgeExtensions: [...TenTapStartKit, CoreBridge.configureCSS(editorCSS)],
+    initialContent: value ?? '',
   });
+  const content = useEditorContent(editor, { type: 'html' });
+
+  // push editor content up into react-hook-form whenever it changes
+  useEffect(() => {
+    if (content !== undefined && content !== value) {
+      onChange(content);
+    }
+  }, [content, onChange, value]);
 
   return (
     <>
