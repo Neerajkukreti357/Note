@@ -1,10 +1,10 @@
-import { spacing } from '@/theme';
+import { AppColors, spacing } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   notePanel: {
     minHeight: 510,
-    backgroundColor: '#1A2237',
+    backgroundColor: AppColors.lightPrimary,
     borderRadius: spacing.sm,
     borderWidth: 1,
     borderColor: '#2B3650',

@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   editorContainer: {
     flex: 1,
     marginTop: spacing.lg,
-    backgroundColor: AppColors.iconBg,
+    backgroundColor: AppColors.lightPrimary,
     overflow: 'hidden',
   },
   toolbar: {
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
 
-    backgroundColor: AppColors.iconBg,
+    backgroundColor: AppColors.lightPrimary,
 
     zIndex: 10,
   },

@@ -16,7 +16,7 @@ const editorCSS = `
   }
 
   body {
-    background-color: ${AppColors.iconBg};
+    background-color: ${AppColors.lightPrimary};
     color: ${AppColors.heading};
     margin: 0;
     padding: 0;
@@ -62,7 +62,7 @@ const TextEditor = () => {
 
       {loading && (
         <View style={styles.editorLoader}>
-          <ActivityIndicator size="small" color={AppColors.highlightColor} />
+          <ActivityIndicator size="large" color={AppColors.monthTextColor} />
         </View>
       )}
       {
