@@ -50,7 +50,11 @@ const editorCSS = `
   }
 `;
 
-const TextEditor = ({ value, onChange }: EditorFieldProps) => {
+const TextEditor = ({
+  value,
+  onChange,
+  loadingSubmission,
+}: EditorFieldProps) => {
   const [loading, setLoading] = useState(true);
   const editor = useEditorBridge({
     autofocus: false,
@@ -82,6 +86,7 @@ const TextEditor = ({ value, onChange }: EditorFieldProps) => {
             editor={editor}
             onLoad={() => setLoading(false)}
             style={!loading ? styles.editorVisible : styles.editorHidden}
+            aria-disabled={loadingSubmission}
           />
         </View>
       }

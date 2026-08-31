@@ -12,6 +12,10 @@ export const simpleNoteSchema = z.object({
     .min(1, 'Description is required')
     .max(1000, 'Description too long'),
   type: z.number().int().min(1).max(3),
+  priority: z.enum(['high', 'medium', 'low'], {
+    error: 'Priority is required',
+  }),
 });
 
 export type SimpleNoteFormData = z.infer<typeof simpleNoteSchema>;
+export type Priority = SimpleNoteFormData['priority'];

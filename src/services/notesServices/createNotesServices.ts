@@ -1,10 +1,11 @@
+import { Note } from '@/store/type';
 import { db } from '../db';
 import { Priority } from './type';
 
 export const createNote = async (
   title: string,
   description: string,
-  noteType: string,
+  noteType: number,
   priority: Priority,
 ) => {
   const now = Date.now();
@@ -23,6 +24,13 @@ export const createNote = async (
       )
       VALUES (?, ?, ?, ?, ?, ?, ?)
     `,
-    [title, description, priority, noteType, 0, now, now],
+    [title, description, noteType, priority, 0, now, now],
   );
+};
+
+export const getAllNotes = async () => {
+  const result = await db.execute(
+    `SELECT * FROM notes WHERE is_deleted = 0 ORDER BY created_at DESC`,
+  );
+  return result.rows as unknown as Note[];
 };

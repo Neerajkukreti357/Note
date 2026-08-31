@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     fontSize: 38,
     fontWeight: '700',
     color: AppColors.monthTextColor,
+    marginTop: spacing.md,
 
     padding: 0,
     margin: 0,

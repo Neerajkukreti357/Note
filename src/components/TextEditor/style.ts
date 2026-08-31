@@ -2,6 +2,9 @@ import { AppColors, spacing } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  toolBox: {
+    flexDirection: 'row',
+  },
   editorContainer: {
     flex: 1,
     marginTop: spacing.lg,

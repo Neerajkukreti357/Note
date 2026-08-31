@@ -11,18 +11,29 @@ import { SimpleNoteFormData, simpleNoteSchema } from './shema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 import { SimpleNoteInitialsValues } from './contant';
+import { createNote } from '@/services/notesServices/createNotesServices';
 
 const AddScreenNotes = () => {
   const navigation = useNavigation();
   const [active, setActive] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const methods = useForm<SimpleNoteFormData>({
     resolver: zodResolver(simpleNoteSchema),
     defaultValues: SimpleNoteInitialsValues,
   });
 
-  const onSubmit = (data: SimpleNoteFormData) => {
-    console.log('Note to save:', data);
+  const onSubmit = async (data: SimpleNoteFormData) => {
+    console.log('Validation errors:', data);
+
+    setLoading(true);
+    await createNote(
+      data?.title,
+      data?.description,
+      data?.type,
+      data?.priority,
+    );
+    setLoading(false);
     navigation.goBack();
   };
 
@@ -42,15 +53,30 @@ const AddScreenNotes = () => {
             <X size={30} color={AppColors.heading} />
           </Pressable>
           <Text style={styles.title}>Add Notes</Text>
-          <Pressable style={styles.button} onPress={handleSave}>
+          <Pressable
+            disabled={loading}
+            style={styles.button}
+            onPress={handleSave}
+          >
             <GlowView size={50} color={AppColors.highlightColor} />
-            <Text style={styles.textStyle}>Add Note</Text>
+
+            {loading ? (
+              <Text style={styles.textStyle}>Adding ...</Text>
+            ) : (
+              <Text style={styles.textStyle}>Add Note</Text>
+            )}
           </Pressable>
         </View>
 
         <Tabs active={active} setActive={setActive} />
 
-        {active === 0 ? <General /> : active === 1 ? <CheckList /> : <Media />}
+        {active === 0 ? (
+          <General loading={loading} />
+        ) : active === 1 ? (
+          <CheckList />
+        ) : (
+          <Media />
+        )}
       </SafeAreaView>
     </FormProvider>
   );

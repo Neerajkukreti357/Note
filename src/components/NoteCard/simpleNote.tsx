@@ -4,14 +4,16 @@ import { GripVertical, EllipsisVertical } from 'lucide-react-native';
 import style from './style';
 import { AppColors } from '@/theme';
 import Badges from '../badges';
+import { Note } from '@/store/type';
 
-const SimpleNoteCard = () => {
+const SimpleNoteCard = ({ item }: { item: Note }) => {
+  console.log(item);
   return (
-    <Card>
+    <Card key={item?.id}>
       <Card.Header>
         <View style={style.headingBox}>
           <GripVertical size={18} color={AppColors.lightBorder} />
-          <Text style={style.headingText}>Q3 Architecture Review</Text>
+          <Text style={style.headingText}>{item?.title}</Text>
         </View>
         <EllipsisVertical size={18} color={AppColors.lightBorder} />
       </Card.Header>
