@@ -2,7 +2,7 @@ import { Note } from '@/store/type';
 import { db } from '../db';
 import { Priority } from './type';
 
-export const createNote = async (
+export const createSimpleNote = async (
   title: string,
   description: string,
   noteType: number,
@@ -25,6 +25,32 @@ export const createNote = async (
       VALUES (?, ?, ?, ?, ?, ?, ?)
     `,
     [title, description, noteType, priority, 0, now, now],
+  );
+};
+
+export const createCheckListNote = async (
+  title: string,
+  checklist: string,
+  noteType: number,
+  priority: Priority,
+) => {
+  const now = Date.now();
+
+  await db.execute(
+    `
+      INSERT INTO notes
+      (
+        title,
+        checklist,
+        noteType,
+        priority,
+        is_deleted,
+        created_at,
+        updated_at
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `,
+    [title, checklist, noteType, priority, 0, now, now],
   );
 };
 

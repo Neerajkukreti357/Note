@@ -7,32 +7,56 @@ import { General, GlowView, Media, Tabs } from '@/components';
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import CheckList from '@/components/checklist';
-import { SimpleNoteFormData, simpleNoteSchema } from './shema';
+import {
+  checkListNoteSchema,
+  CheckNoteFormData,
+  SimpleNoteFormData,
+  simpleNoteSchema,
+} from './shema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
-import { SimpleNoteInitialsValues } from './contant';
-import { createNote } from '@/services/notesServices/createNotesServices';
+import { CheckNoteInitialsValues, SimpleNoteInitialsValues } from './contant';
+import {
+  createCheckListNote,
+  createSimpleNote,
+} from '@/services/notesServices/createNotesServices';
+import { useNotes } from '@/hooks/home';
 
 const AddScreenNotes = () => {
+  const { refetch } = useNotes();
+
   const navigation = useNavigation();
   const [active, setActive] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  const methods = useForm<SimpleNoteFormData>({
-    resolver: zodResolver(simpleNoteSchema),
-    defaultValues: SimpleNoteInitialsValues,
+  const methods = useForm<SimpleNoteFormData | CheckNoteFormData>({
+    resolver: zodResolver(
+      active === 0 ? simpleNoteSchema : checkListNoteSchema,
+    ),
+    defaultValues:
+      active === 0 ? SimpleNoteInitialsValues : CheckNoteInitialsValues,
   });
 
-  const onSubmit = async (data: SimpleNoteFormData) => {
-    console.log('Validation errors:', data);
-
+  const onSubmit = async (data: SimpleNoteFormData | CheckNoteFormData) => {
     setLoading(true);
-    await createNote(
-      data?.title,
-      data?.description,
-      data?.type,
-      data?.priority,
-    );
+    if (active === 0) {
+      const simpleData = data as SimpleNoteFormData;
+      await createSimpleNote(
+        simpleData?.title,
+        simpleData?.description,
+        simpleData?.type,
+        simpleData?.priority,
+      );
+    } else if (active === 1) {
+      const checkData = data as CheckNoteFormData;
+      await createCheckListNote(
+        checkData?.title,
+        checkData?.checkList,
+        2,
+        checkData?.priority,
+      );
+    }
+    refetch();
     setLoading(false);
     navigation.goBack();
   };

@@ -38,6 +38,10 @@ const style = StyleSheet.create({
     borderRadius: 12,
     marginTop: spacing.md,
   },
+  readMoreText: {
+    fontSize: 14,
+    fontWeight: '600',
+  },
 });
 
 export default style;

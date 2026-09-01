@@ -9,7 +9,6 @@ import TextTruncate from '../textTruncate';
 import HTMLTextTruncate from '../textTruncate/htmlContent';
 
 const SimpleNoteCard = ({ item }: { item: Note }) => {
-  console.log(item);
   return (
     <Card key={item?.id}>
       <Card.Header>

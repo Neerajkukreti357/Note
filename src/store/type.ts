@@ -11,6 +11,7 @@ export interface Note {
   is_deleted: number;
   created_at: number;
   updated_at: number;
+  checklist: string;
 }
 
 export interface NotesState {

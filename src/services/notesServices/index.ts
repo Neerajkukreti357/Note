@@ -1,6 +1,9 @@
 import { db } from '../db';
 
 export const createTables = async () => {
+  // await db.execute(`
+  //   DROP TABLE IF EXISTS notes;
+  // `);
   await db.execute(`
     CREATE TABLE IF NOT EXISTS notes (
       id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -3,7 +3,7 @@ import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
 import style from './style';
 import { useNotes } from '@/hooks/home';
 import { AppColors } from '@/theme';
-import { SimpleNoteCard } from '@/components';
+import { CheckBoxNote, SimpleNoteCard } from '@/components';
 
 function Home() {
   const { notes, loading } = useNotes();
@@ -21,7 +21,11 @@ function Home() {
           contentContainerStyle={style.contentContainer}
         >
           {notes?.map(item =>
-            item?.noteType === 1 ? <SimpleNoteCard item={item} /> : null,
+            item?.noteType === 1 ? (
+              <SimpleNoteCard item={item} />
+            ) : item?.noteType === 2 ? (
+              <CheckBoxNote item={item} />
+            ) : null,
           )}
         </ScrollView>
       )}

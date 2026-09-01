@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
     backgroundColor: AppColors.lightPrimary,
     borderRadius: spacing.sm,
     borderWidth: 1,
-    borderColor: '#2B3650',
     padding: spacing.md,
     marginTop: spacing.md,
   },
