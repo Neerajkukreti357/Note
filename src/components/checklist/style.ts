@@ -8,8 +8,20 @@ const styles = StyleSheet.create({
     borderRadius: spacing.sm,
     borderWidth: 1,
     borderColor: '#2B3650',
-    padding: 27,
+    padding: spacing.md,
     marginTop: spacing.md,
+  },
+  title: {
+    fontSize: 38,
+    fontWeight: '700',
+    color: AppColors.monthTextColor,
+    marginVertical: spacing.md,
+
+    padding: 0,
+    margin: 0,
+
+    // Prevent Android from adding extra font space
+    includeFontPadding: false,
   },
   panelHeading: {
     color: '#CFCCEF',
@@ -17,12 +29,7 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     marginBottom: 15,
   },
-  panelHint: {
-    color: '#858FA4',
-    fontSize: 12,
-    lineHeight: 18,
-    marginBottom: 22,
-  },
+
   checkRow: {
     backgroundColor: '#141D31',
     borderRadius: 12,

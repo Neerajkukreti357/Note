@@ -73,7 +73,7 @@ const AddScreenNotes = () => {
         {active === 0 ? (
           <General loading={loading} />
         ) : active === 1 ? (
-          <CheckList />
+          <CheckList loading={loading} />
         ) : (
           <Media />
         )}

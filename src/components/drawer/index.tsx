@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './style';
 import {
   ChevronRight,
+  FilePenLine,
   FilePlus2,
   Info,
   Palette,
@@ -34,6 +35,12 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
       labels: 'Trash',
       description: 'Deleted notes',
       icon: Trash2,
+      onPress: () => {},
+    },
+    {
+      labels: 'Draft',
+      description: 'Unsaved Task',
+      icon: FilePenLine,
       onPress: () => {},
     },
     {

@@ -8,6 +8,7 @@ export const createTables = async () => {
       priority TEXT NOT NULL DEFAULT 'medium'
         CHECK(priority IN ('high','medium','low')),
       title TEXT,
+      checklist TEXT DEFAULT NULL,
       description TEXT,
       is_completed INTEGER NOT NULL DEFAULT 0,
       is_partial_completed INTEGER NOT NULL DEFAULT 0,
