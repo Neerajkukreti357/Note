@@ -1,10 +1,12 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import Card from '../card';
 import { GripVertical, EllipsisVertical } from 'lucide-react-native';
 import style from './style';
 import { AppColors } from '@/theme';
 import Badges from '../badges';
 import { Note } from '@/store/type';
+import TextTruncate from '../textTruncate';
+import HTMLTextTruncate from '../textTruncate/htmlContent';
 
 const SimpleNoteCard = ({ item }: { item: Note }) => {
   console.log(item);
@@ -13,21 +15,22 @@ const SimpleNoteCard = ({ item }: { item: Note }) => {
       <Card.Header>
         <View style={style.headingBox}>
           <GripVertical size={18} color={AppColors.lightBorder} />
-          <Text style={style.headingText}>{item?.title}</Text>
+          <TextTruncate numberOfLines={1} style={style.headingText}>
+            {item?.title}
+          </TextTruncate>
         </View>
         <EllipsisVertical size={18} color={AppColors.lightBorder} />
       </Card.Header>
       <Card.Body>
-        <Text style={style.descriptionText}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem at
-          exercitationem id commodi blanditiis dolores expedita quia vel nulla
-          soluta, dicta illo nemo. Corrupti consequuntur eos sapiente mollitia
-          dolorum?
-        </Text>
+        <HTMLTextTruncate
+          numberOfLines={4}
+          html={item?.description}
+          baseStyle={style.descriptionText}
+        />
       </Card.Body>
       <Card.Footer>
-        <Badges title="pending" />
-        <Badges title={'low'} />
+        <Badges title={item?.is_completed === 0 ? 'pending' : 'complete'} />
+        <Badges title={item?.priority} />
       </Card.Footer>
     </Card>
   );

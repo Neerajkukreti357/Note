@@ -13,6 +13,7 @@ const style = StyleSheet.create({
     color: AppColors.icon,
     fontWeight: 800,
     fontFamily: fontFamily.montserrat.regular,
+    maxWidth: 300,
   },
   descriptionText: {
     color: AppColors.icon,

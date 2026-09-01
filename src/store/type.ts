@@ -1,9 +1,11 @@
+import { Priority } from '@/services/notesServices/type';
+
 export interface Note {
   id: number;
   title: string;
   description: string;
   noteType: number;
-  priority: string;
+  priority: Priority;
   is_completed: number;
   is_partial_completed: number;
   is_deleted: number;

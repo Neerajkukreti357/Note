@@ -17,3 +17,4 @@ export { default as Tabs } from './AddScreenTab/index';
 export { default as General } from './general/index';
 export { default as TextEditor } from './TextEditor/index';
 export { default as Media } from './media/index';
+export { default as TextTruncate } from './textTruncate/index';
