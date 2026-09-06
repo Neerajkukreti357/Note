@@ -1,9 +1,22 @@
-import { spacing } from '@/theme';
+import { AppColors, spacing } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   mainContainer: {
     marginTop: spacing.md,
+    flex: 1,
+  },
+  title: {
+    fontSize: 38,
+    fontWeight: '700',
+    color: AppColors.monthTextColor,
+    marginVertical: spacing.md,
+
+    padding: 0,
+    margin: 0,
+
+    // Prevent Android from adding extra font space
+    includeFontPadding: false,
   },
   mediaCard: {
     backgroundColor: '#1A2237',

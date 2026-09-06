@@ -23,7 +23,20 @@ export const checkListNoteSchema = z.object({
   priority: z.enum(['high', 'medium', 'low'], {
     error: 'Priority is required',
   }),
-  checkList: z.string().min(1, 'Please make at least one checklist.'),
+  checkList: z.string().refine(
+    value => {
+      try {
+        const parsed = JSON.parse(value);
+
+        return Array.isArray(parsed) && parsed.length > 0;
+      } catch {
+        return false;
+      }
+    },
+    {
+      message: 'Please make at least one checklist.',
+    },
+  ),
 });
 
 export type SimpleNoteFormData = z.infer<typeof simpleNoteSchema>;

@@ -99,7 +99,7 @@ const AddScreenNotes = () => {
         ) : active === 1 ? (
           <CheckList loading={loading} />
         ) : (
-          <Media />
+          <Media loading={loading} />
         )}
       </SafeAreaView>
     </FormProvider>

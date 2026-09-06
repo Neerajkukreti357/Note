@@ -14,7 +14,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { CustomDropdown } from '../formComponents';
 import { CheckNoteFormData } from '@/screens/AddNotesScreen/shema';
 import { DropdownOptions } from '../general/constants';
-import { AppColors } from '@/theme';
+import { AppColors, spacing } from '@/theme';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { ItemType } from './typw';
@@ -108,7 +108,9 @@ const CheckList = ({ loading }: { loading: boolean }) => {
         )}
       />
       {errors.title && (
-        <Text style={{ color: 'red' }}>{errors.title.message}</Text>
+        <Text style={{ color: 'red', marginVertical: spacing.sm }}>
+          {errors.title.message}
+        </Text>
       )}
       <ScrollView
         ref={scrollViewRef}
@@ -131,6 +133,9 @@ const CheckList = ({ loading }: { loading: boolean }) => {
             </Pressable>
           </View>
         ))}
+        {errors.checkList && (
+          <Text style={{ color: 'red' }}>{errors.checkList?.message}</Text>
+        )}
       </ScrollView>
       <Pressable style={styles.addItem} onPress={addItem}>
         <Plus color="#B7B4FF" size={17} />

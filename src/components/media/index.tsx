@@ -1,17 +1,75 @@
 import { ImagePlus, Mic, Pause } from 'lucide-react-native';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import styles from './styles';
 import { useState } from 'react';
+import { SimpleNoteFormData } from '@/screens/AddNotesScreen/shema';
+import { Controller, useFormContext } from 'react-hook-form';
+import { CustomDropdown } from '../formComponents';
+import { DropdownOptions } from '../general/constants';
+import { AppColors } from '@/theme';
+import TextEditor from '../TextEditor';
 
-const Media = () => {
+const Media = ({ loading }: { loading: boolean }) => {
   const [recording, setRecording] = useState(false);
   const [seconds, setSeconds] = useState(0);
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext<SimpleNoteFormData>();
   function toggleRecording() {
     setRecording(value => !value);
     setSeconds(value => (recording ? value : value + 1));
   }
   return (
-    <View style={styles.mainContainer}>
+    <ScrollView style={styles.mainContainer}>
+      <View style={styles.mediaCard}>
+        <Controller
+          control={control}
+          name="priority"
+          render={({ field: { onChange, value } }) => (
+            <CustomDropdown
+              placeholder="Select priority"
+              value={value}
+              onChange={onChange}
+              data={DropdownOptions}
+              disable={loading}
+            />
+          )}
+        />
+        {errors.priority && (
+          <Text style={{ color: 'red' }}>{errors.priority.message}</Text>
+        )}
+
+        <Controller
+          control={control}
+          name="title"
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              placeholder="Title"
+              style={styles.title}
+              placeholderTextColor={AppColors.monthTextColor}
+              value={value}
+              onChangeText={onChange}
+              aria-disabled={loading}
+            />
+          )}
+        />
+        {errors.title && (
+          <Text style={{ color: 'red' }}>{errors.title.message}</Text>
+        )}
+
+        <Controller
+          control={control}
+          name="description"
+          render={({ field: { onChange, value } }) => (
+            <TextEditor
+              value={value}
+              onChange={onChange}
+              loadingSubmission={loading}
+            />
+          )}
+        />
+      </View>
       <View style={styles.mediaCard}>
         <Text style={styles.panelHeading}>Images</Text>
         <Pressable style={styles.upload}>
@@ -64,7 +122,7 @@ const Media = () => {
           </Text>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
