@@ -18,6 +18,7 @@ import { AppColors, spacing } from '@/theme';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { ItemType } from './typw';
+import commonStyle from '@/theme/commonStyles';
 
 const CheckList = ({ loading }: { loading: boolean }) => {
   const scrollViewRef = useRef<ScrollViewInstance>(null);
@@ -90,7 +91,9 @@ const CheckList = ({ loading }: { loading: boolean }) => {
         )}
       />
       {errors.priority && (
-        <Text style={{ color: 'red' }}>{errors.priority.message}</Text>
+        <Text style={commonStyle.errorTextColor}>
+          {errors.priority.message}
+        </Text>
       )}
 
       <Controller
@@ -114,7 +117,7 @@ const CheckList = ({ loading }: { loading: boolean }) => {
       )}
       <ScrollView
         ref={scrollViewRef}
-        style={{ height: height * 0.5 }}
+        style={{ height: height * 0.5, marginTop: spacing.sm }}
         showsVerticalScrollIndicator={false}
       >
         {items.map(item => (
@@ -134,7 +137,9 @@ const CheckList = ({ loading }: { loading: boolean }) => {
           </View>
         ))}
         {errors.checkList && (
-          <Text style={{ color: 'red' }}>{errors.checkList?.message}</Text>
+          <Text style={commonStyle.errorTextColor}>
+            {errors.checkList?.message}
+          </Text>
         )}
       </ScrollView>
       <Pressable style={styles.addItem} onPress={addItem}>

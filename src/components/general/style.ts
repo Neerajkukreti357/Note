@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
     marginTop: spacing.md,
     padding: spacing.md,
   },
+  editorContainerStyle: {
+    flex: 1,
+  },
   title: {
     fontSize: 38,
     fontWeight: '700',

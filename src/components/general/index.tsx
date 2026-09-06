@@ -6,6 +6,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { SimpleNoteFormData } from '@/screens/AddNotesScreen/shema';
 import { CustomDropdown } from '../formComponents';
 import { DropdownOptions } from './constants';
+import commonStyle from '@/theme/commonStyles';
 
 const General = ({ loading }: { loading: boolean }) => {
   const {
@@ -29,7 +30,9 @@ const General = ({ loading }: { loading: boolean }) => {
         )}
       />
       {errors.priority && (
-        <Text style={{ color: 'red' }}>{errors.priority.message}</Text>
+        <Text style={commonStyle.errorTextColor}>
+          {errors.priority.message}
+        </Text>
       )}
 
       <Controller
@@ -47,7 +50,7 @@ const General = ({ loading }: { loading: boolean }) => {
         )}
       />
       {errors.title && (
-        <Text style={{ color: 'red' }}>{errors.title.message}</Text>
+        <Text style={commonStyle.errorTextColor}>{errors.title.message}</Text>
       )}
 
       <Controller
@@ -58,12 +61,15 @@ const General = ({ loading }: { loading: boolean }) => {
             value={value}
             onChange={onChange}
             loadingSubmission={loading}
+            editorContainerStyle={styles.editorContainerStyle}
           />
         )}
       />
 
       {errors.description && (
-        <Text style={{ color: 'red' }}>{errors.description.message}</Text>
+        <Text style={commonStyle.errorTextColor}>
+          {errors.description.message}
+        </Text>
       )}
     </View>
   );

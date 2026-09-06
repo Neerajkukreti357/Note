@@ -13,5 +13,12 @@ module.exports = {
     ],
     'react-native-worklets/plugin',
     '@babel/plugin-transform-export-namespace-from',
+    [
+      'module:react-native-dotenv',
+      {
+        moduleName: '@env',
+        path: '.env',
+      },
+    ],
   ],
 };

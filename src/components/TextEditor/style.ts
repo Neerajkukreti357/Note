@@ -5,8 +5,13 @@ const styles = StyleSheet.create({
   toolBox: {
     flexDirection: 'row',
   },
-  editorContainer: {
+  editor: {
     flex: 1,
+    width: '100%',
+    backgroundColor: AppColors.lightPrimary,
+  },
+  editorContainer: {
+    // flex: 1,
     marginTop: spacing.lg,
     backgroundColor: AppColors.lightPrimary,
     overflow: 'hidden',

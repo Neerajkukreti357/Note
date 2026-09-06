@@ -54,6 +54,7 @@ const TextEditor = ({
   value,
   onChange,
   loadingSubmission,
+  editorContainerStyle,
 }: EditorFieldProps) => {
   const [loading, setLoading] = useState(true);
   const editor = useEditorBridge({
@@ -81,11 +82,14 @@ const TextEditor = ({
         </View>
       )}
       {
-        <View style={styles.editorContainer}>
+        <View style={[styles.editorContainer, editorContainerStyle]}>
           <RichText
             editor={editor}
             onLoad={() => setLoading(false)}
-            style={!loading ? styles.editorVisible : styles.editorHidden}
+            style={[
+              styles.editor,
+              !loading ? styles.editorVisible : styles.editorHidden,
+            ]}
             aria-disabled={loadingSubmission}
           />
         </View>
