@@ -10,3 +10,10 @@ export const CheckNoteInitialsValues = {
   checkList: '',
   priority: 'high' as const,
 };
+
+export const MediaNoteInitialsValues = {
+  title: '',
+  checkList: '',
+  priority: 'high' as const,
+  media: [],
+};

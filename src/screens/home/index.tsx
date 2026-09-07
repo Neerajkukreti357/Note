@@ -28,9 +28,9 @@ function Home() {
         >
           {notes?.map(item =>
             item?.noteType === 1 ? (
-              <SimpleNoteCard item={item} />
+              <SimpleNoteCard item={item} key={item?.id} />
             ) : item?.noteType === 2 ? (
-              <CheckBoxNote item={item} />
+              <CheckBoxNote item={item} key={item?.id} />
             ) : null,
           )}
           {notes?.length < 3 && <AddMoreItem />}

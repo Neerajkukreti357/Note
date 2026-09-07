@@ -2,7 +2,7 @@ import { ImagePlus, Mic, Pause } from 'lucide-react-native';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import styles from './styles';
 import { useState } from 'react';
-import { SimpleNoteFormData } from '@/screens/AddNotesScreen/shema';
+import { MediaNoteFormData } from '@/screens/AddNotesScreen/shema';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CustomDropdown } from '../formComponents';
 import { DropdownOptions } from '../general/constants';
@@ -14,24 +14,19 @@ import MultipleCheckbox from '../formComponents/checkbox';
 
 const Media = ({ loading }: { loading: boolean }) => {
   const [recording, setRecording] = useState(false);
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
   const [seconds, setSeconds] = useState(0);
   const {
     control,
     formState: { errors },
-  } = useFormContext<SimpleNoteFormData>();
+    watch,
+  } = useFormContext<MediaNoteFormData>();
   function toggleRecording() {
     setRecording(value => !value);
     setSeconds(value => (recording ? value : value + 1));
   }
 
-  const onChange = (val: string[]) => {
-    if (val.length > 0) {
-      setSelectedValues([val[val.length - 1]]);
-    } else {
-      setSelectedValues([]);
-    }
-  };
+  const selected = watch('media');
+
   return (
     <ScrollView style={styles.mainContainer}>
       <View style={styles.mediaCard}>
@@ -86,16 +81,41 @@ const Media = ({ loading }: { loading: boolean }) => {
         />
       </View>
       <View style={styles.mediaCard}>
-        <MultipleCheckbox
-          options={[
-            { label: 'Audio', value: '1' },
-            { label: 'Images', value: '2' },
-          ]}
-          selectedValues={selectedValues}
-          onChange={onChange}
+        <Controller
+          control={control}
+          name="media"
+          render={({ field: { onChange, value } }) => {
+            const selectedValues = value || [];
+
+            const handleMediaChange = (val: string[]) => {
+              if (val.length > 0) {
+                // Only allow one option
+                onChange([val[val.length - 1]]);
+              } else {
+                onChange([]);
+              }
+            };
+
+            return (
+              <MultipleCheckbox
+                options={[
+                  { label: 'Audio', value: '1' },
+                  { label: 'Images', value: '2' },
+                ]}
+                selectedValues={selectedValues}
+                onChange={handleMediaChange}
+              />
+            );
+          }}
         />
+
+        {errors.media && (
+          <Text style={[commonStyle.errorTextColor, { marginTop: 10 }]}>
+            {errors.media.message}
+          </Text>
+        )}
       </View>
-      {selectedValues[0] === '1' ? (
+      {selected?.[0] === '1' ? (
         <View style={styles.mediaCard}>
           <Text style={styles.panelHeading}>Voice note</Text>
           <View style={styles.voice}>
@@ -125,7 +145,7 @@ const Media = ({ loading }: { loading: boolean }) => {
             </Text>
           </View>
         </View>
-      ) : selectedValues[0] === '2' ? (
+      ) : selected?.[0] === '2' ? (
         <View style={styles.mediaCard}>
           <Text style={styles.panelHeading}>Images</Text>
           <Pressable style={styles.upload}>

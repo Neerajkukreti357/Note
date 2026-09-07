@@ -10,12 +10,17 @@ import CheckList from '@/components/checklist';
 import {
   checkListNoteSchema,
   CheckNoteFormData,
+  MediaNoteSchema,
   SimpleNoteFormData,
   simpleNoteSchema,
 } from './shema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
-import { CheckNoteInitialsValues, SimpleNoteInitialsValues } from './contant';
+import {
+  CheckNoteInitialsValues,
+  MediaNoteInitialsValues,
+  SimpleNoteInitialsValues,
+} from './contant';
 import {
   createCheckListNote,
   createSimpleNote,
@@ -31,10 +36,18 @@ const AddScreenNotes = () => {
 
   const methods = useForm<SimpleNoteFormData | CheckNoteFormData>({
     resolver: zodResolver(
-      active === 0 ? simpleNoteSchema : checkListNoteSchema,
+      active === 0
+        ? simpleNoteSchema
+        : active === 1
+        ? checkListNoteSchema
+        : MediaNoteSchema,
     ),
     defaultValues:
-      active === 0 ? SimpleNoteInitialsValues : CheckNoteInitialsValues,
+      active === 0
+        ? SimpleNoteInitialsValues
+        : active === 1
+        ? CheckNoteInitialsValues
+        : MediaNoteInitialsValues,
   });
 
   const onSubmit = async (data: SimpleNoteFormData | CheckNoteFormData) => {
