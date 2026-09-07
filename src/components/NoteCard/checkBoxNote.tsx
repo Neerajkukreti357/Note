@@ -11,7 +11,6 @@ import { useMemo } from 'react';
 
 const CheckBoxNote = ({ item }: { item: Note }) => {
   const checkList = useMemo(() => JSON.parse(item?.checklist), [item]);
-  console.log(item);
   return (
     <Card>
       <Card.Header>
