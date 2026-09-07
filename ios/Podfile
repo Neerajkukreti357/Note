@@ -1,12 +1,29 @@
-# Resolve react_native_pods.rb with node to allow for hoisting
-require Pod::Executable.execute_command('node', ['-p',
-  'require.resolve(
-    "react-native/scripts/react_native_pods.rb",
-    {paths: [process.argv[1]]},
-  )', __dir__]).strip
+# Resolve React Native and react-native-permissions scripts with Node
+# to allow for hoisting
+
+def node_require(script)
+  require Pod::Executable.execute_command('node', ['-p',
+    "require.resolve(
+      '#{script}',
+      {paths: [process.argv[1]]},
+    )", __dir__]).strip
+end
+
+# React Native
+node_require('react-native/scripts/react_native_pods.rb')
+
+# React Native Permissions
+node_require('react-native-permissions/scripts/setup.rb')
+
 
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
+
+# Permissions required by the app
+setup_permissions([
+  'Microphone',
+])
+
 
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
@@ -14,11 +31,13 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
+
 target 'Note' do
   config = use_native_modules!
 
   use_react_native!(
     :path => config[:reactNativePath],
+
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )

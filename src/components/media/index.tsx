@@ -79,6 +79,11 @@ const Media = ({ loading }: { loading: boolean }) => {
             />
           )}
         />
+        {errors.description && (
+          <Text style={commonStyle.errorTextColor}>
+            {errors.description.message}
+          </Text>
+        )}
       </View>
       <View style={styles.mediaCard}>
         <Controller

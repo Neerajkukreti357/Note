@@ -5,10 +5,12 @@ import BootSplash from 'react-native-bootsplash';
 import { StatusBar } from 'react-native';
 import { useEffect } from 'react';
 import { createTables } from '@/services/notesServices';
+import { requestMicrophonePermission } from '@/utils/permissions';
 
 function App() {
   useEffect(() => {
     createTables();
+    requestMicrophonePermission();
   }, []);
   return (
     <SafeAreaProvider>

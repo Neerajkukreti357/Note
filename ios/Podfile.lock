@@ -1832,6 +1832,28 @@ PODS:
     - ReactNativeDependencies
     - RNWorklets (>= 0.8.0)
     - Yoga
+  - RNPermissions (5.6.1):
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-bridging
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
   - RNReanimated (4.6.0):
     - hermes-engine
     - RCTRequired
@@ -2216,6 +2238,7 @@ DEPENDENCIES:
   - RNBootSplash (from `../node_modules/react-native-bootsplash`)
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -2412,6 +2435,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -2521,6 +2546,7 @@ SPEC CHECKSUMS:
   RNBootSplash: 76fb50b20d2d2805b8a4216de11633bfcff478fe
   RNFS: 89de7d7f4c0f6bafa05343c578f61118c8282ed8
   RNGestureHandler: ec5fccd94cfa3ef0014ca794e4acd9807e497939
+  RNPermissions: aa2a493284913158b1c642f36c6df117a53b6255
   RNReanimated: 861e9a575f93780ae7bb8ae714cc6e77a6bc86b7
   RNScreens: a2103f13fa603c405092daf70ca4eb3a6291fd6d
   RNSVG: 6c9bcbf53822153be6f6c1484f6b0b57c0040d21
@@ -2529,6 +2555,6 @@ SPEC CHECKSUMS:
   tentap: 7078ab928fe4b598e186bdadeb3fe9ad055984c8
   Yoga: d1c536142c5ff8ec8cd856ab2a7c227a1d875c8e
 
-PODFILE CHECKSUM: 27a88813d8833ac61eddeb0e1f474eb0021efe1d
+PODFILE CHECKSUM: 85e37ca1f76634f3f28ce73aa348d3df27c6b3ff
 
 COCOAPODS: 1.17.0
