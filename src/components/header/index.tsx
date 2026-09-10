@@ -1,10 +1,9 @@
-import { AlignLeft, Plus } from 'lucide-react-native';
+import { AlignLeft } from 'lucide-react-native';
 import { Pressable, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styles from './styles';
 import { AppColors } from '@/theme';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
-import GlowView from '../glowView';
 import { headerProps, NavigationProp } from './type';
 
 const Header = ({ screenName }: headerProps) => {
@@ -23,15 +22,6 @@ const Header = ({ screenName }: headerProps) => {
         </Pressable>
         <Text style={styles.heading}>{screenName}</Text>
       </View>
-      <Pressable
-        style={styles.plusButton}
-        onPress={() => {
-          navigation.navigate('AddNote');
-        }}
-      >
-        <GlowView size={35} color={AppColors.highlightColor} />
-        <Plus size={24} color={AppColors.heading} />
-      </Pressable>
     </View>
   );
 };

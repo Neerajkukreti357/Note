@@ -1,19 +1,30 @@
 import React from 'react';
-import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Pressable,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 import style from './style';
 import { useNotes } from '@/hooks/home';
 import { AppColors } from '@/theme';
 import {
   AddMoreItem,
   CheckBoxNote,
+  GlowView,
   NoDataFound,
   NoteWithAudio,
   SimpleNoteCard,
 } from '@/components';
-import { StickyNote } from 'lucide-react-native';
+import { Plus, StickyNote } from 'lucide-react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NavigationProp } from '@/components/header/type';
 
 function Home() {
   const { notes, loading } = useNotes();
+  const navigation = useNavigation<NavigationProp>();
+
   return (
     <View style={style.container}>
       {loading ? (
@@ -44,6 +55,16 @@ function Home() {
           description="Tap the + button to create your first note"
         />
       )}
+
+      <Pressable
+        style={style.plusButton}
+        onPress={() => {
+          navigation.navigate('AddNote');
+        }}
+      >
+        <GlowView size={70} color={AppColors.highlightColor} />
+        <Plus size={35} color={AppColors.heading} />
+      </Pressable>
     </View>
   );
 }

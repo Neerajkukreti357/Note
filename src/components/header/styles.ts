@@ -20,13 +20,6 @@ const styles = StyleSheet.create({
     fontWeight: 700,
     color: AppColors.heading,
   },
-  plusButton: {
-    borderRadius: '50%',
-    padding: spacing.sm,
-    backgroundColor: AppColors.highlightColor,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });
 
 export default styles;

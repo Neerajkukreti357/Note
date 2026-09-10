@@ -21,6 +21,17 @@ const style = StyleSheet.create({
     gap: spacing.md,
     paddingBottom: 100,
   },
+  plusButton: {
+    position: 'absolute',
+    zIndex: 10,
+    bottom: 100,
+    right: 20,
+    borderRadius: '50%',
+    padding: spacing.sm,
+    backgroundColor: AppColors.highlightColor,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 export default style;

@@ -4,7 +4,7 @@ import style from './style';
 import { badgeColors } from '@/theme/colors';
 
 const Badges = ({ title }: BadgesProps) => {
-  const colors = badgeColors[title];
+  const colors = badgeColors[title] ?? '';
   return (
     <View
       style={[style.badgeContainer, { backgroundColor: colors.background }]}
