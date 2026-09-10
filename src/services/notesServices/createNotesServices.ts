@@ -54,6 +54,34 @@ export const createCheckListNote = async (
   );
 };
 
+export const createMediaNote = async (
+  title: string,
+  description: string,
+  noteType: number,
+  priority: Priority,
+  audio_path: string,
+) => {
+  const now = Date.now();
+
+  await db.execute(
+    `
+      INSERT INTO notes
+      (
+        title,
+        description,
+        noteType,
+        priority,
+        audio_path,
+        is_deleted,
+        created_at,
+        updated_at
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?,?)
+    `,
+    [title, description, noteType, priority, audio_path, 0, now, now],
+  );
+};
+
 export const getAllNotes = async () => {
   const result = await db.execute(
     `SELECT * FROM notes WHERE is_deleted = 0 ORDER BY created_at DESC`,

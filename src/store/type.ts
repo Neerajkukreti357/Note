@@ -12,6 +12,7 @@ export interface Note {
   created_at: number;
   updated_at: number;
   checklist: string;
+  audio_path: string;
 }
 
 export interface NotesState {

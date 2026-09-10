@@ -7,13 +7,13 @@ import {
   AddMoreItem,
   CheckBoxNote,
   NoDataFound,
+  NoteWithAudio,
   SimpleNoteCard,
 } from '@/components';
 import { StickyNote } from 'lucide-react-native';
 
 function Home() {
   const { notes, loading } = useNotes();
-
   return (
     <View style={style.container}>
       {loading ? (
@@ -31,6 +31,8 @@ function Home() {
               <SimpleNoteCard item={item} key={item?.id} />
             ) : item?.noteType === 2 ? (
               <CheckBoxNote item={item} key={item?.id} />
+            ) : item?.noteType === 3 ? (
+              <NoteWithAudio item={item} key={item?.id} />
             ) : null,
           )}
           {notes?.length < 3 && <AddMoreItem />}

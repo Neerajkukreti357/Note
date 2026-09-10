@@ -49,15 +49,6 @@ const styles = StyleSheet.create({
   uploadText: { color: '#D6D9E6', fontSize: 12, fontWeight: '600' },
   browse: { color: '#78D3F1', fontWeight: '800' },
   uploadHint: { color: '#707B92', fontSize: 10, marginTop: 6 },
-  thumbs: { flexDirection: 'row', gap: 9, marginTop: 12 },
-  thumb: {
-    flex: 1,
-    height: 60,
-    backgroundColor: '#2B344A',
-    borderRadius: 7,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   voice: {
     height: 190,
     borderRadius: 10,

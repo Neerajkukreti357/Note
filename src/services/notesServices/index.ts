@@ -13,6 +13,8 @@ export const createTables = async () => {
       title TEXT,
       checklist TEXT DEFAULT NULL,
       description TEXT,
+      audio_path TEXT DEFAULT NULL,
+      image_paths TEXT DEFAULT NULL,
       is_completed INTEGER NOT NULL DEFAULT 0,
       is_partial_completed INTEGER NOT NULL DEFAULT 0,
       is_deleted INTEGER NOT NULL DEFAULT 0,

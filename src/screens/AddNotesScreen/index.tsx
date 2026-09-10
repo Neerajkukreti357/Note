@@ -24,6 +24,7 @@ import {
 } from './contant';
 import {
   createCheckListNote,
+  createMediaNote,
   createSimpleNote,
 } from '@/services/notesServices/createNotesServices';
 import { useNotes } from '@/hooks/home';
@@ -75,8 +76,13 @@ const AddScreenNotes = () => {
       );
     } else {
       const formData = data as MediaNoteFormData;
-
-      console.log(formData);
+      await createMediaNote(
+        formData?.title,
+        formData?.description,
+        3,
+        formData?.priority,
+        formData?.audioPath,
+      );
     }
     refetch();
     setLoading(false);

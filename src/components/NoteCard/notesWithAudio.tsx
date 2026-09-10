@@ -5,33 +5,33 @@ import { AppColors } from '@/theme';
 import style from './style';
 import Badges from '../badges';
 import AudioPlayer from '../audio';
+import { Note } from '@/store/type';
+import HTMLTextTruncate from '../textTruncate/htmlContent';
+import TextTruncate from '../textTruncate';
 
-const NoteWithAudio = () => {
+const NoteWithAudio = ({ item }: { item: Note }) => {
   return (
-    <Card>
+    <Card key={item?.id}>
       <Card.Header>
         <View style={style.headingBox}>
           <GripVertical size={18} color={AppColors.lightBorder} />
-          <Text style={style.headingText}>Q3 Architecture Review</Text>
+          <TextTruncate numberOfLines={1} style={style.headingText}>
+            {item?.title}
+          </TextTruncate>
         </View>
         <EllipsisVertical size={18} color={AppColors.lightBorder} />
       </Card.Header>
       <Card.Body>
-        <Text style={style.descriptionText}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem at
-          exercitationem id commodi blanditiis dolores expedita quia vel nulla
-          soluta, dicta illo nemo. Corrupti consequuntur eos sapiente mollitia
-          dolorum?
-        </Text>
-        <AudioPlayer
-          audioPath={
-            'https://ohpyorcegnzzcgipcrxt.supabase.co/storage/v1/object/public/media/audio/audio-1789020964873.m4a'
-          }
+        <HTMLTextTruncate
+          numberOfLines={4}
+          html={item?.description}
+          baseStyle={style.descriptionText}
         />
+        <AudioPlayer audioPath={item?.audio_path} />
       </Card.Body>
       <Card.Footer>
-        <Badges title="pending" />
-        <Badges title={'low'} />
+        <Badges title={item?.is_completed === 0 ? 'pending' : 'complete'} />
+        <Badges title={item?.priority} />
       </Card.Footer>
     </Card>
   );

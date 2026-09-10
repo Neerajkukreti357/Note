@@ -18,6 +18,7 @@ import {
 } from 'react-native-waveform-recorder';
 import AudioPlayer from '../audio';
 import { requestMicrophonePermission } from '@/utils/permissions';
+import { savePersistentAudio } from '@/utils';
 
 const Media = ({ loading }: { loading: boolean }) => {
   const [recording, setRecording] = useState(false);
@@ -43,6 +44,34 @@ const Media = ({ loading }: { loading: boolean }) => {
     } else {
       recorderRef.current.stop();
     }
+  };
+
+  const onComplete = async ({ uri }: { uri: string }) => {
+    try {
+      const persistentPath = await savePersistentAudio(uri);
+      setValue('audioPath', persistentPath, { shouldValidate: true });
+    } catch (error) {
+      console.error('Failed to save audio persistently:', error);
+    } finally {
+      setRecording(false);
+      setSeconds(0);
+    }
+  };
+
+  const onStateChange = ({ state }: { state: string }) => {
+    setRecording(state === 'recording');
+  };
+
+  const onError = (error: any) => {
+    console.error('Recording error:', error);
+    setRecording(false);
+    setSeconds(0);
+  };
+
+  const onPermissionDenied = () => {
+    requestMicrophonePermission();
+    setRecording(false);
+    setSeconds(0);
   };
 
   const selected = watch('media');
@@ -165,24 +194,10 @@ const Media = ({ loading }: { loading: boolean }) => {
             <WaveformRecorderView
               ref={recorderRef}
               style={{ position: 'absolute', width: 1, height: 1, opacity: 0 }}
-              onStateChange={({ state }) => {
-                setRecording(state === 'recording');
-              }}
-              onComplete={({ uri }) => {
-                setValue('audioPath', uri, { shouldValidate: true });
-                setRecording(false);
-                setSeconds(0);
-              }}
-              onError={error => {
-                console.error('Recording error:', error);
-                setRecording(false);
-                setSeconds(0);
-              }}
-              onPermissionDenied={() => {
-                requestMicrophonePermission();
-                setRecording(false);
-                setSeconds(0);
-              }}
+              onStateChange={onStateChange}
+              onComplete={onComplete}
+              onError={onError}
+              onPermissionDenied={onPermissionDenied}
             />
 
             <View style={styles.wave}>
@@ -235,17 +250,6 @@ const Media = ({ loading }: { loading: boolean }) => {
             </Text>
             <Text style={styles.uploadHint}>PNG, JPG up to 10MB</Text>
           </Pressable>
-          <View style={styles.thumbs}>
-            <View style={styles.thumb}>
-              <ImagePlus color="#768096" size={17} />
-            </View>
-            <View style={styles.thumb}>
-              <ImagePlus color="#768096" size={17} />
-            </View>
-            <View style={styles.thumb}>
-              <ImagePlus color="#768096" size={17} />
-            </View>
-          </View>
         </View>
       ) : null}
     </ScrollView>
