@@ -16,14 +16,18 @@ import { AppColors } from '@/theme';
 import { useState } from 'react';
 import { badgeColors } from '@/theme/colors';
 import { AnimatedToggle } from '../formComponents';
+import { useNavigation } from '@react-navigation/native';
 
 const CustomDrawerView = (props: DrawerContentComponentProps) => {
+  const navigation = useNavigation();
   const buttons: DrawerButton[] = [
     {
       labels: 'Add Notes',
       description: 'Create a new note',
       icon: FilePlus2,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('AddNote' as never);
+      },
     },
     {
       labels: 'Theme',

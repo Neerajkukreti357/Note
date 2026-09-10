@@ -12,6 +12,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: AppColors.primary,
     marginTop: spacing.sm,
+    position: 'relative',
+  },
+
+  binContainer: {
+    position: 'absolute',
+    top: -10,
+    right: 0,
+    padding: 5,
+    borderRadius: '50%',
+    backgroundColor: AppColors.monthTextColor,
   },
 
   playButton: {

@@ -23,7 +23,11 @@ const NoteWithAudio = () => {
           soluta, dicta illo nemo. Corrupti consequuntur eos sapiente mollitia
           dolorum?
         </Text>
-        <AudioPlayer />
+        <AudioPlayer
+          audioPath={
+            'https://ohpyorcegnzzcgipcrxt.supabase.co/storage/v1/object/public/media/audio/audio-1789020964873.m4a'
+          }
+        />
       </Card.Body>
       <Card.Footer>
         <Badges title="pending" />

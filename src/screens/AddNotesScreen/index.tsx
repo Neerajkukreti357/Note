@@ -10,6 +10,7 @@ import CheckList from '@/components/checklist';
 import {
   checkListNoteSchema,
   CheckNoteFormData,
+  MediaNoteFormData,
   MediaNoteSchema,
   SimpleNoteFormData,
   simpleNoteSchema,
@@ -26,6 +27,7 @@ import {
   createSimpleNote,
 } from '@/services/notesServices/createNotesServices';
 import { useNotes } from '@/hooks/home';
+import uploadAudio from '@/services/upload/audioUpload';
 
 const AddScreenNotes = () => {
   const { refetch } = useNotes();
@@ -34,7 +36,9 @@ const AddScreenNotes = () => {
   const [active, setActive] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  const methods = useForm<SimpleNoteFormData | CheckNoteFormData>({
+  const methods = useForm<
+    SimpleNoteFormData | CheckNoteFormData | MediaNoteFormData
+  >({
     resolver: zodResolver(
       active === 0
         ? simpleNoteSchema
@@ -50,7 +54,9 @@ const AddScreenNotes = () => {
         : MediaNoteInitialsValues,
   });
 
-  const onSubmit = async (data: SimpleNoteFormData | CheckNoteFormData) => {
+  const onSubmit = async (
+    data: SimpleNoteFormData | CheckNoteFormData | MediaNoteFormData,
+  ) => {
     setLoading(true);
     if (active === 0) {
       const simpleData = data as SimpleNoteFormData;
@@ -68,6 +74,12 @@ const AddScreenNotes = () => {
         2,
         checkData?.priority,
       );
+    } else {
+      const formData = data as MediaNoteFormData;
+
+      const url = uploadAudio(formData?.audioPath);
+
+      console.log('url', url);
     }
     refetch();
     setLoading(false);

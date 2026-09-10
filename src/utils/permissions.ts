@@ -1,8 +1,18 @@
 import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 
-import { Platform } from 'react-native';
+import { Alert, Linking, Platform } from 'react-native';
 
-export const requestMicrophonePermission = async (): Promise<boolean> => {
+const openAppSettings = () => {
+  if (Platform.OS === 'ios') {
+    Linking.openURL('app-settings:');
+  } else {
+    Linking.openSettings(); // Android
+  }
+};
+
+export const requestMicrophonePermission = async (
+  isFirstTime: boolean = false,
+): Promise<boolean> => {
   const permission =
     Platform.OS === 'ios'
       ? PERMISSIONS.IOS.MICROPHONE
@@ -15,11 +25,28 @@ export const requestMicrophonePermission = async (): Promise<boolean> => {
       return true;
     }
 
-    if (status === RESULTS.BLOCKED) {
-      console.log(
-        'Microphone permission is blocked. Please enable it from Settings.',
+    if (status === RESULTS.BLOCKED && !isFirstTime) {
+      Alert.alert(
+        'Microphone Permission Required',
+        'Microphone access is disabled. Please enable it in Settings to record audio.',
+        [
+          { text: 'Cancel', style: 'cancel' },
+          { text: 'Open Settings', onPress: () => openAppSettings() },
+        ],
       );
 
+      return false;
+    }
+
+    if (status === RESULTS.DENIED && !isFirstTime) {
+      Alert.alert(
+        'Microphone Permission Required',
+        'Microphone access is disabled. Please enable it in Settings to record audio.',
+        [
+          { text: 'Cancel', style: 'cancel' },
+          { text: 'Open Settings', onPress: () => openAppSettings() },
+        ],
+      );
       return false;
     }
 

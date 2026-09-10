@@ -1,7 +1,7 @@
 import { ImagePlus, Mic, Pause } from 'lucide-react-native';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import styles from './styles';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MediaNoteFormData } from '@/screens/AddNotesScreen/shema';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CustomDropdown } from '../formComponents';
@@ -11,21 +11,58 @@ import TextEditor from '../TextEditor';
 import commonStyle from '@/theme/commonStyles';
 import { responsive } from '@/theme/responsive';
 import MultipleCheckbox from '../formComponents/checkbox';
+import { formatTime } from '@/utils/date';
+import {
+  WaveformRecorderView,
+  type WaveformRecorderViewRef,
+} from 'react-native-waveform-recorder';
+import AudioPlayer from '../audio';
+import { requestMicrophonePermission } from '@/utils/permissions';
 
 const Media = ({ loading }: { loading: boolean }) => {
   const [recording, setRecording] = useState(false);
   const [seconds, setSeconds] = useState(0);
+  const recorderRef = useRef<WaveformRecorderViewRef>(null);
+
   const {
     control,
     formState: { errors },
     watch,
+    setValue,
   } = useFormContext<MediaNoteFormData>();
-  function toggleRecording() {
-    setRecording(value => !value);
-    setSeconds(value => (recording ? value : value + 1));
-  }
+
+  const onDelete = () => {
+    setValue('audioPath', '', { shouldValidate: true });
+  };
+
+  const toggleRecording = () => {
+    if (!recorderRef.current) return;
+
+    if (!recording) {
+      recorderRef.current.start();
+    } else {
+      recorderRef.current.stop();
+    }
+  };
 
   const selected = watch('media');
+  const audioPathWatcher = watch('audioPath');
+
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval> | undefined;
+
+    if (recording) {
+      interval = setInterval(() => {
+        setSeconds(prev => prev + 1);
+      }, 1000);
+    }
+
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [recording]);
 
   return (
     <ScrollView style={styles.mainContainer}>
@@ -124,6 +161,30 @@ const Media = ({ loading }: { loading: boolean }) => {
         <View style={styles.mediaCard}>
           <Text style={styles.panelHeading}>Voice note</Text>
           <View style={styles.voice}>
+            {/* Hidden native recorder — drives start/stop/onComplete only */}
+            <WaveformRecorderView
+              ref={recorderRef}
+              style={{ position: 'absolute', width: 1, height: 1, opacity: 0 }}
+              onStateChange={({ state }) => {
+                setRecording(state === 'recording');
+              }}
+              onComplete={({ uri }) => {
+                setValue('audioPath', uri, { shouldValidate: true });
+                setRecording(false);
+                setSeconds(0);
+              }}
+              onError={error => {
+                console.error('Recording error:', error);
+                setRecording(false);
+                setSeconds(0);
+              }}
+              onPermissionDenied={() => {
+                requestMicrophonePermission();
+                setRecording(false);
+                setSeconds(0);
+              }}
+            />
+
             <View style={styles.wave}>
               {Array.from({ length: 17 }, (_, index) => (
                 <View
@@ -132,9 +193,7 @@ const Media = ({ loading }: { loading: boolean }) => {
                 />
               ))}
             </View>
-            <Text style={styles.timer}>
-              00:{seconds.toString().padStart(2, '0')}
-            </Text>
+            <Text style={styles.timer}>{formatTime(seconds)}</Text>
             <Pressable
               style={[styles.mic, recording && styles.recording]}
               onPress={toggleRecording}
@@ -149,6 +208,20 @@ const Media = ({ loading }: { loading: boolean }) => {
               {recording ? 'Recording...' : 'Tap to record'}
             </Text>
           </View>
+
+          {audioPathWatcher && (
+            <AudioPlayer
+              audioPath={audioPathWatcher}
+              isDeleted={true}
+              onDelete={onDelete}
+            />
+          )}
+
+          {errors.audioPath && (
+            <Text style={[commonStyle.errorTextColor, { marginTop: 10 }]}>
+              {errors.audioPath.message}
+            </Text>
+          )}
         </View>
       ) : selected?.[0] === '2' ? (
         <View style={styles.mediaCard}>

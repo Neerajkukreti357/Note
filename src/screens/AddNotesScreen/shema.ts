@@ -53,6 +53,7 @@ export const MediaNoteSchema = z.object({
     error: 'Priority is required',
   }),
   media: z.array(z.enum(['1', '2'])).min(1, 'Media is required'),
+  audioPath: z.string().min(1, 'Audio recording is required'),
 });
 
 export type SimpleNoteFormData = z.infer<typeof simpleNoteSchema>;

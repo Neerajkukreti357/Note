@@ -16,4 +16,5 @@ export const MediaNoteInitialsValues = {
   checkList: '',
   priority: 'high' as const,
   media: [],
+  audioPath: '',
 };

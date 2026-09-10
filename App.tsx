@@ -10,7 +10,7 @@ import { requestMicrophonePermission } from '@/utils/permissions';
 function App() {
   useEffect(() => {
     createTables();
-    requestMicrophonePermission();
+    requestMicrophonePermission(true);
   }, []);
   return (
     <SafeAreaProvider>
