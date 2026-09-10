@@ -14,7 +14,9 @@ const MainLayout = () => {
   const currentScreen = useNavigationState(state => getCurrentRouteName(state));
   return (
     <View style={styles.layout}>
-      <Header screenName={currentScreen} />
+      <Header
+        screenName={currentScreen === 'HomeTab' ? 'Home' : currentScreen}
+      />
       <BottomBar />
     </View>
   );
@@ -32,8 +34,7 @@ export default function AppDrawer() {
       }}
       drawerContent={props => <CustomDrawerView {...props} />}
     >
-      <Drawer.Screen name="Home" component={MainLayout} />
-      {/* <Drawer.Screen name="Settings" component={SettingsScreen} /> */}
+      <Drawer.Screen name="HomeTab" component={MainLayout} />
     </Drawer.Navigator>
   );
 }

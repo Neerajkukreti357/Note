@@ -27,7 +27,6 @@ import {
   createSimpleNote,
 } from '@/services/notesServices/createNotesServices';
 import { useNotes } from '@/hooks/home';
-import uploadAudio from '@/services/upload/audioUpload';
 
 const AddScreenNotes = () => {
   const { refetch } = useNotes();
@@ -77,9 +76,7 @@ const AddScreenNotes = () => {
     } else {
       const formData = data as MediaNoteFormData;
 
-      const url = uploadAudio(formData?.audioPath);
-
-      console.log('url', url);
+      console.log(formData);
     }
     refetch();
     setLoading(false);
