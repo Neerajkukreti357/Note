@@ -1,4 +1,6 @@
-import { AppColors, spacing } from '@/theme';
+import { AppColors, fontSize, spacing } from '@/theme';
+import { responsive } from '@/theme/responsive';
+import { fontFamily } from '@/theme/typography';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -95,6 +97,60 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#151E32',
+  },
+
+  contentBottomContainer: {
+    flex: 1,
+    padding: 15,
+  },
+  btnContainer: {
+    paddingVertical: 20,
+    paddingHorizontal: 35,
+    gap: spacing.sm,
+    alignContent: 'center',
+    borderWidth: 2,
+    borderStyle: 'dashed',
+    borderRadius: spacing.sm,
+    borderColor: AppColors.monthTextColor,
+  },
+  mediaOptions: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: responsive.horizontal(20),
+  },
+
+  mediaOption: {
+    width: responsive.width(150),
+    height: responsive.height(100),
+
+    borderWidth: 1.5,
+    borderColor: AppColors.lightBorder,
+    borderStyle: 'dashed',
+    borderRadius: responsive.radius(14),
+
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    backgroundColor: AppColors.primary,
+  },
+
+  mediaIconContainer: {
+    width: responsive.width(60),
+    height: responsive.height(50),
+
+    borderRadius: responsive.radius(18),
+
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    backgroundColor: AppColors.iconBg,
+    marginBottom: spacing.sm,
+  },
+
+  mediaOptionText: {
+    fontFamily: fontFamily.inter.semiBold,
+    fontSize: fontSize.body,
+    color: AppColors.monthTextColor,
   },
 });
 

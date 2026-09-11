@@ -21,6 +21,8 @@ prepare_react_native_project!
 
 # Permissions required by the app
 setup_permissions([
+  'Camera',
+  'PhotoLibrary',
   'Microphone',
 ])
 
