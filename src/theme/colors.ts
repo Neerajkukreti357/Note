@@ -51,3 +51,42 @@ export const badgeColors = {
 } as const;
 
 export default AppColors;
+
+export const AppColorsLight = {
+  // Main backgrounds
+  lightPrimary: '#F8FAFF',
+  primary: '#FFFFFF',
+  secondary: '#F1F4FA',
+
+  // Text
+  heading: '#252B4A',
+  text: '#5B6278',
+
+  // Primary accent
+  highlightColor: '#554ED5',
+
+  // Tags
+  tagBackground: '#EEF0F7',
+  tagWork: '#1599C4',
+  tagPriority: '#636579',
+
+  // Icons
+  icon: '#3F4760',
+
+  // Borders
+  lightBorder: '#D8DDE9',
+
+  // Calendar
+  selectedMonthColor: '#554ED5',
+  monthTextColor: '#252B4A',
+
+  // Buttons / settings
+  settingButtonBackgroundColor: '#F1F3F8',
+  brawerBackground: '#F8FAFF',
+
+  // Icon backgrounds
+  iconBg: '#E9EAFB',
+
+  // Theme switch / cyan accent
+  themeChanger: '#089FC1',
+};

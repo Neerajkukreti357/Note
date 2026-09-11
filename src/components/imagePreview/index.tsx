@@ -7,14 +7,9 @@ import styles from './style';
 type ImagePreviewListProps = {
   images: Asset[];
   onRemove?: (index: number) => void;
-  onAdd?: () => void;
 };
 
-const ImagePreviewList = ({
-  images,
-  onRemove,
-  onAdd,
-}: ImagePreviewListProps) => {
+const ImagePreviewList = ({ images, onRemove }: ImagePreviewListProps) => {
   const hasImages = images.length > 0;
 
   return (
@@ -56,11 +51,11 @@ const ImagePreviewList = ({
             </View>
           ))}
 
-          {onAdd && (
-            <Pressable style={styles.addImageBox} onPress={onAdd}>
+          {images?.length > 0 && (
+            <Pressable style={styles.addImageBox}>
               <ImagePlus size={24} color="#76D4F2" />
 
-              <Text style={styles.addImageText}>Add</Text>
+              <Text style={styles.addImageText}>Add More Images</Text>
             </Pressable>
           )}
         </ScrollView>

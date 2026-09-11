@@ -22,10 +22,14 @@ import {
   requestGalleryPermission,
   requestMicrophonePermission,
 } from '@/utils/permissions';
-import { savePersistentAudio } from '@/utils';
+import { saveImagePermanently, savePersistentAudio } from '@/utils';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import ImagePreviewList from '../imagePreview';
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import {
+  Asset,
+  launchCamera,
+  launchImageLibrary,
+} from 'react-native-image-picker';
 
 const Media = ({ loading }: { loading: boolean }) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -33,6 +37,7 @@ const Media = ({ loading }: { loading: boolean }) => {
   const [seconds, setSeconds] = useState(0);
   const recorderRef = useRef<WaveformRecorderViewRef>(null);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [images, setImages] = useState<Asset[]>([]);
 
   const {
     control,
@@ -138,9 +143,19 @@ const Media = ({ loading }: { loading: boolean }) => {
 
     const image = result.assets?.[0];
 
-    if (image) {
-      console.log('Captured image:', image);
+    if (!image) {
+      return;
     }
+
+    // Save permanently
+    const savedImage = await saveImagePermanently(image);
+
+    if (!savedImage) {
+      return;
+    }
+
+    // Add to your image list
+    setImages(prev => [...prev, savedImage]);
   };
 
   const openGallery = async () => {
@@ -165,11 +180,11 @@ const Media = ({ loading }: { loading: boolean }) => {
       return;
     }
 
-    const images = result.assets ?? [];
+    const selectedImages = result.assets ?? [];
 
-    console.log('Selected images:', images);
-
-    bottomSheetRef.current?.close();
+    if (selectedImages.length > 0) {
+      setImages(prevImages => [...prevImages, ...selectedImages]);
+    }
   };
 
   return (
@@ -354,7 +369,7 @@ const Media = ({ loading }: { loading: boolean }) => {
         }}
         ref={bottomSheetRef}
         onChange={handleSheetChanges}
-        snapPoints={['50%']}
+        snapPoints={['45%']}
         index={-1}
         enablePanDownToClose={true}
         enableDynamicSizing={false}
@@ -377,7 +392,12 @@ const Media = ({ loading }: { loading: boolean }) => {
               <Text style={styles.mediaOptionText}>Gallery</Text>
             </Pressable>
           </View>
-          <ImagePreviewList images={[]} onRemove={() => {}} onAdd={() => {}} />
+          <ImagePreviewList
+            images={images}
+            onRemove={index => {
+              setImages(prev => prev.filter((_, i) => i !== index));
+            }}
+          />
         </BottomSheetView>
       </BottomSheet>
     </>

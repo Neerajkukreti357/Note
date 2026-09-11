@@ -132,13 +132,12 @@ const styles = StyleSheet.create({
   removeButton: {
     position: 'absolute',
 
-    top: -responsive.height(6),
-    right: -responsive.width(6),
+    top: -responsive.height(1),
+    right: responsive.width(0),
 
-    width: responsive.width(24),
-    height: responsive.height(24),
+    padding: responsive.width(2),
 
-    borderRadius: responsive.radius(12),
+    borderRadius: responsive.radius(50),
 
     alignItems: 'center',
     justifyContent: 'center',

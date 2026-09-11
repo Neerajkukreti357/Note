@@ -1,5 +1,5 @@
 import RNFS from 'react-native-fs';
-import { launchImageLibrary, type Asset } from 'react-native-image-picker';
+import { type Asset } from 'react-native-image-picker';
 
 export const getCurrentRouteName = (state: any): string => {
   const route = state.routes[state.index];
@@ -28,19 +28,29 @@ export const savePersistentAudio = async (cacheUri: string) => {
   return `file://${destPath}`;
 };
 
-export const pickImage = async (): Promise<Asset[] | null> => {
-  const result = await launchImageLibrary({
-    mediaType: 'photo',
-    selectionLimit: 0, // 0 = allow multiple selection, 1 = single
-    quality: 1, // grab full quality here — you compress yourself right after
-  });
-
-  if (result.didCancel || result.errorCode) {
-    if (result.errorCode) {
-      console.log('Image picker error:', result.errorMessage);
+export const saveImagePermanently = async (
+  image: Asset,
+): Promise<Asset | null> => {
+  try {
+    if (!image.uri) {
+      return null;
     }
+
+    const fileName = `image_${Date.now()}.jpg`;
+
+    const destinationPath = `${RNFS.DocumentDirectoryPath}/${fileName}`;
+
+    const sourcePath = image.uri.replace('file://', '');
+
+    await RNFS.copyFile(sourcePath, destinationPath);
+
+    return {
+      ...image,
+      uri: `file://${destinationPath}`,
+      fileName,
+    };
+  } catch (error) {
+    console.error('Error saving image:', error);
     return null;
   }
-
-  return result.assets ?? null;
 };
