@@ -13,12 +13,13 @@ import {
 } from 'lucide-react-native';
 import { BottomButton, DrawerButton } from './type';
 import { DarkColors } from '@/theme';
-import { useState } from 'react';
 import { badgeColors } from '@/theme/colors';
 import { AnimatedToggle } from '../formComponents';
 import { useNavigation } from '@react-navigation/native';
+import { useTheme } from '@/context/ThemeContext';
 
 const CustomDrawerView = (props: DrawerContentComponentProps) => {
+  const { toggleTheme, theme } = useTheme();
   const navigation = useNavigation();
   const buttons: DrawerButton[] = [
     {
@@ -33,7 +34,9 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
       labels: 'Theme',
       description: 'Change appearance',
       icon: Palette,
-      onPress: () => {},
+      onPress: () => {
+        toggleTheme();
+      },
     },
     {
       labels: 'Trash',
@@ -54,8 +57,6 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
       onPress: () => {},
     },
   ];
-
-  const [enabled, setEnabled] = useState(false);
 
   const bottomButtons: BottomButton[] = [
     {
@@ -98,7 +99,10 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
                 </View>
               </View>
               {item?.labels === 'Theme' ? (
-                <AnimatedToggle value={enabled} onValueChange={setEnabled} />
+                <AnimatedToggle
+                  value={theme === 'dark'}
+                  onValueChange={item?.onPress}
+                />
               ) : (
                 <ChevronRight size={19} color={DarkColors.icon} />
               )}
