@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { styles } from './style';
 import { CustomDropdownProps } from './type';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 
 function CustomDropdown<T extends string | number>({
   data,
@@ -37,7 +37,7 @@ function CustomDropdown<T extends string | number>({
         containerStyle={styles.dropdownList} // the popover/list container itself
         itemContainerStyle={styles.itemContainer} // wraps each row — controls per-item spacing
         itemTextStyle={styles.itemText} // text style for each option
-        activeColor={AppColors.primary} // background of the currently-selected row
+        activeColor={DarkColors.primary} // background of the currently-selected row
         iconStyle={styles.icon} // the little chevron icon
         maxHeight={300}
       />

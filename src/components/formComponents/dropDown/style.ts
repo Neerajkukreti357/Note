@@ -1,21 +1,21 @@
-import { AppColors, spacing } from '@/theme';
+import { DarkColors, spacing } from '@/theme';
 import { Platform, StatusBar, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   dropdown: {
     height: 40,
-    borderColor: AppColors.lightBorder,
+    borderColor: DarkColors.lightBorder,
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: spacing.md,
   },
-  placeholderStyle: { fontSize: 14, color: AppColors.monthTextColor },
-  selectedTextStyle: { fontSize: 14, color: AppColors.monthTextColor },
+  placeholderStyle: { fontSize: 14, color: DarkColors.monthTextColor },
+  selectedTextStyle: { fontSize: 14, color: DarkColors.monthTextColor },
   dropdownList: {
-    backgroundColor: AppColors.secondary, // the whole dropdown popup background
+    backgroundColor: DarkColors.secondary, // the whole dropdown popup background
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: AppColors.lightBorder,
+    borderColor: DarkColors.lightBorder,
     paddingVertical: 4,
     marginTop: Platform.select({
       ios: 0,
@@ -33,9 +33,9 @@ export const styles = StyleSheet.create({
   },
   itemText: {
     fontSize: 14,
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
   },
   icon: {
-    tintColor: AppColors.icon,
+    tintColor: DarkColors.icon,
   },
 });

@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
 import { fontSize, spacing } from '@/theme/typography';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: AppColors.secondary,
+    backgroundColor: DarkColors.secondary,
     borderRadius: spacing.md,
-    borderColor: AppColors.lightBorder,
+    borderColor: DarkColors.lightBorder,
   },
 
   header: {

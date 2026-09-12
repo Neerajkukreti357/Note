@@ -1,16 +1,16 @@
 import { StyleSheet } from 'react-native';
-import { AppColors, fontSize, spacing } from '@/theme';
+import { DarkColors, fontSize, spacing } from '@/theme';
 
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
-    borderColor: AppColors.lightBorder,
+    borderColor: DarkColors.lightBorder,
     borderRadius: 18,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: AppColors.primary,
+    backgroundColor: DarkColors.primary,
     marginTop: spacing.sm,
     position: 'relative',
   },
@@ -21,14 +21,14 @@ const styles = StyleSheet.create({
     right: 0,
     padding: 5,
     borderRadius: '50%',
-    backgroundColor: AppColors.monthTextColor,
+    backgroundColor: DarkColors.monthTextColor,
   },
 
   playButton: {
     width: 40,
     height: 40,
     borderRadius: 50,
-    backgroundColor: AppColors.highlightColor,
+    backgroundColor: DarkColors.highlightColor,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 26,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 
   timeText: {
     fontSize: fontSize.caption,
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
     fontWeight: '500',
   },
 });

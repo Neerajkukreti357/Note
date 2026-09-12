@@ -1,9 +1,9 @@
-import { AppColors, spacing } from '@/theme';
+import { DarkColors, spacing } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: AppColors.lightPrimary,
+    backgroundColor: DarkColors.lightPrimary,
     height: '80%',
     borderRadius: spacing.sm,
     marginTop: spacing.md,
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 38,
     fontWeight: '700',
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
     marginTop: spacing.md,
 
     padding: 0,

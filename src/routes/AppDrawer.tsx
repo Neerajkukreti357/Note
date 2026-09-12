@@ -5,7 +5,7 @@ import { Header } from '@/components';
 import { useNavigationState } from '@react-navigation/native';
 import { getCurrentRouteName } from '@/utils';
 import { StyleSheet, View } from 'react-native';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import CustomDrawerView from '@/components/drawer';
 
 const Drawer = createDrawerNavigator();
@@ -29,7 +29,7 @@ export default function AppDrawer() {
         headerShown: false,
         drawerType: 'front',
         drawerStyle: {
-          backgroundColor: AppColors.brawerBackground,
+          backgroundColor: DarkColors.drawerBackgroundColor,
         },
       }}
       drawerContent={props => <CustomDrawerView {...props} />}
@@ -40,5 +40,5 @@ export default function AppDrawer() {
 }
 
 const styles = StyleSheet.create({
-  layout: { flex: 1, backgroundColor: AppColors.primary },
+  layout: { flex: 1, backgroundColor: DarkColors.primary },
 });

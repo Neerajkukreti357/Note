@@ -1,9 +1,9 @@
-import { AppColors, fontSize, spacing } from '@/theme';
+import { DarkColors, fontSize, spacing } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: AppColors.primary,
+    backgroundColor: DarkColors.primary,
     paddingHorizontal: spacing.sm,
     paddingVertical: spacing.sm,
     flex: 1,
@@ -16,20 +16,20 @@ const styles = StyleSheet.create({
   title: {
     fontSize: fontSize.title,
     fontWeight: 700,
-    color: AppColors.heading,
+    color: DarkColors.heading,
     marginLeft: spacing.md,
   },
   button: {
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 'auto',
-    backgroundColor: AppColors.highlightColor,
+    backgroundColor: DarkColors.highlightColor,
     padding: spacing.sm,
     borderRadius: 10,
   },
   textStyle: {
     fontWeight: 600,
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
   },
 });
 

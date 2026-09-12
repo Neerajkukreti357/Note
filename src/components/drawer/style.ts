@@ -1,10 +1,10 @@
-import { AppColors, fontSize, spacing } from '@/theme';
+import { DarkColors, fontSize, spacing } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: AppColors.brawerBackground,
+    backgroundColor: DarkColors.drawerBackgroundColor,
     paddingHorizontal: spacing.md,
     borderRadius: spacing.md,
   },
@@ -12,11 +12,11 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: fontSize.superTitle,
     fontWeight: 800,
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
   },
   subHeading: {
     fontSize: fontSize.description,
-    color: AppColors.text,
+    color: DarkColors.text,
   },
   drawerButtonContainer: {
     marginVertical: spacing.md,
@@ -31,41 +31,41 @@ const styles = StyleSheet.create({
     padding: spacing.sm,
     gap: spacing.md,
     alignItems: 'center',
-    backgroundColor: AppColors.settingButtonBackgroundColor,
+    backgroundColor: DarkColors.settingButtonBackgroundColor,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: AppColors.lightBorder,
+    borderColor: DarkColors.lightBorder,
     justifyContent: 'space-between',
   },
   iconContainer: {
     padding: spacing.sm,
     borderRadius: '100%',
-    backgroundColor: AppColors.iconBg,
+    backgroundColor: DarkColors.iconBg,
   },
   label: {
     fontSize: fontSize.body,
     fontWeight: 700,
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
   },
   description: {
     fontSize: fontSize.badge,
     fontWeight: 700,
-    color: AppColors.text,
+    color: DarkColors.text,
   },
   bottomButtonContainer: {
     flexDirection: 'row',
     padding: spacing.sm,
     gap: spacing.sm,
     alignItems: 'center',
-    backgroundColor: AppColors.settingButtonBackgroundColor,
+    backgroundColor: DarkColors.settingButtonBackgroundColor,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: AppColors.lightBorder,
+    borderColor: DarkColors.lightBorder,
   },
   bottomLabel: {
     fontSize: fontSize.body,
     fontWeight: 500,
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
   },
 });
 

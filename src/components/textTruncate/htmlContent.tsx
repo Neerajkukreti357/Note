@@ -3,19 +3,19 @@ import { useWindowDimensions, View } from 'react-native';
 import RenderHTML from 'react-native-render-html';
 import styles from './style';
 import { MixedStyleDeclaration } from 'react-native-render-html';
-import { AppColors, fontSize } from '@/theme';
+import { DarkColors, fontSize } from '@/theme';
 import { HTMLTextTruncateProps } from './type';
 
 const TAGS_STYLES: MixedStyleDeclaration &
   Record<string, MixedStyleDeclaration> = {
   p: {
-    color: AppColors.icon,
+    color: DarkColors.icon,
     fontSize: fontSize.description,
     marginTop: 0,
     marginBottom: 8,
   },
-  strong: { color: AppColors.icon, fontWeight: '700' },
-  em: { color: AppColors.icon, fontStyle: 'italic' },
+  strong: { color: DarkColors.icon, fontWeight: '700' },
+  em: { color: DarkColors.icon, fontStyle: 'italic' },
 };
 
 const HTMLTextTruncate = ({ html, baseStyle }: HTMLTextTruncateProps) => {

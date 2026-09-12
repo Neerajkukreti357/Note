@@ -2,14 +2,14 @@ import { Text, View } from 'react-native';
 import { NoDataFoundProps } from './type';
 import GlowView from '../glowView';
 import styles from './style';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 
 const NoDataFound = ({ title, description, Icon }: NoDataFoundProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
         <GlowView size={50} />
-        <Icon size={40} color={AppColors.themeChanger} />
+        <Icon size={40} color={DarkColors.themeChanger} />
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.heading}>{title}</Text>

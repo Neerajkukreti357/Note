@@ -2,7 +2,7 @@ import { View } from 'react-native';
 import Card from '../card';
 import { GripVertical, EllipsisVertical, Image } from 'lucide-react-native';
 import style from './style';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import Badges from '../badges';
 import { Note } from '@/store/type';
 import TextTruncate from '../textTruncate';
@@ -13,7 +13,7 @@ const NotesWithImages = ({ item }: { item: Note }) => {
     <Card key={item?.id}>
       <Card.Header>
         <View style={style.headingBox}>
-          <GripVertical size={18} color={AppColors.lightBorder} />
+          <GripVertical size={18} color={DarkColors.lightBorder} />
           <TextTruncate numberOfLines={1} style={style.headingText}>
             {item?.title}
           </TextTruncate>
@@ -21,7 +21,7 @@ const NotesWithImages = ({ item }: { item: Note }) => {
             <Image size={15} color={badgeColors['partial complete'].text} />
           </View>
         </View>
-        <EllipsisVertical size={18} color={AppColors.lightBorder} />
+        <EllipsisVertical size={18} color={DarkColors.lightBorder} />
       </Card.Header>
       <Card.Footer>
         <Badges title="pending" />

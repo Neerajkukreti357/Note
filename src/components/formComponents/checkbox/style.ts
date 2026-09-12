@@ -1,4 +1,4 @@
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -17,20 +17,20 @@ const styles = StyleSheet.create({
     width: 22,
     height: 22,
     borderWidth: 1.5,
-    borderColor: AppColors.monthTextColor,
+    borderColor: DarkColors.monthTextColor,
     borderRadius: 4,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   checked: {
-    backgroundColor: AppColors.primary,
-    borderColor: AppColors.primary,
+    backgroundColor: DarkColors.primary,
+    borderColor: DarkColors.primary,
   },
 
   label: {
     fontSize: 16,
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
   },
 });
 

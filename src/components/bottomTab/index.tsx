@@ -7,7 +7,7 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
 } from 'react-native-reanimated';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import GlowView from '../glowView';
 
 const icons = {
@@ -52,7 +52,7 @@ const TabButton = ({ route, isFocused, onPress }: TabButtonProps) => {
         {isFocused && <GlowView size={40} />}
         <Icon
           size={24}
-          color={isFocused ? AppColors.primary : AppColors.icon}
+          color={isFocused ? DarkColors.primary : DarkColors.icon}
         />
       </Animated.View>
     </Pressable>

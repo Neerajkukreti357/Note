@@ -1,4 +1,4 @@
-import { AppColors, spacing } from '@/theme';
+import { DarkColors, spacing } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -8,12 +8,12 @@ const styles = StyleSheet.create({
   editor: {
     flex: 1,
     width: '100%',
-    backgroundColor: AppColors.lightPrimary,
+    backgroundColor: DarkColors.lightPrimary,
   },
   editorContainer: {
     // flex: 1,
     marginTop: spacing.lg,
-    backgroundColor: AppColors.lightPrimary,
+    backgroundColor: DarkColors.lightPrimary,
     overflow: 'hidden',
   },
   toolbar: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
 
-    backgroundColor: AppColors.primary,
+    backgroundColor: DarkColors.primary,
 
     borderRadius: spacing.sm,
 
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   separator: {
     width: 1,
     height: 22,
-    backgroundColor: AppColors.lightBorder,
+    backgroundColor: DarkColors.lightBorder,
   },
   editorLoader: {
     position: 'absolute',
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
 
-    backgroundColor: AppColors.lightPrimary,
+    backgroundColor: DarkColors.lightPrimary,
 
     zIndex: 10,
   },

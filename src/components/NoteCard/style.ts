@@ -1,4 +1,4 @@
-import { AppColors, fontSize, spacing } from '@/theme';
+import { DarkColors, fontSize, spacing } from '@/theme';
 import { badgeColors } from '@/theme/colors';
 import { fontFamily } from '@/theme/typography';
 import { StyleSheet } from 'react-native';
@@ -11,13 +11,13 @@ const style = StyleSheet.create({
   },
   headingText: {
     fontSize: fontSize.body,
-    color: AppColors.icon,
+    color: DarkColors.icon,
     fontWeight: 800,
     fontFamily: fontFamily.montserrat.regular,
     maxWidth: 300,
   },
   descriptionText: {
-    color: AppColors.icon,
+    color: DarkColors.icon,
     fontSize: fontSize.description,
   },
   checkBox: {
@@ -45,7 +45,7 @@ const style = StyleSheet.create({
   },
   type: {
     fontSize: fontSize.badge,
-    color: AppColors.highlightColor,
+    color: DarkColors.highlightColor,
   },
   fileTextBackground: {
     backgroundColor: badgeColors.pending.background,

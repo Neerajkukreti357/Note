@@ -1,4 +1,4 @@
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import React, { useEffect } from 'react';
 import { Pressable } from 'react-native';
 import Animated, {
@@ -42,7 +42,7 @@ const AnimatedToggle = ({ value, onValueChange }: AnimatedToggleProps) => {
 
   const animatedTrackStyle = useAnimatedStyle(() => {
     return {
-      backgroundColor: value ? AppColors.highlightColor : AppColors.text,
+      backgroundColor: value ? DarkColors.highlightColor : DarkColors.text,
     };
   });
 

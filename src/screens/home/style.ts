@@ -1,4 +1,4 @@
-import { AppColors, fontSize, spacing } from '@/theme';
+import { DarkColors, fontSize, spacing } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const style = StyleSheet.create({
@@ -9,12 +9,12 @@ const style = StyleSheet.create({
   },
   loadingText: {
     fontSize: fontSize.body,
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
     marginTop: spacing.sm,
   },
   container: {
     flex: 1,
-    backgroundColor: AppColors.primary,
+    backgroundColor: DarkColors.primary,
   },
   contentContainer: {
     paddingHorizontal: spacing.sm,

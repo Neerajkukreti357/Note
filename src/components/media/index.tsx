@@ -6,7 +6,7 @@ import { MediaNoteFormData } from '@/screens/AddNotesScreen/shema';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CustomDropdown } from '../formComponents';
 import { DropdownOptions } from '../general/constants';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import TextEditor from '../TextEditor';
 import commonStyle from '@/theme/commonStyles';
 import { responsive } from '@/theme/responsive';
@@ -271,7 +271,7 @@ const Media = ({ loading }: { loading: boolean }) => {
               <TextInput
                 placeholder="Title"
                 style={[styles.title, [{ marginBottom: -8 }]]}
-                placeholderTextColor={AppColors.monthTextColor}
+                placeholderTextColor={DarkColors.monthTextColor}
                 value={value}
                 onChangeText={onChange}
                 aria-disabled={loading}
@@ -442,10 +442,10 @@ const Media = ({ loading }: { loading: boolean }) => {
       </ScrollView>
       <BottomSheet
         backgroundStyle={{
-          backgroundColor: AppColors.secondary,
+          backgroundColor: DarkColors.secondary,
         }}
         handleIndicatorStyle={{
-          backgroundColor: AppColors.monthTextColor,
+          backgroundColor: DarkColors.monthTextColor,
         }}
         ref={bottomSheetRef}
         onChange={handleSheetChanges}
@@ -458,7 +458,11 @@ const Media = ({ loading }: { loading: boolean }) => {
           <View style={styles.mediaOptions}>
             <Pressable style={styles.mediaOption} onPress={openCamera}>
               <View style={styles.mediaIconContainer}>
-                <Camera size={36} color={AppColors.heading} strokeWidth={1.8} />
+                <Camera
+                  size={36}
+                  color={DarkColors.heading}
+                  strokeWidth={1.8}
+                />
               </View>
 
               <Text style={styles.mediaOptionText}>Camera</Text>
@@ -466,7 +470,11 @@ const Media = ({ loading }: { loading: boolean }) => {
 
             <Pressable style={styles.mediaOption} onPress={openGallery}>
               <View style={styles.mediaIconContainer}>
-                <Images size={36} color={AppColors.heading} strokeWidth={1.8} />
+                <Images
+                  size={36}
+                  color={DarkColors.heading}
+                  strokeWidth={1.8}
+                />
               </View>
 
               <Text style={styles.mediaOptionText}>Gallery</Text>

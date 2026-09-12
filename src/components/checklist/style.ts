@@ -1,10 +1,10 @@
-import { AppColors, spacing } from '@/theme';
+import { DarkColors, spacing } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   notePanel: {
     minHeight: 510,
-    backgroundColor: AppColors.lightPrimary,
+    backgroundColor: DarkColors.lightPrimary,
     borderRadius: spacing.sm,
     borderWidth: 1,
     padding: spacing.md,
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 38,
     fontWeight: '700',
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
     padding: 0,
     marginTop: spacing.md,
     // Prevent Android from adding extra font space

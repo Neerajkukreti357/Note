@@ -1,4 +1,4 @@
-import { AppColors, fontSize, spacing } from '@/theme';
+import { DarkColors, fontSize, spacing } from '@/theme';
 import { responsive } from '@/theme/responsive';
 import { fontFamily } from '@/theme/typography';
 import { StyleSheet } from 'react-native';
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 38,
     fontWeight: '700',
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
     marginVertical: spacing.md,
 
     padding: 0,
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderStyle: 'dashed',
     borderRadius: spacing.sm,
-    borderColor: AppColors.monthTextColor,
+    borderColor: DarkColors.monthTextColor,
   },
   mediaOptions: {
     flexDirection: 'row',
@@ -124,14 +124,14 @@ const styles = StyleSheet.create({
     height: responsive.height(100),
 
     borderWidth: 1.5,
-    borderColor: AppColors.lightBorder,
+    borderColor: DarkColors.lightBorder,
     borderStyle: 'dashed',
     borderRadius: responsive.radius(14),
 
     alignItems: 'center',
     justifyContent: 'center',
 
-    backgroundColor: AppColors.primary,
+    backgroundColor: DarkColors.primary,
   },
 
   mediaIconContainer: {
@@ -143,14 +143,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
 
-    backgroundColor: AppColors.iconBg,
+    backgroundColor: DarkColors.iconBg,
     marginBottom: spacing.sm,
   },
 
   mediaOptionText: {
     fontFamily: fontFamily.inter.semiBold,
     fontSize: fontSize.body,
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
   },
   viewButton: {
     marginTop: spacing.sm,
@@ -158,8 +158,8 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.xs,
     borderRadius: responsive.radius(8),
     borderWidth: 1,
-    borderColor: AppColors.highlightColor,
-    backgroundColor: AppColors.iconBg,
+    borderColor: DarkColors.highlightColor,
+    backgroundColor: DarkColors.iconBg,
     alignItems: 'center',
     justifyContent: 'center',
   },

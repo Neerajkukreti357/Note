@@ -1,4 +1,4 @@
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     marginLeft: 4,
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
   },
 });
 

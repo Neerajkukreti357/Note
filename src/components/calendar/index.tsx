@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import { Calendar } from 'react-native-calendars';
 import { calendarTheme } from './theme';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 
 const CalendarComponent = () => {
   return (
@@ -9,9 +9,9 @@ const CalendarComponent = () => {
       theme={calendarTheme}
       renderArrow={direction => {
         if (direction === 'left') {
-          return <ChevronLeft size={20} color={AppColors.monthTextColor} />;
+          return <ChevronLeft size={20} color={DarkColors.monthTextColor} />;
         }
-        return <ChevronRight size={20} color={AppColors.monthTextColor} />;
+        return <ChevronRight size={20} color={DarkColors.monthTextColor} />;
       }}
     />
   );

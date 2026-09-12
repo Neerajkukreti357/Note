@@ -14,7 +14,7 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { CustomDropdown } from '../formComponents';
 import { CheckNoteFormData } from '@/screens/AddNotesScreen/shema';
 import { DropdownOptions } from '../general/constants';
-import { AppColors, spacing } from '@/theme';
+import { DarkColors, spacing } from '@/theme';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { ItemType } from './typw';
@@ -103,7 +103,7 @@ const CheckList = ({ loading }: { loading: boolean }) => {
           <TextInput
             placeholder="Title"
             style={styles.title}
-            placeholderTextColor={AppColors.monthTextColor}
+            placeholderTextColor={DarkColors.monthTextColor}
             value={value}
             onChangeText={onChange}
             aria-disabled={loading}
@@ -126,7 +126,7 @@ const CheckList = ({ loading }: { loading: boolean }) => {
             <TextInput
               defaultValue={item?.label}
               style={styles.checkInput}
-              placeholderTextColor={AppColors.monthTextColor}
+              placeholderTextColor={DarkColors.monthTextColor}
               onChangeText={text => onChangeLabel(item.id, text)}
               key={item?.id}
               placeholder="Enter label name"

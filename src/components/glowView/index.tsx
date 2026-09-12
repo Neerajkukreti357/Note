@@ -2,11 +2,11 @@ import React from 'react';
 import Svg, { Defs, RadialGradient, Stop, Circle } from 'react-native-svg';
 import { StyleProp, View, ViewStyle } from 'react-native';
 import styles from './style';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 
 const GlowView = ({
   size = 60,
-  color = AppColors.tagWork,
+  color = DarkColors.tagWork,
   glowSize = 18,
   style, // how far the glow extends beyond the base size
 }: {

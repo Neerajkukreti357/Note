@@ -1,4 +1,4 @@
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const TRACK_HEIGHT = 26;
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     height: THUMB_SIZE,
     borderRadius: THUMB_SIZE / 2,
 
-    backgroundColor: AppColors.monthTextColor,
+    backgroundColor: DarkColors.monthTextColor,
   },
 });
 

@@ -2,7 +2,7 @@ import React from 'react';
 import AppDrawer from './AppDrawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AddScreenNotes from '@/screens/AddNotesScreen';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 
 export type RootStackParamList = {
   AppDrawer: undefined;
@@ -17,7 +17,7 @@ const RootRoutes = () => {
       screenOptions={{
         headerShown: false,
         contentStyle: {
-          backgroundColor: AppColors.primary,
+          backgroundColor: DarkColors.primary,
         },
       }}
     >

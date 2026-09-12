@@ -1,5 +1,5 @@
 // components/style.ts
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     borderRadius: 16,
   },
   modalContent: {
-    backgroundColor: AppColors.primary,
+    backgroundColor: DarkColors.primary,
     paddingHorizontal: 0,
     paddingVertical: 0,
     borderRadius: 16,
@@ -17,12 +17,12 @@ export const styles = StyleSheet.create({
     paddingVertical: 16,
     paddingHorizontal: 20,
     borderBottomWidth: 1,
-    borderBottomColor: AppColors.lightBorder,
+    borderBottomColor: DarkColors.lightBorder,
   },
   modalTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: AppColors.heading,
+    color: DarkColors.heading,
   },
   modalBody: {
     paddingHorizontal: 20,

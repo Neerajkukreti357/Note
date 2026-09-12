@@ -1,4 +1,4 @@
-import { AppColors, fontSize, spacing } from '@/theme';
+import { DarkColors, fontSize, spacing } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     alignItems: 'center',
     paddingVertical: spacing.md,
-    backgroundColor: AppColors.primary,
+    backgroundColor: DarkColors.primary,
   },
   menuBox: {
     flexDirection: 'row',
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: fontSize.title,
     fontWeight: 700,
-    color: AppColors.heading,
+    color: DarkColors.heading,
   },
 });
 

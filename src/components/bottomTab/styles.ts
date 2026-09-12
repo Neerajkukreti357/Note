@@ -1,4 +1,4 @@
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -11,13 +11,13 @@ const styles = StyleSheet.create({
 
   tabBar: {
     height: 68,
-    backgroundColor: AppColors.secondary,
+    backgroundColor: DarkColors.secondary,
     borderRadius: 38,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
     paddingHorizontal: 8,
-    borderColor: AppColors.lightBorder,
+    borderColor: DarkColors.lightBorder,
     borderWidth: 1,
   },
 
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 
   activeIconContainer: {
     borderRadius: 24,
-    backgroundColor: AppColors.tagWork,
+    backgroundColor: DarkColors.tagWork,
   },
 });
 

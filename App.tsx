@@ -6,6 +6,7 @@ import { StatusBar, StyleSheet } from 'react-native';
 import { useEffect } from 'react';
 import { createTables } from '@/services/notesServices';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { ThemeProvider } from '@/context/ThemeContext';
 
 function App() {
   useEffect(() => {
@@ -21,12 +22,14 @@ function App() {
   }, []);
   return (
     <GestureHandlerRootView style={styles.container}>
-      <SafeAreaProvider>
-        <StatusBar barStyle="light-content" />
-        <NavigationContainer onReady={() => BootSplash.hide({ fade: true })}>
-          <RootRoutes />
-        </NavigationContainer>
-      </SafeAreaProvider>
+      <ThemeProvider>
+        <SafeAreaProvider>
+          <StatusBar barStyle="light-content" />
+          <NavigationContainer onReady={() => BootSplash.hide({ fade: true })}>
+            <RootRoutes />
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </ThemeProvider>
     </GestureHandlerRootView>
   );
 }

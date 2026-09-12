@@ -1,4 +1,4 @@
-import { AppColors, fontSize, spacing } from '@/theme';
+import { DarkColors, fontSize, spacing } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: spacing.xs,
 
-    backgroundColor: AppColors.lightPrimary,
+    backgroundColor: DarkColors.lightPrimary,
     borderRadius: spacing.sm,
 
     position: 'relative',
@@ -38,17 +38,17 @@ const styles = StyleSheet.create({
 
     borderRadius: spacing.sm,
 
-    backgroundColor: AppColors.primary,
+    backgroundColor: DarkColors.primary,
   },
 
   tabButtonText: {
     fontWeight: '500',
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
     fontSize: fontSize.description,
   },
 
   activeTabText: {
-    color: AppColors.heading,
+    color: DarkColors.heading,
   },
 });
 

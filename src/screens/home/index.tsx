@@ -2,7 +2,7 @@ import React from 'react';
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
 import style from './style';
 import { useNotes } from '@/hooks/home';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import {
   AddMoreItem,
   CheckBoxNote,
@@ -16,13 +16,11 @@ import { StickyNote } from 'lucide-react-native';
 function Home() {
   const { notes, loading } = useNotes();
 
-  console.log(notes);
-
   return (
     <View style={style.container}>
       {loading ? (
         <View style={style.loaderBox}>
-          <ActivityIndicator size="large" color={AppColors.monthTextColor} />
+          <ActivityIndicator size="large" color={DarkColors.monthTextColor} />
           <Text style={style.loadingText}>Loading ...</Text>
         </View>
       ) : notes?.length > 0 ? (

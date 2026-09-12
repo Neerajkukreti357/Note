@@ -1,16 +1,18 @@
-import { AppColors, spacing } from '@/theme';
 import { StyleSheet } from 'react-native';
+import { spacing, ThemeColors } from '@/theme';
 
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: AppColors.primary,
-  },
-  contentContainer: {
-    paddingHorizontal: spacing.sm,
-    gap: spacing.md,
-    paddingBottom: 100,
-  },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: colors.primary,
+    },
 
-export default style;
+    contentContainer: {
+      paddingHorizontal: spacing.sm,
+      gap: spacing.md,
+      paddingBottom: 100,
+    },
+  });
+
+export default createStyles;

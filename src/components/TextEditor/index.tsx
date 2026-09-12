@@ -1,4 +1,4 @@
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import {
   CoreBridge,
   RichText,
@@ -18,33 +18,33 @@ const editorCSS = `
   }
 
   body {
-    background-color: ${AppColors.lightPrimary};
-    color: ${AppColors.heading};
+    background-color: ${DarkColors.lightPrimary};
+    color: ${DarkColors.heading};
     margin: 0;
     padding: 0;
   }
 
   p {
-    color: ${AppColors.monthTextColor};
+    color: ${DarkColors.monthTextColor};
     font-size: 18px;
     margin: 0 0 12px 0;
   }
 
   h1 {
-    color: ${AppColors.heading};
+    color: ${DarkColors.heading};
     font-size: 32px;
     font-weight: 700;
   }
 
   h2 {
-    color: ${AppColors.heading};
+    color: ${DarkColors.heading};
     font-size: 26px;
     font-weight: 700;
   }
 
   ul,
   ol {
-    color: ${AppColors.monthTextColor};
+    color: ${DarkColors.monthTextColor};
     font-size: 18px;
     line-height: 28px;
   }
@@ -78,7 +78,7 @@ const TextEditor = ({
 
       {loading && (
         <View style={styles.editorLoader}>
-          <ActivityIndicator size="large" color={AppColors.monthTextColor} />
+          <ActivityIndicator size="large" color={DarkColors.monthTextColor} />
         </View>
       )}
       {

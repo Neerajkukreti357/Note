@@ -9,7 +9,7 @@ import TaskPriority from '../screens/taskPriority';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Plus } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
-import { AppColors, spacing } from '@/theme';
+import { DarkColors, spacing } from '@/theme';
 import { NavigationProp } from '@/components/header/type';
 
 const Tab = createBottomTabNavigator();
@@ -41,8 +41,8 @@ const BottomBar = () => {
           navigation.navigate('AddNote');
         }}
       >
-        <GlowView size={70} color={AppColors.highlightColor} />
-        <Plus size={35} color={AppColors.heading} />
+        <GlowView size={70} color={DarkColors.highlightColor} />
+        <Plus size={35} color={DarkColors.heading} />
       </Pressable>
     </View>
   );
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     right: 20,
     borderRadius: '50%',
     padding: spacing.sm,
-    backgroundColor: AppColors.highlightColor,
+    backgroundColor: DarkColors.highlightColor,
     alignItems: 'center',
     justifyContent: 'center',
   },

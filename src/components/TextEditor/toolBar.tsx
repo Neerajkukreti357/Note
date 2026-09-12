@@ -1,7 +1,7 @@
 import { Bold, Italic, List, ListOrdered } from 'lucide-react-native';
 import { Pressable, View } from 'react-native';
 import styles from './style';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import { EditorBridge, useBridgeState } from '@10play/tentap-editor';
 
 const ToolBar = ({ editor }: { editor: EditorBridge }) => {
@@ -13,8 +13,8 @@ const ToolBar = ({ editor }: { editor: EditorBridge }) => {
           size={18}
           color={
             editorState.isBoldActive
-              ? AppColors.highlightColor
-              : AppColors.heading
+              ? DarkColors.highlightColor
+              : DarkColors.heading
           }
           strokeWidth={editorState.isBoldActive ? 3 : 2}
         />
@@ -25,8 +25,8 @@ const ToolBar = ({ editor }: { editor: EditorBridge }) => {
           size={18}
           color={
             editorState.isItalicActive
-              ? AppColors.highlightColor
-              : AppColors.heading
+              ? DarkColors.highlightColor
+              : DarkColors.heading
           }
           strokeWidth={editorState.isItalicActive ? 3 : 2}
         />
@@ -39,8 +39,8 @@ const ToolBar = ({ editor }: { editor: EditorBridge }) => {
           size={19}
           color={
             editorState.isBulletListActive
-              ? AppColors.highlightColor
-              : AppColors.heading
+              ? DarkColors.highlightColor
+              : DarkColors.heading
           }
           strokeWidth={editorState.isBulletListActive ? 3 : 2}
         />
@@ -51,8 +51,8 @@ const ToolBar = ({ editor }: { editor: EditorBridge }) => {
           size={19}
           color={
             editorState.isOrderedListActive
-              ? AppColors.highlightColor
-              : AppColors.heading
+              ? DarkColors.highlightColor
+              : DarkColors.heading
           }
           strokeWidth={editorState.isOrderedListActive ? 3 : 2}
         />

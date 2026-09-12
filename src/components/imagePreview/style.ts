@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import { fontFamily, fontSize, spacing } from '@/theme/typography';
 import { responsive } from '@/theme/responsive';
 
@@ -18,13 +18,13 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: fontFamily.inter.semiBold,
     fontSize: fontSize.title,
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
   },
 
   count: {
     fontFamily: fontFamily.inter.regular,
     fontSize: fontSize.caption,
-    color: AppColors.text,
+    color: DarkColors.text,
   },
 
   // -------------------------
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     minHeight: responsive.height(170),
     borderWidth: 1,
     borderStyle: 'dashed',
-    borderColor: AppColors.lightBorder,
+    borderColor: DarkColors.lightBorder,
     borderRadius: responsive.radius(14),
 
     alignItems: 'center',
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.lg,
     paddingHorizontal: spacing.md,
 
-    backgroundColor: AppColors.primary,
+    backgroundColor: DarkColors.primary,
   },
 
   emptyIcon: {
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
 
-    backgroundColor: AppColors.iconBg,
+    backgroundColor: DarkColors.iconBg,
 
     marginBottom: spacing.sm,
   },
@@ -63,14 +63,14 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontFamily: fontFamily.inter.semiBold,
     fontSize: fontSize.body,
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
     marginBottom: spacing.xs,
   },
 
   emptyText: {
     fontFamily: fontFamily.inter.regular,
     fontSize: fontSize.description,
-    color: AppColors.text,
+    color: DarkColors.text,
     textAlign: 'center',
     marginBottom: spacing.md,
   },
@@ -91,13 +91,13 @@ const styles = StyleSheet.create({
 
     borderRadius: responsive.radius(10),
 
-    backgroundColor: AppColors.highlightColor,
+    backgroundColor: DarkColors.highlightColor,
   },
 
   addButtonText: {
     fontFamily: fontFamily.inter.semiBold,
     fontSize: fontSize.description,
-    color: AppColors.monthTextColor,
+    color: DarkColors.monthTextColor,
   },
 
   // -------------------------
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius: responsive.radius(12),
 
-    backgroundColor: AppColors.iconBg,
+    backgroundColor: DarkColors.iconBg,
   },
 
   // -------------------------
@@ -142,10 +142,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
 
-    backgroundColor: AppColors.highlightColor,
+    backgroundColor: DarkColors.highlightColor,
 
     borderWidth: 2,
-    borderColor: AppColors.secondary,
+    borderColor: DarkColors.secondary,
   },
 
   // -------------------------
@@ -160,12 +160,12 @@ const styles = StyleSheet.create({
 
     borderWidth: 1,
     borderStyle: 'dashed',
-    borderColor: AppColors.lightBorder,
+    borderColor: DarkColors.lightBorder,
 
     alignItems: 'center',
     justifyContent: 'center',
 
-    backgroundColor: AppColors.primary,
+    backgroundColor: DarkColors.primary,
   },
 
   addImageText: {
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     fontFamily: fontFamily.inter.medium,
     fontSize: fontSize.caption,
 
-    color: AppColors.text,
+    color: DarkColors.text,
   },
 });
 

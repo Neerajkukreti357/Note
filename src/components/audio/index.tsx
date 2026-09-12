@@ -5,7 +5,7 @@ import {
   type AudioWaveformViewRef,
 } from 'react-native-waveform-player';
 import { Play, Pause, Trash2 } from 'lucide-react-native';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import styles from './style';
 
 type AudioPlayerProps = {
@@ -52,9 +52,17 @@ const AudioPlayer = ({
       {/* Play / Pause Button */}
       <Pressable onPress={handlePlayPause} style={styles.playButton}>
         {isPlaying ? (
-          <Pause size={27} color={AppColors.heading} fill={AppColors.heading} />
+          <Pause
+            size={27}
+            color={DarkColors.heading}
+            fill={DarkColors.heading}
+          />
         ) : (
-          <Play size={27} color={AppColors.heading} fill={AppColors.heading} />
+          <Play
+            size={27}
+            color={DarkColors.heading}
+            fill={DarkColors.heading}
+          />
         )}
       </Pressable>
 
@@ -70,8 +78,8 @@ const AudioPlayer = ({
           showBackground={false}
           barWidth={4}
           barGap={3}
-          playedBarColor={AppColors.highlightColor}
-          unplayedBarColor={AppColors.icon}
+          playedBarColor={DarkColors.highlightColor}
+          unplayedBarColor={DarkColors.icon}
           onPlayerStateChange={e => {
             setIsPlaying(e.isPlaying);
           }}
