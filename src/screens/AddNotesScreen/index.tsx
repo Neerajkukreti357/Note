@@ -5,7 +5,7 @@ import { X } from 'lucide-react-native';
 import { AppColors } from '@/theme';
 import { General, GlowView, Media, Tabs } from '@/components';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CheckList from '@/components/checklist';
 import {
   checkListNoteSchema,
@@ -25,6 +25,7 @@ import {
 import {
   createCheckListNote,
   createMediaNote,
+  createMediaNoteWithImage,
   createSimpleNote,
 } from '@/services/notesServices/createNotesServices';
 import { useNotes } from '@/hooks/home';
@@ -46,12 +47,7 @@ const AddScreenNotes = () => {
         ? checkListNoteSchema
         : MediaNoteSchema,
     ),
-    defaultValues:
-      active === 0
-        ? SimpleNoteInitialsValues
-        : active === 1
-        ? CheckNoteInitialsValues
-        : MediaNoteInitialsValues,
+    defaultValues: SimpleNoteInitialsValues,
   });
 
   const onSubmit = async (
@@ -76,13 +72,24 @@ const AddScreenNotes = () => {
       );
     } else {
       const formData = data as MediaNoteFormData;
-      await createMediaNote(
-        formData?.title,
-        formData?.description,
-        3,
-        formData?.priority,
-        formData?.audioPath,
-      );
+      if (formData?.audioPath)
+        await createMediaNote(
+          formData?.title,
+          formData?.description,
+          3,
+          formData?.priority,
+          formData?.audioPath,
+        );
+      else if (formData?.imageList) {
+        const imageListStringify = JSON.stringify(formData?.imageList);
+        await createMediaNoteWithImage(
+          formData?.title,
+          formData?.description,
+          4,
+          formData?.priority,
+          imageListStringify,
+        );
+      }
     }
     refetch();
     setLoading(false);
@@ -96,6 +103,18 @@ const AddScreenNotes = () => {
   const handleSave = () => {
     methods.handleSubmit(onSubmit, onError)();
   };
+
+  const { reset } = methods;
+
+  useEffect(() => {
+    if (active === 0) {
+      reset(SimpleNoteInitialsValues);
+    } else if (active === 1) {
+      reset(CheckNoteInitialsValues);
+    } else {
+      reset(MediaNoteInitialsValues);
+    }
+  }, [active, reset]);
 
   return (
     <FormProvider {...methods}>

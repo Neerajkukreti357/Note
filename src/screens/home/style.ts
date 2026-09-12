@@ -18,7 +18,7 @@ const style = StyleSheet.create({
   },
   contentContainer: {
     paddingHorizontal: spacing.sm,
-    gap: spacing.md,
+    gap: spacing.sm,
     paddingBottom: 100,
   },
 });

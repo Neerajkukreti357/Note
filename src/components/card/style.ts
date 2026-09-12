@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: AppColors.secondary,
     borderRadius: spacing.md,
-    borderWidth: 1,
     borderColor: AppColors.lightBorder,
   },
 

@@ -13,6 +13,7 @@ export interface Note {
   updated_at: number;
   checklist: string;
   audio_path: string;
+  imageList: string;
 }
 
 export interface NotesState {

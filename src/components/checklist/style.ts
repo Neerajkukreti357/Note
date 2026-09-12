@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: AppColors.monthTextColor,
     padding: 0,
-    marginTop: spacing.sm,
+    marginTop: spacing.md,
     // Prevent Android from adding extra font space
     includeFontPadding: false,
   },

@@ -1,5 +1,6 @@
 import RNFS from 'react-native-fs';
 import { type Asset } from 'react-native-image-picker';
+import ImageResizer from '@bam.tech/react-native-image-resizer';
 
 export const getCurrentRouteName = (state: any): string => {
   const route = state.routes[state.index];
@@ -51,6 +52,34 @@ export const saveImagePermanently = async (
     };
   } catch (error) {
     console.error('Error saving image:', error);
+    return null;
+  }
+};
+
+export const resizeImage = async (image: Asset) => {
+  if (!image.uri) return null;
+
+  try {
+    const result = await ImageResizer.createResizedImage(
+      image.uri,
+      1200, // max width
+      1200, // max height
+      'JPEG',
+      80, // quality
+      0, // rotation
+    );
+
+    return {
+      ...image,
+      uri: result.uri,
+      width: result.width,
+      height: result.height,
+      fileSize: result.size,
+      fileName: result.name,
+      type: 'image/jpeg',
+    };
+  } catch (error) {
+    console.error('Image resize error:', error);
     return null;
   }
 };

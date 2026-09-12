@@ -152,6 +152,17 @@ const styles = StyleSheet.create({
     fontSize: fontSize.body,
     color: AppColors.monthTextColor,
   },
+  viewButton: {
+    marginTop: spacing.sm,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.xs,
+    borderRadius: responsive.radius(8),
+    borderWidth: 1,
+    borderColor: AppColors.highlightColor,
+    backgroundColor: AppColors.iconBg,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 export default styles;

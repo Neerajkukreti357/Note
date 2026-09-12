@@ -1,4 +1,4 @@
-import { AppColors, spacing } from '@/theme';
+import { spacing } from '@/theme';
 import { fontFamily, fontSize } from '@/theme/typography';
 import { StyleSheet } from 'react-native';
 
@@ -6,8 +6,6 @@ const style = StyleSheet.create({
   badgeContainer: {
     paddingVertical: 5,
     paddingHorizontal: spacing.sm,
-    borderWidth: 1,
-    borderColor: AppColors.lightBorder,
     borderRadius: 8,
   },
   badgeContent: {

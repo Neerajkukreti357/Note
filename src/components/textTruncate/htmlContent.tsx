@@ -1,100 +1,34 @@
-import React, { useState } from 'react';
-import {
-  LayoutChangeEvent,
-  Text,
-  View,
-  useWindowDimensions,
-} from 'react-native';
+import React from 'react';
+import { useWindowDimensions, View } from 'react-native';
 import RenderHTML from 'react-native-render-html';
 import styles from './style';
 import { MixedStyleDeclaration } from 'react-native-render-html';
 import { AppColors, fontSize } from '@/theme';
+import { HTMLTextTruncateProps } from './type';
 
-interface HTMLTextTruncateProps {
-  html: string;
-  numberOfLines?: number;
-  lineHeight?: number;
-  onReadMore?: () => void;
-  baseStyle?: MixedStyleDeclaration;
-}
+const TAGS_STYLES: MixedStyleDeclaration &
+  Record<string, MixedStyleDeclaration> = {
+  p: {
+    color: AppColors.icon,
+    fontSize: fontSize.description,
+    marginTop: 0,
+    marginBottom: 8,
+  },
+  strong: { color: AppColors.icon, fontWeight: '700' },
+  em: { color: AppColors.icon, fontStyle: 'italic' },
+};
 
-const HTMLTextTruncate = ({
-  html,
-  numberOfLines = 3,
-  lineHeight = 29,
-  onReadMore,
-  baseStyle,
-}: HTMLTextTruncateProps) => {
+const HTMLTextTruncate = ({ html, baseStyle }: HTMLTextTruncateProps) => {
   const { width } = useWindowDimensions();
-
-  const [contentHeight, setContentHeight] = useState(0);
-  const [containerWidth, setContainerWidth] = useState(width);
-
-  const maxHeight = numberOfLines * lineHeight;
-
-  const handleLayout = (event: LayoutChangeEvent) => {
-    const { width: measuredWidth } = event.nativeEvent.layout;
-
-    if (measuredWidth !== containerWidth) {
-      setContainerWidth(measuredWidth);
-    }
-  };
-
-  const isOverflowing = contentHeight > maxHeight;
-
+  const contentWidth = width;
   return (
-    <View style={styles.wrapper} onLayout={handleLayout}>
-      <View
-        style={{
-          maxHeight: isOverflowing ? maxHeight : undefined,
-          overflow: 'hidden',
-        }}
-      >
-        <View
-          onLayout={event => {
-            setContentHeight(event.nativeEvent.layout.height);
-          }}
-        >
-          <RenderHTML
-            contentWidth={containerWidth}
-            source={{ html }}
-            baseStyle={baseStyle}
-            tagsStyles={{
-              p: {
-                color: AppColors.icon,
-                fontSize: fontSize.description,
-                marginTop: 0,
-                marginBottom: 8,
-              },
-
-              strong: {
-                color: AppColors.icon,
-                fontWeight: '700',
-              },
-
-              em: {
-                color: AppColors.icon,
-                fontStyle: 'italic',
-              },
-            }}
-          />
-        </View>
-      </View>
-
-      {isOverflowing && (
-        <Text
-          style={[
-            styles.readMoreText,
-            {
-              color: AppColors.icon,
-              fontSize: fontSize.description,
-            },
-          ]}
-          onPress={onReadMore}
-        >
-          ... Read more
-        </Text>
-      )}
+    <View style={styles.wrapper}>
+      <RenderHTML
+        contentWidth={contentWidth}
+        source={{ html }}
+        baseStyle={baseStyle}
+        tagsStyles={TAGS_STYLES}
+      />
     </View>
   );
 };

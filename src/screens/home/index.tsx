@@ -7,6 +7,7 @@ import {
   AddMoreItem,
   CheckBoxNote,
   NoDataFound,
+  NotesWithImages,
   NoteWithAudio,
   SimpleNoteCard,
 } from '@/components';
@@ -14,6 +15,8 @@ import { StickyNote } from 'lucide-react-native';
 
 function Home() {
   const { notes, loading } = useNotes();
+
+  console.log(notes);
 
   return (
     <View style={style.container}>
@@ -34,7 +37,9 @@ function Home() {
               <CheckBoxNote item={item} key={item?.id} />
             ) : item?.noteType === 3 ? (
               <NoteWithAudio item={item} key={item?.id} />
-            ) : null,
+            ) : (
+              <NotesWithImages item={item} key={item?.id} />
+            ),
           )}
           {notes?.length < 3 && <AddMoreItem />}
         </ScrollView>

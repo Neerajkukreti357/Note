@@ -1,4 +1,5 @@
 import { AppColors, fontSize, spacing } from '@/theme';
+import { badgeColors } from '@/theme/colors';
 import { fontFamily } from '@/theme/typography';
 import { StyleSheet } from 'react-native';
 
@@ -41,6 +42,30 @@ const style = StyleSheet.create({
   readMoreText: {
     fontSize: 14,
     fontWeight: '600',
+  },
+  type: {
+    fontSize: fontSize.badge,
+    color: AppColors.highlightColor,
+  },
+  fileTextBackground: {
+    backgroundColor: badgeColors.pending.background,
+    padding: 4,
+    borderRadius: spacing.sm,
+  },
+  ImageBackground: {
+    backgroundColor: badgeColors['partial complete'].background,
+    padding: 4,
+    borderRadius: spacing.sm,
+  },
+  audioBackground: {
+    backgroundColor: badgeColors.low.background,
+    padding: 4,
+    borderRadius: spacing.sm,
+  },
+  checkBackground: {
+    backgroundColor: badgeColors.high.background,
+    padding: 4,
+    borderRadius: spacing.sm,
   },
 });
 

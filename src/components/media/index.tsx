@@ -22,7 +22,11 @@ import {
   requestGalleryPermission,
   requestMicrophonePermission,
 } from '@/utils/permissions';
-import { saveImagePermanently, savePersistentAudio } from '@/utils';
+import {
+  resizeImage,
+  saveImagePermanently,
+  savePersistentAudio,
+} from '@/utils';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import ImagePreviewList from '../imagePreview';
 import {
@@ -100,9 +104,6 @@ const Media = ({ loading }: { loading: boolean }) => {
     setSeconds(0);
   };
 
-  const selected = watch('media');
-  const audioPathWatcher = watch('audioPath');
-
   useEffect(() => {
     let interval: ReturnType<typeof setInterval> | undefined;
 
@@ -143,19 +144,35 @@ const Media = ({ loading }: { loading: boolean }) => {
 
     const image = result.assets?.[0];
 
+    console.log('NEERAJ', image);
+
     if (!image) {
       return;
     }
 
-    // Save permanently
-    const savedImage = await saveImagePermanently(image);
+    // 1. Resize / compress
+    const resizedImage = await resizeImage(image);
+
+    if (!resizedImage) {
+      return;
+    }
+
+    // 2. Save permanently
+    const savedImage = await saveImagePermanently(resizedImage);
 
     if (!savedImage) {
       return;
     }
 
-    // Add to your image list
-    setImages(prev => [...prev, savedImage]);
+    // 3. Update image list
+    const updatedImages = [...images, savedImage];
+
+    setImages(updatedImages);
+
+    setValue('imageList', updatedImages, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
   };
 
   const openGallery = async () => {
@@ -182,10 +199,47 @@ const Media = ({ loading }: { loading: boolean }) => {
 
     const selectedImages = result.assets ?? [];
 
-    if (selectedImages.length > 0) {
-      setImages(prevImages => [...prevImages, ...selectedImages]);
+    if (selectedImages.length === 0) {
+      return;
     }
+
+    // 1. Resize / compress all images
+    const resizedImages = await Promise.all(
+      selectedImages.map(image => resizeImage(image)),
+    );
+
+    const validImages = resizedImages.filter((image: any) => image !== null);
+
+    if (validImages.length === 0) {
+      return;
+    }
+
+    // 2. Save all images permanently
+    const savedImages = await Promise.all(
+      validImages.map((image: any) => saveImagePermanently(image)),
+    );
+
+    const validSavedImages = savedImages.filter(
+      (image): image is Asset => image !== null,
+    );
+
+    if (validSavedImages.length === 0) {
+      return;
+    }
+
+    // 3. Update image list
+    const updatedImages = [...images, ...validSavedImages];
+
+    setImages(updatedImages);
+
+    setValue('imageList', updatedImages, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
   };
+
+  const selected = watch('media');
+  const audioPathWatcher = watch('audioPath');
 
   return (
     <>
@@ -216,7 +270,7 @@ const Media = ({ loading }: { loading: boolean }) => {
             render={({ field: { onChange, value } }) => (
               <TextInput
                 placeholder="Title"
-                style={styles.title}
+                style={[styles.title, [{ marginBottom: -8 }]]}
                 placeholderTextColor={AppColors.monthTextColor}
                 value={value}
                 onChangeText={onChange}
@@ -225,7 +279,7 @@ const Media = ({ loading }: { loading: boolean }) => {
             )}
           />
           {errors.title && (
-            <Text style={commonStyle.errorTextColor}>
+            <Text style={[commonStyle.errorTextColor, { marginTop: 8 }]}>
               {errors.title.message}
             </Text>
           )}
@@ -248,6 +302,7 @@ const Media = ({ loading }: { loading: boolean }) => {
             </Text>
           )}
         </View>
+
         <View style={styles.mediaCard}>
           <Controller
             control={control}
@@ -351,12 +406,37 @@ const Media = ({ loading }: { loading: boolean }) => {
                 <ImagePlus color="#76D4F2" size={19} />
               </View>
 
-              <Text style={styles.uploadText}>
-                Add an image or <Text style={styles.browse}>browse</Text>
-              </Text>
+              {images.length > 0 ? (
+                <>
+                  <Text style={styles.uploadText}>
+                    {images.length} {images.length === 1 ? 'image' : 'images'}{' '}
+                    selected
+                  </Text>
 
-              <Text style={styles.uploadHint}>PNG, JPG up to 10MB</Text>
+                  <Text style={styles.uploadHint}>
+                    Tap here to view or manage your images
+                  </Text>
+
+                  <View style={styles.viewButton}>
+                    <Text style={styles.browse}>View Selected Images</Text>
+                  </View>
+                </>
+              ) : (
+                <>
+                  <Text style={styles.uploadText}>
+                    Add an image or <Text style={styles.browse}>browse</Text>
+                  </Text>
+
+                  <Text style={styles.uploadHint}>PNG, JPG up to 10MB</Text>
+                </>
+              )}
             </Pressable>
+
+            {errors.imageList && (
+              <Text style={commonStyle.errorTextColor}>
+                {errors.imageList.message}
+              </Text>
+            )}
           </View>
         ) : null}
       </ScrollView>
@@ -369,7 +449,7 @@ const Media = ({ loading }: { loading: boolean }) => {
         }}
         ref={bottomSheetRef}
         onChange={handleSheetChanges}
-        snapPoints={['45%']}
+        snapPoints={['50%']}
         index={-1}
         enablePanDownToClose={true}
         enableDynamicSizing={false}
@@ -395,7 +475,12 @@ const Media = ({ loading }: { loading: boolean }) => {
           <ImagePreviewList
             images={images}
             onRemove={index => {
-              setImages(prev => prev.filter((_, i) => i !== index));
+              const updatedImages = images.filter((_, i) => i !== index);
+              setImages(updatedImages);
+              setValue('imageList', updatedImages, {
+                shouldValidate: true,
+                shouldDirty: true,
+              });
             }}
           />
         </BottomSheetView>
