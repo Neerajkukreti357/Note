@@ -5,7 +5,6 @@ import {
   EllipsisVertical,
   GripVertical,
 } from 'lucide-react-native';
-import { DarkColors } from '@/theme';
 import Badges from '../badges';
 import { Note } from '@/store/type';
 import TextTruncate from '../textTruncate';
@@ -20,7 +19,7 @@ const NoteWithAudio = ({ item }: { item: Note }) => {
     <Card key={item?.id}>
       <Card.Header>
         <View style={style.headingBox}>
-          <GripVertical size={18} color={DarkColors.lightBorder} />
+          <GripVertical size={18} color={colors.lightBorder} />
           <TextTruncate numberOfLines={1} style={style.headingText}>
             {item?.title}
           </TextTruncate>
@@ -28,7 +27,7 @@ const NoteWithAudio = ({ item }: { item: Note }) => {
             <AudioLines size={15} color={badgeColors.low.text} />
           </View>
         </View>
-        <EllipsisVertical size={18} color={DarkColors.lightBorder} />
+        <EllipsisVertical size={18} color={colors.lightBorder} />
       </Card.Header>
       <Card.Footer>
         <Badges title={item?.is_completed === 0 ? 'pending' : 'complete'} />

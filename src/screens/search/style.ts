@@ -1,12 +1,13 @@
-import { DarkColors, spacing } from '@/theme';
+import { spacing, ThemeColors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: DarkColors.primary,
-    paddingHorizontal: spacing.xs,
-  },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: colors.primary,
+      paddingHorizontal: spacing.xs,
+    },
+  });
 
-export default style;
+export default createStyles;

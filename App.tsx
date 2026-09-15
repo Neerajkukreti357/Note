@@ -6,7 +6,7 @@ import { StatusBar, StyleSheet } from 'react-native';
 import { useEffect } from 'react';
 import { createTables } from '@/services/notesServices';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { ThemeProvider } from '@/context/ThemeContext';
+import { useTheme } from '@/context/ThemeContext';
 
 function App() {
   useEffect(() => {
@@ -17,19 +17,21 @@ function App() {
         console.error('Initialization error:', error);
       }
     };
-
     initializeApp();
   }, []);
+
+  const { theme } = useTheme();
+
   return (
     <GestureHandlerRootView style={styles.container}>
-      <ThemeProvider>
-        <SafeAreaProvider>
-          <StatusBar barStyle="light-content" />
-          <NavigationContainer onReady={() => BootSplash.hide({ fade: true })}>
-            <RootRoutes />
-          </NavigationContainer>
-        </SafeAreaProvider>
-      </ThemeProvider>
+      <SafeAreaProvider>
+        <StatusBar
+          barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
+        />
+        <NavigationContainer onReady={() => BootSplash.hide({ fade: true })}>
+          <RootRoutes />
+        </NavigationContainer>
+      </SafeAreaProvider>
     </GestureHandlerRootView>
   );
 }

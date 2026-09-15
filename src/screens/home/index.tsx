@@ -1,6 +1,5 @@
 import React from 'react';
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
-import style from './style';
 import { useNotes } from '@/hooks/home';
 import { DarkColors } from '@/theme';
 import {
@@ -12,9 +11,13 @@ import {
   SimpleNoteCard,
 } from '@/components';
 import { StickyNote } from 'lucide-react-native';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 function Home() {
   const { notes, loading } = useNotes();
+  const { colors } = useTheme();
+  const style = createStyles(colors);
 
   return (
     <View style={style.container}>

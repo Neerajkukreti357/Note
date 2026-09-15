@@ -29,7 +29,7 @@ export const LightColors = {
   tagWork: '#1599C4',
   tagPriority: '#636579',
   icon: '#3F4760',
-  lightBorder: '#D8DDE9',
+  lightBorder: '#3f4041ab',
   selectedMonthColor: '#554ED5',
   monthTextColor: '#252B4A',
   settingButtonBackgroundColor: '#F1F3F8',

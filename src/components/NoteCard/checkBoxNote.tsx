@@ -5,7 +5,6 @@ import {
   EllipsisVertical,
   ListChecks,
 } from 'lucide-react-native';
-import { DarkColors } from '@/theme';
 import Badges from '../badges';
 import { Note } from '@/store/type';
 import TextTruncate from '../textTruncate';
@@ -20,7 +19,7 @@ const CheckBoxNote = ({ item }: { item: Note }) => {
     <Card>
       <Card.Header>
         <View style={style.headingBox}>
-          <GripVertical size={18} color={DarkColors.lightBorder} />
+          <GripVertical size={18} color={colors.lightBorder} />
           <TextTruncate numberOfLines={1} style={style.headingText}>
             {item?.title}
           </TextTruncate>
@@ -28,7 +27,7 @@ const CheckBoxNote = ({ item }: { item: Note }) => {
             <ListChecks size={15} color={badgeColors.high.text} />
           </View>
         </View>
-        <EllipsisVertical size={18} color={DarkColors.lightBorder} />
+        <EllipsisVertical size={18} color={colors.lightBorder} />
       </Card.Header>
       <Card.Footer>
         <Badges title="partial complete" />

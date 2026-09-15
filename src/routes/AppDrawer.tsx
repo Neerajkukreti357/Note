@@ -5,12 +5,15 @@ import { Header } from '@/components';
 import { useNavigationState } from '@react-navigation/native';
 import { getCurrentRouteName } from '@/utils';
 import { StyleSheet, View } from 'react-native';
-import { DarkColors } from '@/theme';
+import { DarkColors, ThemeColors } from '@/theme';
 import CustomDrawerView from '@/components/drawer';
+import { useTheme } from '@/context/ThemeContext';
 
 const Drawer = createDrawerNavigator();
 
 const MainLayout = () => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   const currentScreen = useNavigationState(state => getCurrentRouteName(state));
   return (
     <View style={styles.layout}>
@@ -23,13 +26,15 @@ const MainLayout = () => {
 };
 
 export default function AppDrawer() {
+  const { colors } = useTheme();
+
   return (
     <Drawer.Navigator
       screenOptions={{
         headerShown: false,
         drawerType: 'front',
         drawerStyle: {
-          backgroundColor: DarkColors.drawerBackgroundColor,
+          backgroundColor: colors.drawerBackgroundColor,
         },
       }}
       drawerContent={props => <CustomDrawerView {...props} />}
@@ -39,6 +44,7 @@ export default function AppDrawer() {
   );
 }
 
-const styles = StyleSheet.create({
-  layout: { flex: 1, backgroundColor: DarkColors.primary },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    layout: { flex: 1, backgroundColor: colors.primary },
+  });
