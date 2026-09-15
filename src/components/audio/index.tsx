@@ -6,7 +6,8 @@ import {
 } from 'react-native-waveform-player';
 import { Play, Pause, Trash2 } from 'lucide-react-native';
 import { DarkColors } from '@/theme';
-import styles from './style';
+import createStyles from './style';
+import { useTheme } from '@/context/ThemeContext';
 
 type AudioPlayerProps = {
   audioPath: string;
@@ -19,6 +20,8 @@ const AudioPlayer = ({
   isDeleted = false,
   onDelete,
 }: AudioPlayerProps) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   const waveformRef = useRef<AudioWaveformViewRef>(null);
 
   const [isPlaying, setIsPlaying] = useState(false);

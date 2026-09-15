@@ -1,55 +1,56 @@
-import { DarkColors, fontSize, spacing } from '@/theme';
+import { fontSize, spacing, ThemeColors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
-  tabMainContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    tabMainContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
 
-    marginTop: 20,
-    padding: spacing.xs,
+      marginTop: 20,
+      padding: spacing.xs,
 
-    backgroundColor: DarkColors.lightPrimary,
-    borderRadius: spacing.sm,
+      backgroundColor: colors.lightPrimary,
+      borderRadius: spacing.sm,
 
-    position: 'relative',
-    overflow: 'hidden',
-  },
+      position: 'relative',
+      overflow: 'hidden',
+    },
 
-  tabButton: {
-    flex: 1,
+    tabButton: {
+      flex: 1,
 
-    paddingVertical: spacing.sm,
+      paddingVertical: spacing.sm,
 
-    borderRadius: spacing.sm,
+      borderRadius: spacing.sm,
 
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
 
-  activeIndicator: {
-    position: 'absolute',
+    activeIndicator: {
+      position: 'absolute',
 
-    top: spacing.xs,
-    bottom: spacing.xs,
-    left: spacing.xs,
+      top: spacing.xs,
+      bottom: spacing.xs,
+      left: spacing.xs,
 
-    width: '33.33%',
+      width: '33.33%',
 
-    borderRadius: spacing.sm,
+      borderRadius: spacing.sm,
 
-    backgroundColor: DarkColors.primary,
-  },
+      backgroundColor: colors.primary,
+    },
 
-  tabButtonText: {
-    fontWeight: '500',
-    color: DarkColors.monthTextColor,
-    fontSize: fontSize.description,
-  },
+    tabButtonText: {
+      fontWeight: '500',
+      color: colors.monthTextColor,
+      fontSize: fontSize.description,
+    },
 
-  activeTabText: {
-    color: DarkColors.heading,
-  },
-});
+    activeTabText: {
+      color: colors.heading,
+    },
+  });
 
-export default styles;
+export default createStyles;

@@ -5,8 +5,9 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import styles from './style';
 import { TabsValues } from './contants';
+import createStyles from './style';
+import { useTheme } from '@/context/ThemeContext';
 
 type Props = {
   active: number;
@@ -15,6 +16,8 @@ type Props = {
 
 const Tabs = ({ active, setActive }: Props) => {
   const translateX = useSharedValue(0);
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
 
   useEffect(() => {
     translateX.value = withTiming(active, {
