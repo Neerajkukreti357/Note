@@ -1,7 +1,6 @@
 import { DrawerContentComponentProps } from '@react-navigation/drawer';
 import { Pressable, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import styles from './style';
 import {
   ChevronRight,
   FilePenLine,
@@ -17,9 +16,11 @@ import { badgeColors } from '@/theme/colors';
 import { AnimatedToggle } from '../formComponents';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 const CustomDrawerView = (props: DrawerContentComponentProps) => {
-  const { toggleTheme, theme } = useTheme();
+  const { toggleTheme, theme, colors } = useTheme();
+  const styles = createStyles(colors);
   const navigation = useNavigation();
   const buttons: DrawerButton[] = [
     {

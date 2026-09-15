@@ -1,55 +1,56 @@
 import { StyleSheet } from 'react-native';
 import { fontSize, spacing } from '@/theme/typography';
-import { DarkColors } from '@/theme';
+import { ThemeColors } from '@/theme';
 
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: DarkColors.secondary,
-    borderRadius: spacing.md,
-    borderColor: DarkColors.lightBorder,
-  },
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    card: {
+      backgroundColor: colors.secondary,
+      borderRadius: spacing.md,
+      borderColor: colors.lightBorder,
+    },
 
-  header: {
-    paddingHorizontal: spacing.md,
-    paddingTop: spacing.md,
-    paddingBottom: spacing.xs,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
+    header: {
+      paddingHorizontal: spacing.md,
+      paddingTop: spacing.md,
+      paddingBottom: spacing.xs,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
 
-  body: {
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.xs,
-  },
+    body: {
+      paddingHorizontal: spacing.md,
+      paddingVertical: spacing.xs,
+    },
 
-  footer: {
-    paddingHorizontal: spacing.md,
-    paddingTop: spacing.sm + spacing.xs,
-    paddingBottom: spacing.md,
-    flexDirection: 'row',
-    gap: 8,
-    flexWrap: 'wrap',
-  },
+    footer: {
+      paddingHorizontal: spacing.md,
+      paddingTop: spacing.sm + spacing.xs,
+      paddingBottom: spacing.md,
+      flexDirection: 'row',
+      gap: 8,
+      flexWrap: 'wrap',
+    },
 
-  // Typography styles
-  title: {
-    fontSize: fontSize.title,
-    fontWeight: '600',
-  },
+    // Typography styles
+    title: {
+      fontSize: fontSize.title,
+      fontWeight: '600',
+    },
 
-  bodyText: {
-    fontSize: fontSize.body,
-  },
+    bodyText: {
+      fontSize: fontSize.body,
+    },
 
-  caption: {
-    fontSize: fontSize.caption,
-  },
+    caption: {
+      fontSize: fontSize.caption,
+    },
 
-  heading: {
-    fontSize: fontSize.heading,
-    fontWeight: '600',
-  },
-});
+    heading: {
+      fontSize: fontSize.heading,
+      fontWeight: '600',
+    },
+  });
 
-export default styles;
+export default createStyles;

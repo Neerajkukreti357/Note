@@ -1,35 +1,35 @@
-import { DarkColors } from '@/theme';
+import { ThemeColors } from '@/theme';
 import { Calendar } from 'react-native-calendars';
 
 type CalendarTheme = React.ComponentProps<typeof Calendar>['theme'];
 
-export const calendarTheme: CalendarTheme = {
-  calendarBackground: DarkColors.primary,
+export const getCalendarTheme = (colors: ThemeColors): CalendarTheme => ({
+  calendarBackground: colors.primary,
 
   // Header
-  monthTextColor: DarkColors.monthTextColor,
+  monthTextColor: colors.monthTextColor,
   textMonthFontSize: 18,
   textMonthFontWeight: '600',
 
   // Days of week
-  textSectionTitleColor: DarkColors.monthTextColor,
+  textSectionTitleColor: colors.monthTextColor,
 
   // Days
-  dayTextColor: DarkColors.monthTextColor,
-  todayTextColor: DarkColors.primary,
-  todayBackgroundColor: DarkColors.monthTextColor,
+  dayTextColor: colors.monthTextColor,
+  todayTextColor: colors.primary,
+  todayBackgroundColor: colors.monthTextColor,
 
   // Selected day
-  selectedDayBackgroundColor: DarkColors.selectedMonthColor,
-  selectedDayTextColor: DarkColors.monthTextColor,
+  selectedDayBackgroundColor: colors.selectedMonthColor,
+  selectedDayTextColor: colors.monthTextColor,
 
   // Disabled days
-  textDisabledColor: DarkColors.lightBorder,
+  textDisabledColor: colors.lightBorder,
 
   // Arrows
-  arrowColor: DarkColors.monthTextColor,
+  arrowColor: colors.monthTextColor,
 
   // Optional
   textDayFontSize: 14,
   textDayFontWeight: '500',
-};
+});

@@ -8,7 +8,6 @@ import {
   View,
   type ScrollViewInstance,
 } from 'react-native';
-import styles from './style';
 import { useEffect, useRef, useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CustomDropdown } from '../formComponents';
@@ -19,8 +18,12 @@ import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { ItemType } from './typw';
 import commonStyle from '@/theme/commonStyles';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 const CheckList = ({ loading }: { loading: boolean }) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   const scrollViewRef = useRef<ScrollViewInstance>(null);
   const { height } = useWindowDimensions();
   const {

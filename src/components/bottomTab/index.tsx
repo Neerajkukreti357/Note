@@ -2,13 +2,14 @@ import React from 'react';
 import { Pressable, View } from 'react-native';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { House, Search, CalendarDays, Zap } from 'lucide-react-native';
-import styles from './styles';
 import Animated, {
   useAnimatedStyle,
   withTiming,
 } from 'react-native-reanimated';
-import { DarkColors } from '@/theme';
+import { ThemeColors } from '@/theme';
 import GlowView from '../glowView';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './styles';
 
 const icons = {
   Home: House,
@@ -24,9 +25,17 @@ type TabButtonProps = {
   };
   isFocused: boolean;
   onPress: () => void;
+  colors: ThemeColors;
+  styles: ReturnType<typeof createStyles>;
 };
 
-const TabButton = ({ route, isFocused, onPress }: TabButtonProps) => {
+const TabButton = ({
+  route,
+  isFocused,
+  onPress,
+  colors,
+  styles,
+}: TabButtonProps) => {
   const Icon = icons[route.name as keyof typeof icons];
 
   const iconStyle = useAnimatedStyle(() => ({
@@ -50,16 +59,16 @@ const TabButton = ({ route, isFocused, onPress }: TabButtonProps) => {
         ]}
       >
         {isFocused && <GlowView size={40} />}
-        <Icon
-          size={24}
-          color={isFocused ? DarkColors.primary : DarkColors.icon}
-        />
+        <Icon size={24} color={isFocused ? colors.primary : colors.icon} />
       </Animated.View>
     </Pressable>
   );
 };
 
 const BottomTab = ({ state, navigation }: BottomTabBarProps) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
+
   return (
     <View style={styles.container}>
       <View style={styles.tabBar}>
@@ -84,6 +93,8 @@ const BottomTab = ({ state, navigation }: BottomTabBarProps) => {
               route={route}
               isFocused={isFocused}
               onPress={onPress}
+              colors={colors}
+              styles={styles}
             />
           );
         })}
