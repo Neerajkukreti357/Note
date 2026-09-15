@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { View, TextInput, Animated, Pressable } from 'react-native';
 import { Search, X } from 'lucide-react-native';
-import { DarkColors } from '@/theme';
 import { badgeColors } from '@/theme/colors';
 import { useTheme } from '@/context/ThemeContext';
 import createStyles from './style';
@@ -49,13 +48,13 @@ const SearchInput = () => {
 
   return (
     <View style={styles.container}>
-      <Search size={21} color={DarkColors.monthTextColor} strokeWidth={2} />
+      <Search size={21} color={colors.monthTextColor} strokeWidth={2} />
 
       <TextInput
         style={styles.input}
         placeholder="Search favorites..."
-        placeholderTextColor={DarkColors.monthTextColor}
-        cursorColor={DarkColors.monthTextColor}
+        placeholderTextColor={colors.monthTextColor}
+        cursorColor={colors.monthTextColor}
         value={search}
         onChangeText={handleSearchChange}
       />

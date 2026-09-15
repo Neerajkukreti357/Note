@@ -5,11 +5,10 @@ const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
     notePanel: {
       minHeight: 510,
-      backgroundColor: colors.lightPrimary,
       borderRadius: spacing.sm,
-      borderWidth: 1,
       padding: spacing.md,
       marginTop: spacing.md,
+      backgroundColor: colors.lightPrimary,
     },
     title: {
       fontSize: 38,
@@ -20,15 +19,9 @@ const createStyles = (colors: ThemeColors) =>
       // Prevent Android from adding extra font space
       includeFontPadding: false,
     },
-    panelHeading: {
-      color: '#CFCCEF',
-      fontSize: 16,
-      fontWeight: '800',
-      marginBottom: 15,
-    },
 
     checkRow: {
-      backgroundColor: '#141D31',
+      backgroundColor: colors.tertiary,
       borderRadius: 12,
       padding: 13,
       flexDirection: 'row',
@@ -44,7 +37,7 @@ const createStyles = (colors: ThemeColors) =>
     },
     checkInput: {
       flex: 1,
-      color: '#D8DBE6',
+      color: colors.monthTextColor,
       fontSize: 13,
       marginHorizontal: 11,
       padding: 0,

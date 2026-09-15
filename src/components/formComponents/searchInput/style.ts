@@ -5,9 +5,7 @@ const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
     container: {
       borderRadius: 67,
-      borderWidth: 1,
-      borderColor: '#202A42',
-      backgroundColor: '#11192D',
+      backgroundColor: colors?.secondary,
       flexDirection: 'row',
       alignItems: 'center',
       paddingHorizontal: spacing.md,

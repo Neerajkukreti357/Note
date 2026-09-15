@@ -18,8 +18,6 @@ const createStyles = (colors: ThemeColors) =>
       alignItems: 'center',
       justifyContent: 'space-around',
       paddingHorizontal: 8,
-      borderColor: colors.lightBorder,
-      borderWidth: 1,
     },
 
     tab: {

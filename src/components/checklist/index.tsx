@@ -114,7 +114,9 @@ const CheckList = ({ loading }: { loading: boolean }) => {
         )}
       />
       {errors.title && (
-        <Text style={{ color: 'red', marginVertical: spacing.sm }}>
+        <Text
+          style={[commonStyle.errorTextColor, { marginVertical: spacing.sm }]}
+        >
           {errors.title.message}
         </Text>
       )}

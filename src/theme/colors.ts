@@ -16,6 +16,7 @@ export const DarkColors = {
   drawerBackgroundColor: '#0E1729',
   iconBg: '#2C344A',
   themeChanger: '#4BD6F5',
+  tertiary: '#141D31',
 };
 
 export const LightColors = {
@@ -36,6 +37,7 @@ export const LightColors = {
   drawerBackgroundColor: '#F8FAFF',
   iconBg: '#E9EAFB',
   themeChanger: '#089FC1',
+  tertiary: '#141D31',
 };
 
 // These don't depend on the theme
