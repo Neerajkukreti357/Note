@@ -7,10 +7,11 @@ import {
   useEditorContent,
 } from '@10play/tentap-editor';
 import { ActivityIndicator, View } from 'react-native';
-import styles from './style';
 import ToolBar from './toolBar';
 import { useEffect, useState } from 'react';
 import { EditorFieldProps } from './type';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 const editorCSS = `
   * {
@@ -64,6 +65,8 @@ const TextEditor = ({
     initialContent: value ?? '',
   });
   const content = useEditorContent(editor, { type: 'html' });
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
 
   // push editor content up into react-hook-form whenever it changes
   useEffect(() => {

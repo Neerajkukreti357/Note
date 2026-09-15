@@ -1,14 +1,17 @@
 import { View } from 'react-native';
 import Card from '../card';
 import { GripVertical, EllipsisVertical, Image } from 'lucide-react-native';
-import style from './style';
 import { DarkColors } from '@/theme';
 import Badges from '../badges';
 import { Note } from '@/store/type';
 import TextTruncate from '../textTruncate';
 import { badgeColors } from '@/theme/colors';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 const NotesWithImages = ({ item }: { item: Note }) => {
+  const { colors } = useTheme();
+  const style = createStyles(colors);
   return (
     <Card key={item?.id}>
       <Card.Header>

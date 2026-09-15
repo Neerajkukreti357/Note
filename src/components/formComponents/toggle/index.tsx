@@ -7,7 +7,8 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import styles from './style';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 type AnimatedToggleProps = {
   value: boolean;
@@ -19,6 +20,8 @@ const THUMB_SIZE = 20;
 const PADDING = 3;
 
 const AnimatedToggle = ({ value, onValueChange }: AnimatedToggleProps) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   const progress = useSharedValue(value ? 1 : 0);
   const MAX_TRANSLATE_X = TRACK_WIDTH - THUMB_SIZE - PADDING * 2;
 

@@ -1,11 +1,14 @@
 import { Bold, Italic, List, ListOrdered } from 'lucide-react-native';
 import { Pressable, View } from 'react-native';
-import styles from './style';
 import { DarkColors } from '@/theme';
 import { EditorBridge, useBridgeState } from '@10play/tentap-editor';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 const ToolBar = ({ editor }: { editor: EditorBridge }) => {
   const editorState = useBridgeState(editor);
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   return (
     <View style={styles.toolbar}>
       <Pressable onPress={() => editor.toggleBold()}>

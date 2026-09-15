@@ -1,37 +1,38 @@
-import { DarkColors } from '@/theme';
+import { ThemeColors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    gap: 12,
-  },
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      alignItems: 'center',
+      gap: 12,
+    },
 
-  option: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
+    option: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 8,
+    },
 
-  checkbox: {
-    width: 22,
-    height: 22,
-    borderWidth: 1.5,
-    borderColor: DarkColors.monthTextColor,
-    borderRadius: 4,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    checkbox: {
+      width: 22,
+      height: 22,
+      borderWidth: 1.5,
+      borderColor: colors.monthTextColor,
+      borderRadius: 4,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
 
-  checked: {
-    backgroundColor: DarkColors.primary,
-    borderColor: DarkColors.primary,
-  },
+    checked: {
+      backgroundColor: colors.primary,
+      borderColor: colors.primary,
+    },
 
-  label: {
-    fontSize: 16,
-    color: DarkColors.monthTextColor,
-  },
-});
+    label: {
+      fontSize: 16,
+      color: colors.monthTextColor,
+    },
+  });
 
-export default styles;
+export default createStyles;

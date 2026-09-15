@@ -6,13 +6,16 @@ import {
   GripVertical,
 } from 'lucide-react-native';
 import { DarkColors } from '@/theme';
-import style from './style';
 import Badges from '../badges';
 import { Note } from '@/store/type';
 import TextTruncate from '../textTruncate';
 import { badgeColors } from '@/theme/colors';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 const NoteWithAudio = ({ item }: { item: Note }) => {
+  const { colors } = useTheme();
+  const style = createStyles(colors);
   return (
     <Card key={item?.id}>
       <Card.Header>

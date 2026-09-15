@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Modal, ScaleAnimation, ModalContent } from 'react-native-modals';
-import { styles } from './style';
+import { createStyles } from './style';
 import { DarkColors } from '@/theme';
+import { useTheme } from '@/context/ThemeContext';
 
 interface CustomModalProps {
   visible: boolean;
@@ -17,6 +18,8 @@ const CustomModal = ({
   title,
   children,
 }: CustomModalProps) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   return (
     <Modal
       visible={visible}

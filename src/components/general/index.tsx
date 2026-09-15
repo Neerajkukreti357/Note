@@ -1,5 +1,4 @@
 import { Text, TextInput, View } from 'react-native';
-import styles from './style';
 import { DarkColors } from '@/theme';
 import TextEditor from '../TextEditor';
 import { Controller, useFormContext } from 'react-hook-form';
@@ -7,12 +6,17 @@ import { SimpleNoteFormData } from '@/screens/AddNotesScreen/shema';
 import { CustomDropdown } from '../formComponents';
 import { DropdownOptions } from './constants';
 import commonStyle from '@/theme/commonStyles';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 const General = ({ loading }: { loading: boolean }) => {
   const {
     control,
     formState: { errors },
   } = useFormContext<SimpleNoteFormData>();
+
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
 
   return (
     <View style={styles.mainContainer}>

@@ -2,9 +2,10 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
-import { styles } from './style';
 import { CustomDropdownProps } from './type';
 import { DarkColors } from '@/theme';
+import { useTheme } from '@/context/ThemeContext';
+import { createStyles } from './style';
 
 function CustomDropdown<T extends string | number>({
   data,
@@ -20,6 +21,8 @@ function CustomDropdown<T extends string | number>({
   disable = false,
   search = false,
 }: CustomDropdownProps<T>) {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   return (
     <View style={[containerStyle]}>
       <Dropdown

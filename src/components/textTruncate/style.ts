@@ -1,22 +1,23 @@
-import { DarkColors } from '@/theme';
+import { ThemeColors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
-  wrapper: {
-    position: 'relative',
-  },
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    wrapper: {
+      position: 'relative',
+    },
 
-  ellipsis: {
-    fontSize: 18,
-    fontWeight: '700',
-  },
+    ellipsis: {
+      fontSize: 18,
+      fontWeight: '700',
+    },
 
-  readMore: {
-    fontSize: 14,
-    fontWeight: '600',
-    marginLeft: 4,
-    color: DarkColors.monthTextColor,
-  },
-});
+    readMore: {
+      fontSize: 14,
+      fontWeight: '600',
+      marginLeft: 4,
+      color: colors.monthTextColor,
+    },
+  });
 
-export default styles;
+export default createStyles;

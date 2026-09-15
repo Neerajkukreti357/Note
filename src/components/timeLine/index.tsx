@@ -1,7 +1,8 @@
 import { FlatList, Text, View } from 'react-native';
-import styles from './style';
 import { badgeColors } from '@/theme/colors';
 import { Priority } from '../badges/types';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 type Task = {
   id: string;
@@ -128,6 +129,8 @@ const tasks: Task[] = [
 ];
 
 const TimeLineComponent = () => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   const formatDate = (dateString: string) => {
     const date = new Date(`${dateString}T00:00:00`);
 

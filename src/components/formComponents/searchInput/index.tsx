@@ -1,12 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { View, TextInput, Animated, Pressable } from 'react-native';
 import { Search, X } from 'lucide-react-native';
-import styles from './style';
 import { DarkColors } from '@/theme';
 import { badgeColors } from '@/theme/colors';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 const SearchInput = () => {
   const [search, setSearch] = useState('');
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
 
   const clearAnimation = useRef(new Animated.Value(0)).current;
 

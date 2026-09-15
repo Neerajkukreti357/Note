@@ -1,6 +1,5 @@
 import { Camera, ImagePlus, Images, Mic, Pause } from 'lucide-react-native';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
-import styles from './styles';
 import { useEffect, useRef, useState } from 'react';
 import { MediaNoteFormData } from '@/screens/AddNotesScreen/shema';
 import { Controller, useFormContext } from 'react-hook-form';
@@ -34,8 +33,12 @@ import {
   launchCamera,
   launchImageLibrary,
 } from 'react-native-image-picker';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './styles';
 
 const Media = ({ loading }: { loading: boolean }) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   const bottomSheetRef = useRef<BottomSheet>(null);
   const [recording, setRecording] = useState(false);
   const [seconds, setSeconds] = useState(0);

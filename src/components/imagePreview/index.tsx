@@ -2,7 +2,8 @@ import React from 'react';
 import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import { ImagePlus, X } from 'lucide-react-native';
 import type { Asset } from 'react-native-image-picker';
-import styles from './style';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 type ImagePreviewListProps = {
   images: Asset[];
@@ -11,6 +12,8 @@ type ImagePreviewListProps = {
 
 const ImagePreviewList = ({ images, onRemove }: ImagePreviewListProps) => {
   const hasImages = images.length > 0;
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
 
   return (
     <View style={styles.container}>

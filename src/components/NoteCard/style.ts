@@ -1,72 +1,73 @@
-import { DarkColors, fontSize, spacing } from '@/theme';
+import { fontSize, spacing, ThemeColors } from '@/theme';
 import { badgeColors } from '@/theme/colors';
 import { fontFamily } from '@/theme/typography';
 import { StyleSheet } from 'react-native';
 
-const style = StyleSheet.create({
-  headingBox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.xs,
-  },
-  headingText: {
-    fontSize: fontSize.body,
-    color: DarkColors.icon,
-    fontWeight: 800,
-    fontFamily: fontFamily.montserrat.regular,
-    maxWidth: 300,
-  },
-  descriptionText: {
-    color: DarkColors.icon,
-    fontSize: fontSize.description,
-  },
-  checkBox: {
-    flexDirection: 'row',
-    gap: spacing.sm,
-    alignItems: 'center',
-  },
-  theDot: {
-    width: 4,
-    height: 4,
-    borderRadius: '50%',
-  },
-  bodyStyle: {
-    gap: spacing.xs,
-  },
-  image: {
-    width: '100%',
-    height: 140,
-    borderRadius: 12,
-    marginTop: spacing.md,
-  },
-  readMoreText: {
-    fontSize: 14,
-    fontWeight: '600',
-  },
-  type: {
-    fontSize: fontSize.badge,
-    color: DarkColors.highlightColor,
-  },
-  fileTextBackground: {
-    backgroundColor: badgeColors.pending.background,
-    padding: 4,
-    borderRadius: spacing.sm,
-  },
-  ImageBackground: {
-    backgroundColor: badgeColors['partial complete'].background,
-    padding: 4,
-    borderRadius: spacing.sm,
-  },
-  audioBackground: {
-    backgroundColor: badgeColors.low.background,
-    padding: 4,
-    borderRadius: spacing.sm,
-  },
-  checkBackground: {
-    backgroundColor: badgeColors.high.background,
-    padding: 4,
-    borderRadius: spacing.sm,
-  },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    headingBox: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: spacing.xs,
+    },
+    headingText: {
+      fontSize: fontSize.body,
+      color: colors.icon,
+      fontWeight: 800,
+      fontFamily: fontFamily.montserrat.regular,
+      maxWidth: 300,
+    },
+    descriptionText: {
+      color: colors.icon,
+      fontSize: fontSize.description,
+    },
+    checkBox: {
+      flexDirection: 'row',
+      gap: spacing.sm,
+      alignItems: 'center',
+    },
+    theDot: {
+      width: 4,
+      height: 4,
+      borderRadius: '50%',
+    },
+    bodyStyle: {
+      gap: spacing.xs,
+    },
+    image: {
+      width: '100%',
+      height: 140,
+      borderRadius: 12,
+      marginTop: spacing.md,
+    },
+    readMoreText: {
+      fontSize: 14,
+      fontWeight: '600',
+    },
+    type: {
+      fontSize: fontSize.badge,
+      color: colors.highlightColor,
+    },
+    fileTextBackground: {
+      backgroundColor: badgeColors.pending.background,
+      padding: 4,
+      borderRadius: spacing.sm,
+    },
+    ImageBackground: {
+      backgroundColor: badgeColors['partial complete'].background,
+      padding: 4,
+      borderRadius: spacing.sm,
+    },
+    audioBackground: {
+      backgroundColor: badgeColors.low.background,
+      padding: 4,
+      borderRadius: spacing.sm,
+    },
+    checkBackground: {
+      backgroundColor: badgeColors.high.background,
+      padding: 4,
+      borderRadius: spacing.sm,
+    },
+  });
 
-export default style;
+export default createStyles;

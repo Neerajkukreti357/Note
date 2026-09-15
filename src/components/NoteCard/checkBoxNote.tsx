@@ -5,14 +5,17 @@ import {
   EllipsisVertical,
   ListChecks,
 } from 'lucide-react-native';
-import style from './style';
 import { DarkColors } from '@/theme';
 import Badges from '../badges';
 import { Note } from '@/store/type';
 import TextTruncate from '../textTruncate';
 import { badgeColors } from '@/theme/colors';
+import createStyles from './style';
+import { useTheme } from '@/context/ThemeContext';
 
 const CheckBoxNote = ({ item }: { item: Note }) => {
+  const { colors } = useTheme();
+  const style = createStyles(colors);
   return (
     <Card>
       <Card.Header>

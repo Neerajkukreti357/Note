@@ -1,7 +1,8 @@
 import React from 'react';
 import { Pressable, StyleProp, Text, View, ViewStyle } from 'react-native';
 import { Check } from 'lucide-react-native';
-import styles from './style';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 interface CheckboxOption {
   label: string;
@@ -23,6 +24,8 @@ const MultipleCheckbox = ({
   direction = 'row',
   containerStyle,
 }: MultipleCheckboxProps) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   const handlePress = (value: string) => {
     const isSelected = selectedValues.includes(value);
 

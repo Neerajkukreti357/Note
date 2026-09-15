@@ -1,181 +1,182 @@
 import { StyleSheet } from 'react-native';
-import { DarkColors } from '@/theme';
+import { ThemeColors } from '@/theme';
 import { fontFamily, fontSize, spacing } from '@/theme/typography';
 import { responsive } from '@/theme/responsive';
 
-const styles = StyleSheet.create({
-  container: {
-    marginTop: spacing.md,
-  },
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      marginTop: spacing.md,
+    },
 
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: spacing.sm,
-  },
+    header: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      marginBottom: spacing.sm,
+    },
 
-  title: {
-    fontFamily: fontFamily.inter.semiBold,
-    fontSize: fontSize.title,
-    color: DarkColors.monthTextColor,
-  },
+    title: {
+      fontFamily: fontFamily.inter.semiBold,
+      fontSize: fontSize.title,
+      color: colors.monthTextColor,
+    },
 
-  count: {
-    fontFamily: fontFamily.inter.regular,
-    fontSize: fontSize.caption,
-    color: DarkColors.text,
-  },
+    count: {
+      fontFamily: fontFamily.inter.regular,
+      fontSize: fontSize.caption,
+      color: colors.text,
+    },
 
-  // -------------------------
-  // Empty state
-  // -------------------------
+    // -------------------------
+    // Empty state
+    // -------------------------
 
-  emptyContainer: {
-    minHeight: responsive.height(170),
-    borderWidth: 1,
-    borderStyle: 'dashed',
-    borderColor: DarkColors.lightBorder,
-    borderRadius: responsive.radius(14),
+    emptyContainer: {
+      minHeight: responsive.height(170),
+      borderWidth: 1,
+      borderStyle: 'dashed',
+      borderColor: colors.lightBorder,
+      borderRadius: responsive.radius(14),
 
-    alignItems: 'center',
-    justifyContent: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
 
-    paddingVertical: spacing.lg,
-    paddingHorizontal: spacing.md,
+      paddingVertical: spacing.lg,
+      paddingHorizontal: spacing.md,
 
-    backgroundColor: DarkColors.primary,
-  },
+      backgroundColor: colors.primary,
+    },
 
-  emptyIcon: {
-    width: responsive.width(52),
-    height: responsive.height(52),
-    borderRadius: responsive.radius(14),
+    emptyIcon: {
+      width: responsive.width(52),
+      height: responsive.height(52),
+      borderRadius: responsive.radius(14),
 
-    alignItems: 'center',
-    justifyContent: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
 
-    backgroundColor: DarkColors.iconBg,
+      backgroundColor: colors.iconBg,
 
-    marginBottom: spacing.sm,
-  },
+      marginBottom: spacing.sm,
+    },
 
-  emptyTitle: {
-    fontFamily: fontFamily.inter.semiBold,
-    fontSize: fontSize.body,
-    color: DarkColors.monthTextColor,
-    marginBottom: spacing.xs,
-  },
+    emptyTitle: {
+      fontFamily: fontFamily.inter.semiBold,
+      fontSize: fontSize.body,
+      color: colors.monthTextColor,
+      marginBottom: spacing.xs,
+    },
 
-  emptyText: {
-    fontFamily: fontFamily.inter.regular,
-    fontSize: fontSize.description,
-    color: DarkColors.text,
-    textAlign: 'center',
-    marginBottom: spacing.md,
-  },
+    emptyText: {
+      fontFamily: fontFamily.inter.regular,
+      fontSize: fontSize.description,
+      color: colors.text,
+      textAlign: 'center',
+      marginBottom: spacing.md,
+    },
 
-  // -------------------------
-  // Add button
-  // -------------------------
+    // -------------------------
+    // Add button
+    // -------------------------
 
-  addButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    addButton: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
 
-    gap: spacing.xs,
+      gap: spacing.xs,
 
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
+      paddingHorizontal: spacing.md,
+      paddingVertical: spacing.sm,
 
-    borderRadius: responsive.radius(10),
+      borderRadius: responsive.radius(10),
 
-    backgroundColor: DarkColors.highlightColor,
-  },
+      backgroundColor: colors.highlightColor,
+    },
 
-  addButtonText: {
-    fontFamily: fontFamily.inter.semiBold,
-    fontSize: fontSize.description,
-    color: DarkColors.monthTextColor,
-  },
+    addButtonText: {
+      fontFamily: fontFamily.inter.semiBold,
+      fontSize: fontSize.description,
+      color: colors.monthTextColor,
+    },
 
-  // -------------------------
-  // Image list
-  // -------------------------
+    // -------------------------
+    // Image list
+    // -------------------------
 
-  imageList: {
-    gap: spacing.sm,
-    paddingBottom: spacing.xs,
-  },
+    imageList: {
+      gap: spacing.sm,
+      paddingBottom: spacing.xs,
+    },
 
-  imageWrapper: {
-    width: responsive.width(105),
-    height: responsive.height(105),
-    borderRadius: responsive.radius(12),
+    imageWrapper: {
+      width: responsive.width(105),
+      height: responsive.height(105),
+      borderRadius: responsive.radius(12),
 
-    position: 'relative',
-  },
+      position: 'relative',
+    },
 
-  image: {
-    width: '100%',
-    height: '100%',
-    borderRadius: responsive.radius(12),
+    image: {
+      width: '100%',
+      height: '100%',
+      borderRadius: responsive.radius(12),
 
-    backgroundColor: DarkColors.iconBg,
-  },
+      backgroundColor: colors.iconBg,
+    },
 
-  // -------------------------
-  // Remove button
-  // -------------------------
+    // -------------------------
+    // Remove button
+    // -------------------------
 
-  removeButton: {
-    position: 'absolute',
+    removeButton: {
+      position: 'absolute',
 
-    top: -responsive.height(1),
-    right: responsive.width(0),
+      top: -responsive.height(1),
+      right: responsive.width(0),
 
-    padding: responsive.width(2),
+      padding: responsive.width(2),
 
-    borderRadius: responsive.radius(50),
+      borderRadius: responsive.radius(50),
 
-    alignItems: 'center',
-    justifyContent: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
 
-    backgroundColor: DarkColors.highlightColor,
+      backgroundColor: colors.highlightColor,
 
-    borderWidth: 2,
-    borderColor: DarkColors.secondary,
-  },
+      borderWidth: 2,
+      borderColor: colors.secondary,
+    },
 
-  // -------------------------
-  // Add image box
-  // -------------------------
+    // -------------------------
+    // Add image box
+    // -------------------------
 
-  addImageBox: {
-    width: responsive.width(105),
-    height: responsive.height(105),
+    addImageBox: {
+      width: responsive.width(105),
+      height: responsive.height(105),
 
-    borderRadius: responsive.radius(12),
+      borderRadius: responsive.radius(12),
 
-    borderWidth: 1,
-    borderStyle: 'dashed',
-    borderColor: DarkColors.lightBorder,
+      borderWidth: 1,
+      borderStyle: 'dashed',
+      borderColor: colors.lightBorder,
 
-    alignItems: 'center',
-    justifyContent: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
 
-    backgroundColor: DarkColors.primary,
-  },
+      backgroundColor: colors.primary,
+    },
 
-  addImageText: {
-    marginTop: spacing.xs,
+    addImageText: {
+      marginTop: spacing.xs,
 
-    fontFamily: fontFamily.inter.medium,
-    fontSize: fontSize.caption,
+      fontFamily: fontFamily.inter.medium,
+      fontSize: fontSize.caption,
 
-    color: DarkColors.text,
-  },
-});
+      color: colors.text,
+    },
+  });
 
-export default styles;
+export default createStyles;
