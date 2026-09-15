@@ -2,16 +2,15 @@ import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import { Calendar } from 'react-native-calendars';
 import { getCalendarTheme } from './theme';
 import { useTheme } from '@/context/ThemeContext';
+import { useMemo } from 'react';
 
 const CalendarComponent = () => {
-  const { colors } = useTheme();
-
-  if (!colors) return null;
-
-  const calendarTheme = getCalendarTheme(colors);
+  const { colors, theme } = useTheme();
+  const calendarTheme = useMemo(() => getCalendarTheme(colors), [colors]);
 
   return (
     <Calendar
+      key={theme}
       theme={calendarTheme}
       renderArrow={direction => {
         if (direction === 'left') {

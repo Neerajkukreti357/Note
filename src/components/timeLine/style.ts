@@ -18,12 +18,12 @@ const createStyles = (colors: ThemeColors) =>
     day: {
       fontSize: 32,
       fontWeight: '300',
-      color: '#CBD5E1',
+      color: colors.monthTextColor,
     },
 
     weekday: {
       fontSize: 14,
-      color: '#94A3B8',
+      color: colors.monthTextColor,
       marginTop: 2,
     },
 
@@ -33,7 +33,7 @@ const createStyles = (colors: ThemeColors) =>
       marginVertical: 10,
       padding: 18,
       borderRadius: 12,
-      backgroundColor: '#151F33',
+      backgroundColor: colors.secondary,
       flexDirection: 'row',
     },
 
@@ -48,13 +48,13 @@ const createStyles = (colors: ThemeColors) =>
     },
 
     title: {
-      color: '#FFFFFF',
+      color: colors.monthTextColor,
       fontSize: 17,
       fontWeight: '600',
     },
 
     description: {
-      color: '#94A3B8',
+      color: colors.text,
       fontSize: 14,
       marginTop: 8,
       lineHeight: 20,
