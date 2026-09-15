@@ -1,7 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
 import { useNotes } from '@/hooks/home';
-import { DarkColors } from '@/theme';
 import {
   AddMoreItem,
   CheckBoxNote,
@@ -23,7 +22,7 @@ function Home() {
     <View style={style.container}>
       {loading ? (
         <View style={style.loaderBox}>
-          <ActivityIndicator size="large" color={DarkColors.monthTextColor} />
+          <ActivityIndicator size="large" color={colors.monthTextColor} />
           <Text style={style.loadingText}>Loading ...</Text>
         </View>
       ) : notes?.length > 0 ? (

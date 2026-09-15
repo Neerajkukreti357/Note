@@ -5,9 +5,9 @@ import { Header } from '@/components';
 import { useNavigationState } from '@react-navigation/native';
 import { getCurrentRouteName } from '@/utils';
 import { StyleSheet, View } from 'react-native';
-import { DarkColors, ThemeColors } from '@/theme';
 import CustomDrawerView from '@/components/drawer';
 import { useTheme } from '@/context/ThemeContext';
+import { ThemeColors } from '@/theme';
 
 const Drawer = createDrawerNavigator();
 

@@ -1,5 +1,4 @@
 import { Text, TextInput, View } from 'react-native';
-import { DarkColors } from '@/theme';
 import TextEditor from '../TextEditor';
 import { Controller, useFormContext } from 'react-hook-form';
 import { SimpleNoteFormData } from '@/screens/AddNotesScreen/shema';
@@ -46,7 +45,7 @@ const General = ({ loading }: { loading: boolean }) => {
           <TextInput
             placeholder="Title"
             style={styles.title}
-            placeholderTextColor={DarkColors.monthTextColor}
+            placeholderTextColor={colors.monthTextColor}
             value={value}
             onChangeText={onChange}
             aria-disabled={loading}

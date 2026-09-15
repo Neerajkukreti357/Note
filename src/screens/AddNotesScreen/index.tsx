@@ -1,8 +1,6 @@
 import { Pressable, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import styles from './style';
 import { X } from 'lucide-react-native';
-import { DarkColors } from '@/theme';
 import { General, GlowView, Media, Tabs } from '@/components';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
@@ -29,9 +27,13 @@ import {
   createSimpleNote,
 } from '@/services/notesServices/createNotesServices';
 import { useNotes } from '@/hooks/home';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 const AddScreenNotes = () => {
   const { refetch } = useNotes();
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
 
   const navigation = useNavigation();
   const [active, setActive] = useState(0);
@@ -121,7 +123,7 @@ const AddScreenNotes = () => {
       <SafeAreaView style={styles.container}>
         <View style={styles.headingContainer}>
           <Pressable onPress={() => navigation.goBack()}>
-            <X size={30} color={DarkColors.heading} />
+            <X size={30} color={colors.heading} />
           </Pressable>
           <Text style={styles.title}>Add Notes</Text>
           <Pressable
@@ -129,7 +131,7 @@ const AddScreenNotes = () => {
             style={styles.button}
             onPress={handleSave}
           >
-            <GlowView size={50} color={DarkColors.highlightColor} />
+            <GlowView size={50} color={colors.highlightColor} />
 
             {loading ? (
               <Text style={styles.textStyle}>Adding ...</Text>

@@ -12,40 +12,41 @@ import { useEffect, useState } from 'react';
 import { EditorFieldProps } from './type';
 import { useTheme } from '@/context/ThemeContext';
 import createStyles from './style';
+import { ThemeColors } from '@/theme';
 
-const editorCSS = `
+const getEditorCSS = (colors: ThemeColors) => `
   * {
     box-sizing: border-box;
   }
 
   body {
-    background-color: ${DarkColors.lightPrimary};
-    color: ${DarkColors.heading};
+    background-color: ${colors.lightPrimary};
+    color: ${colors.heading};
     margin: 0;
     padding: 0;
   }
 
   p {
-    color: ${DarkColors.monthTextColor};
+    color: ${colors.monthTextColor};
     font-size: 18px;
     margin: 0 0 12px 0;
   }
 
   h1 {
-    color: ${DarkColors.heading};
+    color: ${colors.heading};
     font-size: 32px;
     font-weight: 700;
   }
 
   h2 {
-    color: ${DarkColors.heading};
+    color: ${colors.heading};
     font-size: 26px;
     font-weight: 700;
   }
 
   ul,
   ol {
-    color: ${DarkColors.monthTextColor};
+    color: ${colors.monthTextColor};
     font-size: 18px;
     line-height: 28px;
   }
@@ -57,16 +58,19 @@ const TextEditor = ({
   loadingSubmission,
   editorContainerStyle,
 }: EditorFieldProps) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   const [loading, setLoading] = useState(true);
   const editor = useEditorBridge({
     autofocus: false,
     avoidIosKeyboard: true,
-    bridgeExtensions: [...TenTapStartKit, CoreBridge.configureCSS(editorCSS)],
+    bridgeExtensions: [
+      ...TenTapStartKit,
+      CoreBridge.configureCSS(getEditorCSS(colors)),
+    ],
     initialContent: value ?? '',
   });
   const content = useEditorContent(editor, { type: 'html' });
-  const { colors } = useTheme();
-  const styles = createStyles(colors);
 
   // push editor content up into react-hook-form whenever it changes
   useEffect(() => {
