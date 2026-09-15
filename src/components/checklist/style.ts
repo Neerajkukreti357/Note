@@ -21,7 +21,7 @@ const createStyles = (colors: ThemeColors) =>
     },
 
     checkRow: {
-      backgroundColor: colors.tertiary,
+      backgroundColor: colors.primary,
       borderRadius: 12,
       padding: 13,
       flexDirection: 'row',
@@ -33,7 +33,7 @@ const createStyles = (colors: ThemeColors) =>
       height: 21,
       borderRadius: 7,
       borderWidth: 1.5,
-      borderColor: '#69758B',
+      borderColor: colors.text,
     },
     checkInput: {
       flex: 1,
@@ -49,7 +49,11 @@ const createStyles = (colors: ThemeColors) =>
       gap: 7,
       padding: 8,
     },
-    addItemText: { color: '#B7B4FF', fontSize: 12, fontWeight: '800' },
+    addItemText: {
+      color: colors.highlightColor,
+      fontSize: 12,
+      fontWeight: '800',
+    },
   });
 
 export default createStyles;

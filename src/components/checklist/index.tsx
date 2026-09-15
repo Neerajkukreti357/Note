@@ -148,7 +148,7 @@ const CheckList = ({ loading }: { loading: boolean }) => {
         )}
       </ScrollView>
       <Pressable style={styles.addItem} onPress={addItem}>
-        <Plus color="#B7B4FF" size={17} />
+        <Plus color={colors.highlightColor} size={17} />
         <Text style={styles.addItemText}>Add item</Text>
       </Pressable>
     </View>
