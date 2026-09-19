@@ -274,7 +274,7 @@ const Media = ({ loading }: { loading: boolean }) => {
               <TextInput
                 placeholder="Title"
                 style={[styles.title, [{ marginBottom: -8 }]]}
-                placeholderTextColor={DarkColors.monthTextColor}
+                placeholderTextColor={colors.monthTextColor}
                 value={value}
                 onChangeText={onChange}
                 aria-disabled={loading}

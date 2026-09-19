@@ -39,7 +39,7 @@ const createStyles = (colors: ThemeColors) =>
 
       borderRadius: spacing.sm,
 
-      backgroundColor: colors.primary,
+      backgroundColor: colors.activeTab,
     },
 
     tabButtonText: {

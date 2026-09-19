@@ -30,7 +30,7 @@ const createStyles = (colors: ThemeColors) =>
     },
     textStyle: {
       fontWeight: 600,
-      color: colors.monthTextColor,
+      color: colors.btnTextcolor,
     },
   });
 

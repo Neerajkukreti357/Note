@@ -1,6 +1,7 @@
 export const DarkColors = {
   lightPrimary: '#1A2237',
   primary: '#0E1525',
+  activeTab: '#0E1525',
   secondary: '#1C2538',
   heading: '#C3C0FF',
   text: '#C5C5D8',
@@ -12,6 +13,7 @@ export const DarkColors = {
   lightBorder: '#C3C5D861',
   selectedMonthColor: '#818CF8',
   monthTextColor: '#FFFFFF',
+  btnTextcolor: '#FFFFFF',
   settingButtonBackgroundColor: '#1A2436',
   drawerBackgroundColor: '#0E1729',
   iconBg: '#2C344A',
@@ -22,6 +24,7 @@ export const DarkColors = {
 export const LightColors = {
   lightPrimary: '#F8FAFF',
   primary: '#FFFFFF',
+  activeTab: '#d4d8df',
   secondary: '#F1F4FA',
   heading: '#252B4A',
   text: '#5B6278',
@@ -33,6 +36,7 @@ export const LightColors = {
   lightBorder: '#3f4041ab',
   selectedMonthColor: '#554ED5',
   monthTextColor: '#252B4A',
+  btnTextcolor: '#FFFFFF',
   settingButtonBackgroundColor: '#F1F3F8',
   drawerBackgroundColor: '#F8FAFF',
   iconBg: '#E9EAFB',

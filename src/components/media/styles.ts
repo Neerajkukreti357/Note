@@ -21,24 +21,17 @@ const createStyles = (colors: ThemeColors) =>
       includeFontPadding: false,
     },
     mediaCard: {
-      backgroundColor: '#1A2237',
+      backgroundColor: colors.lightPrimary,
+
       borderRadius: 15,
-      borderWidth: 1,
-      borderColor: '#2B3650',
       padding: 18,
       marginBottom: 15,
     },
     panelHeading: {
-      color: '#CFCCEF',
+      color: colors.highlightColor,
       fontSize: 16,
       fontWeight: '800',
       marginBottom: 15,
-    },
-    panelHint: {
-      color: '#858FA4',
-      fontSize: 12,
-      lineHeight: 18,
-      marginBottom: 22,
     },
     uploadIcon: {
       width: 35,
