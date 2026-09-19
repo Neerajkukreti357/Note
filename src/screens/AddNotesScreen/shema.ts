@@ -23,7 +23,7 @@ export const simpleNoteSchema = z.object({
       message: 'Description is required',
     })
     .min(1, 'Description is required')
-    .max(1000, 'Description too long'),
+    .max(4000, 'Description too long'),
   type: z.number().int().min(1).max(3),
   priority: z.enum(['high', 'medium', 'low'], {
     error: 'Priority is required',

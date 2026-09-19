@@ -9,14 +9,16 @@ const createStyles = (colors: ThemeColors) =>
     },
     scrollViewContainer: {
       flex: 1,
-      paddingHorizontal: spacing.md,
+      paddingHorizontal: spacing.sm,
       marginTop: spacing.md,
       backgroundColor: colors.viewBodyColor,
     },
     innerConatiner: {
       paddingHorizontal: spacing.md,
-      borderRadius: spacing.md,
+      paddingVertical: spacing.sm,
+      borderRadius: spacing.sm,
       backgroundColor: colors.lightPrimary,
+      marginTop: spacing.md,
     },
     dateContainer: {
       flexDirection: 'row',

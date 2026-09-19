@@ -22,7 +22,7 @@ const ViewScreen = () => {
   const styles = createStyles(colors);
   const route = useRoute<ViewScreenRouteProp>();
   const { item } = route.params;
-  console.log('item', item);
+
   return (
     <SafeAreaView style={styles.container}>
       <SimpleHeader />

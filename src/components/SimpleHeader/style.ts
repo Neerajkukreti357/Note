@@ -4,7 +4,6 @@ import { StyleSheet } from 'react-native';
 const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
     container: {
-      paddingVertical: spacing.sm,
       paddingHorizontal: spacing.md,
       backgroundColor: colors.viewHeaderColor,
       flexDirection: 'row',
