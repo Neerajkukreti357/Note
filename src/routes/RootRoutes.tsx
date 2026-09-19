@@ -3,10 +3,12 @@ import AppDrawer from './AppDrawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AddScreenNotes from '@/screens/AddNotesScreen';
 import { useTheme } from '@/context/ThemeContext';
+import ViewScreen from '@/screens/ViewScreen';
 
 export type RootStackParamList = {
   AppDrawer: undefined;
   AddNote: undefined;
+  ViewScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -25,6 +27,7 @@ const RootRoutes = () => {
     >
       <Stack.Screen name="AppDrawer" component={AppDrawer} />
       <Stack.Screen name="AddNote" component={AddScreenNotes} />
+      <Stack.Screen name="ViewScreen" component={ViewScreen} />
     </Stack.Navigator>
   );
 };

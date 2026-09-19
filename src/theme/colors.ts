@@ -1,5 +1,7 @@
 export const DarkColors = {
   lightPrimary: '#1A2237',
+  viewBodyColor: '#0B1326',
+  viewHeaderColor: '#060F1F',
   primary: '#0E1525',
   activeTab: '#0E1525',
   secondary: '#1C2538',
