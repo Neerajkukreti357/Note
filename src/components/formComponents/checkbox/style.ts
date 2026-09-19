@@ -1,4 +1,4 @@
-import { ThemeColors } from '@/theme';
+import { DarkColors, ThemeColors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
 const createStyles = (colors: ThemeColors) =>
@@ -25,8 +25,8 @@ const createStyles = (colors: ThemeColors) =>
     },
 
     checked: {
-      backgroundColor: colors.primary,
-      borderColor: colors.primary,
+      backgroundColor: DarkColors.primary,
+      borderColor: DarkColors.primary,
     },
 
     label: {

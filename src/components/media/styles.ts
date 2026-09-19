@@ -20,6 +20,12 @@ const createStyles = (colors: ThemeColors) =>
       // Prevent Android from adding extra font space
       includeFontPadding: false,
     },
+    waveViewContainer: {
+      position: 'absolute',
+      width: 1,
+      height: 1,
+      opacity: 0,
+    },
     mediaCard: {
       backgroundColor: colors.lightPrimary,
 
@@ -48,7 +54,7 @@ const createStyles = (colors: ThemeColors) =>
     voice: {
       height: 190,
       borderRadius: 10,
-      backgroundColor: '#151E32',
+      backgroundColor: colors.primary,
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -61,7 +67,7 @@ const createStyles = (colors: ThemeColors) =>
     },
     waveBar: { width: 3, borderRadius: 3, backgroundColor: '#55BADA' },
     timer: {
-      color: '#E3E5F0',
+      color: colors.monthTextColor,
       fontSize: 17,
       fontWeight: '800',
       letterSpacing: 2,
@@ -76,7 +82,7 @@ const createStyles = (colors: ThemeColors) =>
       justifyContent: 'center',
     },
     recording: { backgroundColor: '#554ED5' },
-    voiceHint: { color: '#C1C5D4', fontSize: 10, marginTop: 11 },
+    voiceHint: { color: colors.monthTextColor, fontSize: 10, marginTop: 11 },
     toolbarContainer: {
       marginTop: 12,
       borderRadius: 14,
@@ -90,7 +96,7 @@ const createStyles = (colors: ThemeColors) =>
       height: 138,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#151E32',
+      backgroundColor: colors.primary,
     },
 
     contentBottomContainer: {

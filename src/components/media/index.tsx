@@ -5,7 +5,6 @@ import { MediaNoteFormData } from '@/screens/AddNotesScreen/shema';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CustomDropdown } from '../formComponents';
 import { DropdownOptions } from '../general/constants';
-import { DarkColors } from '@/theme';
 import TextEditor from '../TextEditor';
 import commonStyle from '@/theme/commonStyles';
 import { responsive } from '@/theme/responsive';
@@ -348,12 +347,7 @@ const Media = ({ loading }: { loading: boolean }) => {
               {/* Hidden native recorder — drives start/stop/onComplete only */}
               <WaveformRecorderView
                 ref={recorderRef}
-                style={{
-                  position: 'absolute',
-                  width: 1,
-                  height: 1,
-                  opacity: 0,
-                }}
+                style={styles.waveViewContainer}
                 onStateChange={onStateChange}
                 onComplete={onComplete}
                 onError={onError}
@@ -445,10 +439,10 @@ const Media = ({ loading }: { loading: boolean }) => {
       </ScrollView>
       <BottomSheet
         backgroundStyle={{
-          backgroundColor: DarkColors.secondary,
+          backgroundColor: colors.secondary,
         }}
         handleIndicatorStyle={{
-          backgroundColor: DarkColors.monthTextColor,
+          backgroundColor: colors.monthTextColor,
         }}
         ref={bottomSheetRef}
         onChange={handleSheetChanges}
@@ -461,11 +455,7 @@ const Media = ({ loading }: { loading: boolean }) => {
           <View style={styles.mediaOptions}>
             <Pressable style={styles.mediaOption} onPress={openCamera}>
               <View style={styles.mediaIconContainer}>
-                <Camera
-                  size={36}
-                  color={DarkColors.heading}
-                  strokeWidth={1.8}
-                />
+                <Camera size={36} color={colors.heading} strokeWidth={1.8} />
               </View>
 
               <Text style={styles.mediaOptionText}>Camera</Text>
@@ -473,11 +463,7 @@ const Media = ({ loading }: { loading: boolean }) => {
 
             <Pressable style={styles.mediaOption} onPress={openGallery}>
               <View style={styles.mediaIconContainer}>
-                <Images
-                  size={36}
-                  color={DarkColors.heading}
-                  strokeWidth={1.8}
-                />
+                <Images size={36} color={colors.heading} strokeWidth={1.8} />
               </View>
 
               <Text style={styles.mediaOptionText}>Gallery</Text>

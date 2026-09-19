@@ -11,8 +11,6 @@ import {
   X,
 } from 'lucide-react-native';
 import { BottomButton, DrawerButton } from './type';
-import { DarkColors } from '@/theme';
-import { badgeColors } from '@/theme/colors';
 import { AnimatedToggle } from '../formComponents';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '@/context/ThemeContext';
@@ -89,8 +87,8 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
                     size={19}
                     color={
                       item?.labels === 'Theme'
-                        ? DarkColors.themeChanger
-                        : DarkColors.heading
+                        ? colors.themeChanger
+                        : colors.heading
                     }
                   />
                 </View>
@@ -105,7 +103,7 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
                   onValueChange={item?.onPress}
                 />
               ) : (
-                <ChevronRight size={19} color={DarkColors.icon} />
+                <ChevronRight size={19} color={colors.icon} />
               )}
             </Pressable>
           );
@@ -122,13 +120,13 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
               onPress={item?.onPress}
             >
               <View style={styles.iconContainer}>
-                <Icon size={19} color={badgeColors.high?.text} />
+                <Icon size={19} color={colors.closeButtonColor} />
               </View>
               <Text
                 style={[
                   styles.bottomLabel,
                   {
-                    color: badgeColors.high.text,
+                    color: colors.closeButtonColor,
                   },
                 ]}
               >

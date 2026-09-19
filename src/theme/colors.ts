@@ -19,6 +19,7 @@ export const DarkColors = {
   iconBg: '#2C344A',
   themeChanger: '#4BD6F5',
   tertiary: '#141D31',
+  closeButtonColor: '#F0B8C8',
 };
 
 export const LightColors = {
@@ -42,6 +43,7 @@ export const LightColors = {
   iconBg: '#E9EAFB',
   themeChanger: '#089FC1',
   tertiary: '#141D31',
+  closeButtonColor: '#e92f63',
 };
 
 // These don't depend on the theme
@@ -52,7 +54,7 @@ export const badgeColors = {
   },
   medium: {
     background: '#3A352A',
-    text: '#E6C98A',
+    text: '#f6d48b',
   },
   low: {
     background: '#263546',
