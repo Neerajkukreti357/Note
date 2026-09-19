@@ -1,7 +1,7 @@
 import { fontSize, spacing, ThemeColors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
-const createStyles = (colors: ThemeColors) =>
+const createStyles = (colors: ThemeColors, imageSize: any) =>
   StyleSheet.create({
     container: {
       flex: 1,
@@ -38,6 +38,27 @@ const createStyles = (colors: ThemeColors) =>
       fontSize: fontSize.noteTitle,
       color: colors.monthTextColor,
       fontWeight: 800,
+    },
+    image: {
+      width: imageSize,
+      aspectRatio: 4 / 3,
+      borderRadius: 12,
+    },
+    imageContainer: {
+      marginTop: spacing.md,
+      gap: spacing.sm,
+    },
+    button: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: colors.highlightColor,
+      padding: spacing.sm,
+      borderRadius: 10,
+      marginVertical: spacing.md,
+    },
+    textStyle: {
+      fontWeight: 600,
+      color: colors.btnTextcolor,
     },
   });
 

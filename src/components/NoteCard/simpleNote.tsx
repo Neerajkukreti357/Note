@@ -36,6 +36,7 @@ const SimpleNoteCard = ({ item }: { item: Note }) => {
           </View>
           <EllipsisVertical size={18} color={colors.lightBorder} />
         </Card.Header>
+
         <Card.Footer>
           <Badges title={item?.is_completed === 0 ? 'pending' : 'complete'} />
           <Badges title={item?.priority} />

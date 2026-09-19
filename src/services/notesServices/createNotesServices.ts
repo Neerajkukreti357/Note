@@ -1,6 +1,6 @@
 import { Note } from '@/store/type';
 import { db } from '../db';
-import { Priority } from './type';
+import { Priority, UpdateNoteFields } from './type';
 
 export const createSimpleNote = async (
   title: string,
@@ -107,6 +107,33 @@ export const createMediaNoteWithImage = async (
       VALUES (?, ?, ?, ?, ?, ?, ?,?)
     `,
     [title, description, noteType, priority, imageList, 0, now, now],
+  );
+};
+
+export const updateNote = async (
+  id: number | string,
+  fields: UpdateNoteFields,
+) => {
+  const now = Date.now();
+
+  const entries = Object.entries(fields).filter(
+    ([, value]) => value !== undefined,
+  );
+
+  if (entries.length === 0) {
+    return; // nothing to update
+  }
+
+  const setClause = entries.map(([key]) => `${key} = ?`).join(', ');
+  const values = entries.map(([, value]) => value);
+
+  await db.execute(
+    `
+      UPDATE notes
+      SET ${setClause}, updated_at = ?
+      WHERE id = ?
+    `,
+    [...values, now, id],
   );
 };
 

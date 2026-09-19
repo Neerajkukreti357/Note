@@ -15,8 +15,8 @@ const createStyles = (colors: ThemeColors) =>
     },
 
     checkbox: {
-      width: 22,
-      height: 22,
+      width: 18,
+      height: 18,
       borderWidth: 1.5,
       borderColor: colors.monthTextColor,
       borderRadius: 4,
