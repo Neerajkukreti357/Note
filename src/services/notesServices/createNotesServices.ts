@@ -137,9 +137,14 @@ export const updateNote = async (
   );
 };
 
-export const getAllNotes = async () => {
+export const getAllNotes = async (search: string = '') => {
   const result = await db.execute(
-    `SELECT * FROM notes WHERE is_deleted = 0 ORDER BY created_at DESC`,
+    `SELECT * FROM notes
+     WHERE is_deleted = 0
+     AND (title LIKE ? OR description LIKE ?)
+     ORDER BY created_at DESC`,
+    [`%${search}%`, `%${search}%`],
   );
+
   return result.rows as unknown as Note[];
 };

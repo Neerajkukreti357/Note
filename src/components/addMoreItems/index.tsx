@@ -8,7 +8,6 @@ import { useTheme } from '@/context/ThemeContext';
 const AddMoreItem = () => {
   const { colors } = useTheme();
   const styles = createStyles(colors);
-  console.log(colors);
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>

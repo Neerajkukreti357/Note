@@ -5,7 +5,11 @@ import { badgeColors } from '@/theme/colors';
 import { useTheme } from '@/context/ThemeContext';
 import createStyles from './style';
 
-const SearchInput = () => {
+const SearchInput = ({
+  onSearchChange,
+}: {
+  onSearchChange: (text: string) => void;
+}) => {
   const [search, setSearch] = useState('');
   const { colors } = useTheme();
   const styles = createStyles(colors);
@@ -14,7 +18,7 @@ const SearchInput = () => {
 
   const handleSearchChange = (text: string) => {
     setSearch(text);
-
+    onSearchChange(text);
     Animated.spring(clearAnimation, {
       toValue: text.length > 0 ? 1 : 0,
       friction: 7,

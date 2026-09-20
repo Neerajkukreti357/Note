@@ -3,7 +3,6 @@ import React from 'react';
 import { View } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { CustomDropdownProps } from './type';
-import { DarkColors } from '@/theme';
 import { useTheme } from '@/context/ThemeContext';
 import { createStyles } from './style';
 
@@ -40,7 +39,7 @@ function CustomDropdown<T extends string | number>({
         containerStyle={styles.dropdownList} // the popover/list container itself
         itemContainerStyle={styles.itemContainer} // wraps each row — controls per-item spacing
         itemTextStyle={styles.itemText} // text style for each option
-        activeColor={DarkColors.primary} // background of the currently-selected row
+        activeColor={colors.primary} // background of the currently-selected row
         iconStyle={styles.icon} // the little chevron icon
         maxHeight={300}
       />
