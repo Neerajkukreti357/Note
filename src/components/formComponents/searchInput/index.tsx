@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { View, TextInput, Animated, Pressable } from 'react-native';
 import { Search, X } from 'lucide-react-native';
-import { badgeColors } from '@/theme/colors';
 import { useTheme } from '@/context/ThemeContext';
 import createStyles from './style';
 
@@ -29,6 +28,7 @@ const SearchInput = ({
 
   const clearSearch = () => {
     setSearch('');
+    onSearchChange('');
 
     Animated.spring(clearAnimation, {
       toValue: 0,
@@ -69,7 +69,7 @@ const SearchInput = ({
           hitSlop={10}
           style={styles.clearButton}
         >
-          <X size={21} color={badgeColors.high?.text} strokeWidth={2} />
+          <X size={21} color={colors.closeButtonColor} strokeWidth={2} />
         </Pressable>
       </Animated.View>
     </View>

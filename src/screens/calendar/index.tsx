@@ -7,6 +7,7 @@ import createStyles from './style';
 const Calendar = () => {
   const { colors } = useTheme();
   const style = createStyles(colors);
+
   return (
     <View style={style.container}>
       <CalendarComponent />

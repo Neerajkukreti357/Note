@@ -148,3 +148,19 @@ export const getAllNotes = async (search: string = '') => {
 
   return result.rows as unknown as Note[];
 };
+
+export const getNotesByPriority = async () => {
+  const result = await db.execute(
+    `SELECT * FROM notes
+     WHERE is_deleted = 0
+     ORDER BY
+       CASE priority
+         WHEN 'high' THEN 1
+         WHEN 'medium' THEN 2
+         WHEN 'low' THEN 3
+       END,
+       created_at DESC`,
+  );
+
+  return result.rows as unknown as Note[];
+};
