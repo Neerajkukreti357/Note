@@ -149,6 +149,24 @@ export const getAllNotes = async (search: string = '') => {
   return result.rows as unknown as Note[];
 };
 
+export const getNotesByMonth = async (dateString: string) => {
+  const [year, month] = dateString.split('-').map(Number);
+
+  const startDate = new Date(year, month - 1, 1);
+  const endDate = new Date(year, month, 1);
+
+  const result = await db.execute(
+    `SELECT * FROM notes
+     WHERE is_deleted = 0
+     AND created_at >= ?
+     AND created_at < ?
+     ORDER BY created_at DESC`,
+    [startDate.getTime(), endDate.getTime()],
+  );
+
+  return result.rows as unknown as Note[];
+};
+
 export const getNotesByPriority = async () => {
   const result = await db.execute(
     `SELECT * FROM notes

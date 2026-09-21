@@ -4,7 +4,11 @@ import { getCalendarTheme } from './theme';
 import { useTheme } from '@/context/ThemeContext';
 import { useMemo } from 'react';
 
-const CalendarComponent = () => {
+const CalendarComponent = ({
+  handleMonthChange,
+}: {
+  handleMonthChange: (date: { year: number; month: number }) => Promise<void>;
+}) => {
   const { colors, theme } = useTheme();
   const calendarTheme = useMemo(() => getCalendarTheme(colors), [colors]);
 
@@ -18,6 +22,7 @@ const CalendarComponent = () => {
         }
         return <ChevronRight size={20} color={colors.monthTextColor} />;
       }}
+      onMonthChange={handleMonthChange}
     />
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
+import { ActivityIndicator, FlatList, Text, View } from 'react-native';
 import { useNotes } from '@/hooks/home';
 import {
   AddMoreItem,
@@ -12,11 +12,28 @@ import {
 import { StickyNote } from 'lucide-react-native';
 import { useTheme } from '@/context/ThemeContext';
 import createStyles from './style';
+import { Note } from '@/store/type';
 
 function Home() {
   const { notes, loading } = useNotes();
   const { colors } = useTheme();
   const style = createStyles(colors);
+
+  const renderNote = ({ item }: { item: Note }) => {
+    if (item?.noteType === 1) {
+      return <SimpleNoteCard item={item} />;
+    }
+
+    if (item?.noteType === 2) {
+      return <CheckBoxNote item={item} />;
+    }
+
+    if (item?.noteType === 3) {
+      return <NoteWithAudio item={item} />;
+    }
+
+    return <NotesWithImages item={item} />;
+  };
 
   return (
     <View style={style.container}>
@@ -26,23 +43,14 @@ function Home() {
           <Text style={style.loadingText}>Loading ...</Text>
         </View>
       ) : notes?.length > 0 ? (
-        <ScrollView
+        <FlatList
+          data={notes}
+          renderItem={renderNote}
+          keyExtractor={item => String(item.id)}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={style.contentContainer}
-        >
-          {notes?.map(item =>
-            item?.noteType === 1 ? (
-              <SimpleNoteCard item={item} key={item?.id} />
-            ) : item?.noteType === 2 ? (
-              <CheckBoxNote item={item} key={item?.id} />
-            ) : item?.noteType === 3 ? (
-              <NoteWithAudio item={item} key={item?.id} />
-            ) : (
-              <NotesWithImages item={item} key={item?.id} />
-            ),
-          )}
-          {notes?.length < 3 && <AddMoreItem />}
-        </ScrollView>
+          ListFooterComponent={notes.length < 3 ? <AddMoreItem /> : undefined}
+        />
       ) : (
         <NoDataFound
           Icon={StickyNote}
