@@ -23,6 +23,9 @@ const createStyles = (colors: ThemeColors) =>
       gap: spacing.sm,
       paddingBottom: 100,
     },
+    noNotesContainer: {
+      marginTop: '10%',
+    },
   });
 
 export default createStyles;

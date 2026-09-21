@@ -18,6 +18,8 @@ const NotesWithImages = ({ item }: { item: Note }) => {
   const style = createStyles(colors);
   const navigate = useNavigation<NavigationProp<RootStackParamList>>();
 
+  console.log('Image');
+
   const goTo = () => {
     navigate.navigate('ViewScreen', { item });
   };
@@ -37,8 +39,8 @@ const NotesWithImages = ({ item }: { item: Note }) => {
           <EllipsisVertical size={18} color={colors.lightBorder} />
         </Card.Header>
         <Card.Footer>
-          <Badges title="pending" />
-          <Badges title={'low'} />
+          <Badges title={item?.is_completed === 0 ? 'pending' : 'complete'} />
+          <Badges title={item?.priority} />
         </Card.Footer>
       </Card>
     </TouchableWithoutFeedback>

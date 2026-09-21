@@ -5,11 +5,16 @@ import { DarkColors } from '@/theme';
 import { useTheme } from '@/context/ThemeContext';
 import createStyles from './style';
 
-const NoDataFound = ({ title, description, Icon }: NoDataFoundProps) => {
+const NoDataFound = ({
+  title,
+  description,
+  Icon,
+  containerStyle,
+}: NoDataFoundProps) => {
   const { colors } = useTheme();
   const styles = createStyles(colors);
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       <View style={styles.iconContainer}>
         <GlowView size={50} />
         <Icon size={40} color={DarkColors.themeChanger} />

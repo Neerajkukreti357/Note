@@ -43,8 +43,8 @@ const CheckBoxNote = ({ item }: { item: Note }) => {
           <EllipsisVertical size={18} color={colors.lightBorder} />
         </Card.Header>
         <Card.Footer>
-          <Badges title="partial complete" />
-          <Badges title={'low'} />
+          <Badges title={item?.is_completed === 0 ? 'pending' : 'complete'} />
+          <Badges title={item?.priority} />
         </Card.Footer>
       </Card>
     </TouchableWithoutFeedback>

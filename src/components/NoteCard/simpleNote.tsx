@@ -18,6 +18,8 @@ const SimpleNoteCard = ({ item }: { item: Note }) => {
   const style = createStyles(colors);
   const navigate = useNavigation<NavigationProp<RootStackParamList>>();
 
+  console.log('Simple', item?.priority);
+
   const goTo = () => {
     navigate.navigate('ViewScreen', { item });
   };

@@ -149,11 +149,11 @@ export const getAllNotes = async (search: string = '') => {
   return result.rows as unknown as Note[];
 };
 
-export const getNotesByMonth = async (dateString: string) => {
-  const [year, month] = dateString.split('-').map(Number);
+export const getNotesByDate = async (dateString: string) => {
+  const [year, month, day] = dateString.split('-').map(Number);
 
-  const startDate = new Date(year, month - 1, 1);
-  const endDate = new Date(year, month, 1);
+  const startDate = new Date(year, month - 1, day);
+  const endDate = new Date(year, month - 1, day + 1);
 
   const result = await db.execute(
     `SELECT * FROM notes
