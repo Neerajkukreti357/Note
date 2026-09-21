@@ -13,6 +13,7 @@ import dayjs from 'dayjs';
 import { useFocusEffect } from '@react-navigation/native';
 import { StickyNote } from 'lucide-react-native';
 import { useCalendarStore } from '@/store/calanderStore';
+import { useNotes } from '@/hooks/home';
 
 const Calendar = () => {
   const { colors } = useTheme();
@@ -20,6 +21,7 @@ const Calendar = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [notes, setNotes] = useState<Note[]>([]);
   const { selectedDate, setSelectedDate } = useCalendarStore();
+  const { notes: originalNotes } = useNotes();
 
   const fetchNotes = async (monthYear: string) => {
     setLoading(true);
@@ -69,6 +71,7 @@ const Calendar = () => {
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
         handleMonthChange={handleMonthChange}
+        originalNotes={originalNotes ?? []}
       />
       {loading ? (
         <View style={style.loaderBox}>

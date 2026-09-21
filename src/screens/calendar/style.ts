@@ -26,6 +26,35 @@ const createStyles = (colors: ThemeColors) =>
     noNotesContainer: {
       marginTop: '10%',
     },
+    dayContainer: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      aspectRatio: 1,
+      padding: 6,
+      borderRadius: 999,
+    },
+
+    day: {
+      fontSize: 14,
+      color: colors.text,
+    },
+
+    count: {
+      fontSize: 9,
+      marginTop: 2,
+      fontWeight: '600',
+    },
+    selectedDay: {
+      color: colors.btnTextcolor,
+    },
+
+    today: {
+      color: colors.selectedMonthColor,
+    },
+
+    disabledDay: {
+      opacity: 0.5,
+    },
   });
 
 export default createStyles;
