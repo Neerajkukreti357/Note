@@ -1,47 +1,39 @@
 import React, { useRef, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import {
-  PlayerState,
-  type IWaveformRef,
-  Waveform,
-} from '@simform_solutions/react-native-audio-waveform';
-import { Play, Pause } from 'lucide-react-native';
-
-import { AppColors } from '@/theme';
-import styles from './style';
+  AudioWaveformView,
+  type AudioWaveformViewRef,
+} from 'react-native-waveform-player';
+import { Play, Pause, Trash2 } from 'lucide-react-native';
+import { DarkColors } from '@/theme';
+import createStyles from './style';
+import { useTheme } from '@/context/ThemeContext';
 
 type AudioPlayerProps = {
   audioPath: string;
+  isDeleted?: boolean;
+  onDelete?: () => void;
 };
 
-const AudioPlayer = ({ audioPath }: AudioPlayerProps) => {
-  const waveformRef = useRef<IWaveformRef>(null);
+const AudioPlayer = ({
+  audioPath,
+  isDeleted = false,
+  onDelete,
+}: AudioPlayerProps) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
+  const waveformRef = useRef<AudioWaveformViewRef>(null);
 
-  const [playerState, setPlayerState] = useState<PlayerState>(
-    PlayerState.stopped,
-  );
-
+  const [isPlaying, setIsPlaying] = useState(false);
   const [currentProgress, setCurrentProgress] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  const isPlaying = playerState === PlayerState.playing;
-
-  const handlePlayPause = async () => {
+  const handlePlayPause = () => {
     if (!waveformRef.current) {
       return;
     }
 
-    if (playerState === PlayerState.playing) {
-      await waveformRef.current.pausePlayer();
-      return;
-    }
-
-    if (playerState === PlayerState.paused) {
-      await waveformRef.current.resumePlayer();
-      return;
-    }
-
-    await waveformRef.current.startPlayer();
+    waveformRef.current.toggle();
   };
 
   const formatTime = (milliseconds: number) => {
@@ -55,36 +47,54 @@ const AudioPlayer = ({ audioPath }: AudioPlayerProps) => {
 
   return (
     <View style={styles.container}>
+      {isDeleted && (
+        <Pressable onPress={onDelete} style={styles.binContainer}>
+          <Trash2 color={'red'} size={18} />
+        </Pressable>
+      )}
       {/* Play / Pause Button */}
       <Pressable onPress={handlePlayPause} style={styles.playButton}>
         {isPlaying ? (
-          <Pause size={27} color={AppColors.heading} fill={AppColors.heading} />
+          <Pause
+            size={27}
+            color={DarkColors.heading}
+            fill={DarkColors.heading}
+          />
         ) : (
-          <Play size={27} color={AppColors.heading} fill={AppColors.heading} />
+          <Play
+            size={27}
+            color={DarkColors.heading}
+            fill={DarkColors.heading}
+          />
         )}
       </Pressable>
 
       {/* Waveform + Time */}
       <View style={styles.waveformSection}>
-        <Waveform
+        <AudioWaveformView
           ref={waveformRef}
-          mode="static"
-          path={audioPath}
-          candleWidth={4}
-          candleSpace={3}
-          candleHeightScale={4}
-          waveColor={AppColors.icon}
-          scrubColor={AppColors.highlightColor}
-          containerStyle={styles.waveform}
-          onPlayerStateChange={state => {
-            setPlayerState(state);
+          source={{ uri: audioPath }}
+          style={styles.waveform}
+          showPlayButton={false}
+          showTime={false}
+          showSpeedControl={false}
+          showBackground={false}
+          barWidth={4}
+          barGap={3}
+          playedBarColor={DarkColors.highlightColor}
+          unplayedBarColor={DarkColors.icon}
+          onPlayerStateChange={e => {
+            setIsPlaying(e.isPlaying);
           }}
-          onCurrentProgressChange={(current, total) => {
-            setCurrentProgress(current);
-            setDuration(total);
+          onTimeUpdate={e => {
+            setCurrentProgress(e.currentTimeMs);
+            setDuration(e.durationMs);
           }}
-          onError={error => {
-            console.log('Audio error:', error);
+          onLoad={e => {
+            setDuration(e.durationMs);
+          }}
+          onLoadError={error => {
+            console.log('Audio load error:', error);
           }}
         />
 

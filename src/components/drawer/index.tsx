@@ -1,9 +1,9 @@
 import { DrawerContentComponentProps } from '@react-navigation/drawer';
 import { Pressable, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import styles from './style';
 import {
   ChevronRight,
+  FilePenLine,
   FilePlus2,
   Info,
   Palette,
@@ -11,29 +11,42 @@ import {
   X,
 } from 'lucide-react-native';
 import { BottomButton, DrawerButton } from './type';
-import { AppColors } from '@/theme';
-import { useState } from 'react';
-import { badgeColors } from '@/theme/colors';
 import { AnimatedToggle } from '../formComponents';
+import { useNavigation } from '@react-navigation/native';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 const CustomDrawerView = (props: DrawerContentComponentProps) => {
+  const { toggleTheme, theme, colors } = useTheme();
+  const styles = createStyles(colors);
+  const navigation = useNavigation();
   const buttons: DrawerButton[] = [
     {
       labels: 'Add Notes',
       description: 'Create a new note',
       icon: FilePlus2,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('AddNote' as never);
+      },
     },
     {
       labels: 'Theme',
       description: 'Change appearance',
       icon: Palette,
-      onPress: () => {},
+      onPress: () => {
+        toggleTheme();
+      },
     },
     {
       labels: 'Trash',
       description: 'Deleted notes',
       icon: Trash2,
+      onPress: () => {},
+    },
+    {
+      labels: 'Draft',
+      description: 'Unsaved Task',
+      icon: FilePenLine,
       onPress: () => {},
     },
     {
@@ -43,8 +56,6 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
       onPress: () => {},
     },
   ];
-
-  const [enabled, setEnabled] = useState(false);
 
   const bottomButtons: BottomButton[] = [
     {
@@ -76,8 +87,8 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
                     size={19}
                     color={
                       item?.labels === 'Theme'
-                        ? AppColors.themeChanger
-                        : AppColors.heading
+                        ? colors.themeChanger
+                        : colors.heading
                     }
                   />
                 </View>
@@ -87,9 +98,12 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
                 </View>
               </View>
               {item?.labels === 'Theme' ? (
-                <AnimatedToggle value={enabled} onValueChange={setEnabled} />
+                <AnimatedToggle
+                  value={theme === 'dark'}
+                  onValueChange={item?.onPress}
+                />
               ) : (
-                <ChevronRight size={19} color={AppColors.icon} />
+                <ChevronRight size={19} color={colors.icon} />
               )}
             </Pressable>
           );
@@ -106,13 +120,13 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
               onPress={item?.onPress}
             >
               <View style={styles.iconContainer}>
-                <Icon size={19} color={badgeColors.high?.text} />
+                <Icon size={19} color={colors.closeButtonColor} />
               </View>
               <Text
                 style={[
                   styles.bottomLabel,
                   {
-                    color: badgeColors.high.text,
+                    color: colors.closeButtonColor,
                   },
                 ]}
               >

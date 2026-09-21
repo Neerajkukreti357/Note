@@ -1,37 +1,49 @@
-import { Image, Text, View } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 import Card from '../card';
-import { GripVertical, EllipsisVertical } from 'lucide-react-native';
-import style from './style';
-import { AppColors } from '@/theme';
+import { GripVertical, EllipsisVertical, Image } from 'lucide-react-native';
 import Badges from '../badges';
+import { Note } from '@/store/type';
+import TextTruncate from '../textTruncate';
+import { badgeColors } from '@/theme/colors';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
-const NotesWithImages = () => {
+type RootStackParamList = {
+  ViewScreen: { item: Note };
+};
+
+const NotesWithImages = ({ item }: { item: Note }) => {
+  const { colors } = useTheme();
+  const style = createStyles(colors);
+  const navigate = useNavigation<NavigationProp<RootStackParamList>>();
+
+  console.log('Image');
+
+  const goTo = () => {
+    navigate.navigate('ViewScreen', { item });
+  };
   return (
-    <Card>
-      <Card.Header>
-        <View style={style.headingBox}>
-          <GripVertical size={18} color={AppColors.lightBorder} />
-          <Text style={style.headingText}>Q3 Architecture Review</Text>
-        </View>
-        <EllipsisVertical size={18} color={AppColors.lightBorder} />
-      </Card.Header>
-      <Card.Body>
-        <Text style={style.descriptionText}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem at
-          exercitationem id commodi blanditiis dolores expedita quia vel nulla
-          soluta, dicta illo nemo. Corrupti consequuntur eos sapiente mollitia
-          dolorum?
-        </Text>
-        <Image
-          source={{ uri: 'https://picsum.photos/400/300' }}
-          style={style.image}
-        />
-      </Card.Body>
-      <Card.Footer>
-        <Badges title="pending" />
-        <Badges title={'low'} />
-      </Card.Footer>
-    </Card>
+    <TouchableWithoutFeedback onPress={goTo}>
+      <Card key={item?.id}>
+        <Card.Header>
+          <View style={style.headingBox}>
+            <GripVertical size={18} color={colors.lightBorder} />
+            <TextTruncate numberOfLines={1} style={style.headingText}>
+              {item?.title}
+            </TextTruncate>
+            <View style={style.ImageBackground}>
+              <Image size={15} color={badgeColors['partial complete'].text} />
+            </View>
+          </View>
+          <EllipsisVertical size={18} color={colors.lightBorder} />
+        </Card.Header>
+        <Card.Footer>
+          <Badges title={item?.is_completed === 0 ? 'pending' : 'complete'} />
+          <Badges title={item?.priority} />
+        </Card.Footer>
+      </Card>
+    </TouchableWithoutFeedback>
   );
 };
 

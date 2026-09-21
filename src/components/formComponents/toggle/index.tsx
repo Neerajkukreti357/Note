@@ -1,4 +1,4 @@
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import React, { useEffect } from 'react';
 import { Pressable } from 'react-native';
 import Animated, {
@@ -7,7 +7,8 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import styles from './style';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
 type AnimatedToggleProps = {
   value: boolean;
@@ -19,6 +20,8 @@ const THUMB_SIZE = 20;
 const PADDING = 3;
 
 const AnimatedToggle = ({ value, onValueChange }: AnimatedToggleProps) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   const progress = useSharedValue(value ? 1 : 0);
   const MAX_TRANSLATE_X = TRACK_WIDTH - THUMB_SIZE - PADDING * 2;
 
@@ -42,7 +45,7 @@ const AnimatedToggle = ({ value, onValueChange }: AnimatedToggleProps) => {
 
   const animatedTrackStyle = useAnimatedStyle(() => {
     return {
-      backgroundColor: value ? AppColors.highlightColor : AppColors.text,
+      backgroundColor: value ? DarkColors.highlightColor : DarkColors.text,
     };
   });
 

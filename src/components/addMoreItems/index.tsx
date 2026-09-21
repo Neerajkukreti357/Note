@@ -1,15 +1,18 @@
 import { Text, View } from 'react-native';
 import GlowView from '../glowView';
-import styles from './style';
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import { FilePenLine } from 'lucide-react-native';
+import createStyles from './style';
+import { useTheme } from '@/context/ThemeContext';
 
 const AddMoreItem = () => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
         <GlowView size={50} />
-        <FilePenLine size={40} color={AppColors.themeChanger} />
+        <FilePenLine size={40} color={DarkColors.themeChanger} />
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.heading}>{'Add More Notes'}</Text>

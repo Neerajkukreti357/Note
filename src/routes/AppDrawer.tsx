@@ -5,39 +5,46 @@ import { Header } from '@/components';
 import { useNavigationState } from '@react-navigation/native';
 import { getCurrentRouteName } from '@/utils';
 import { StyleSheet, View } from 'react-native';
-import { AppColors } from '@/theme';
 import CustomDrawerView from '@/components/drawer';
+import { useTheme } from '@/context/ThemeContext';
+import { ThemeColors } from '@/theme';
 
 const Drawer = createDrawerNavigator();
 
 const MainLayout = () => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   const currentScreen = useNavigationState(state => getCurrentRouteName(state));
   return (
     <View style={styles.layout}>
-      <Header screenName={currentScreen} />
+      <Header
+        screenName={currentScreen === 'HomeTab' ? 'Home' : currentScreen}
+      />
       <BottomBar />
     </View>
   );
 };
 
 export default function AppDrawer() {
+  const { colors } = useTheme();
+
   return (
     <Drawer.Navigator
       screenOptions={{
         headerShown: false,
         drawerType: 'front',
         drawerStyle: {
-          backgroundColor: AppColors.brawerBackground,
+          backgroundColor: colors.drawerBackgroundColor,
         },
       }}
       drawerContent={props => <CustomDrawerView {...props} />}
     >
-      <Drawer.Screen name="Home" component={MainLayout} />
-      {/* <Drawer.Screen name="Settings" component={SettingsScreen} /> */}
+      <Drawer.Screen name="HomeTab" component={MainLayout} />
     </Drawer.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  layout: { flex: 1, backgroundColor: AppColors.primary },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    layout: { flex: 1, backgroundColor: colors.primary },
+  });

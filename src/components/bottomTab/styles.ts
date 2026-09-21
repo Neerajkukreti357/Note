@@ -1,43 +1,42 @@
-import { AppColors } from '@/theme';
+import { ThemeColors } from '@/theme';
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    left: 16,
-    right: 16,
-    bottom: 20,
-  },
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      position: 'absolute',
+      left: 16,
+      right: 16,
+      bottom: 20,
+    },
 
-  tabBar: {
-    height: 68,
-    backgroundColor: AppColors.secondary,
-    borderRadius: 38,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    paddingHorizontal: 8,
-    borderColor: AppColors.lightBorder,
-    borderWidth: 1,
-  },
+    tabBar: {
+      height: 68,
+      backgroundColor: colors.secondary,
+      borderRadius: 38,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-around',
+      paddingHorizontal: 8,
+    },
 
-  tab: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    tab: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
 
-  iconContainer: {
-    width: 48,
-    height: 48,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    iconContainer: {
+      width: 48,
+      height: 48,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
 
-  activeIconContainer: {
-    borderRadius: 24,
-    backgroundColor: AppColors.tagWork,
-  },
-});
+    activeIconContainer: {
+      borderRadius: 24,
+      backgroundColor: colors.tagWork,
+    },
+  });
 
-export default styles;
+export default createStyles;

@@ -1,60 +1,83 @@
-import { AppColors } from '@/theme';
+import { DarkColors } from '@/theme';
 import {
   CoreBridge,
   RichText,
   TenTapStartKit,
   useEditorBridge,
+  useEditorContent,
 } from '@10play/tentap-editor';
 import { ActivityIndicator, View } from 'react-native';
-import styles from './style';
 import ToolBar from './toolBar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { EditorFieldProps } from './type';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
+import { ThemeColors } from '@/theme';
 
-const editorCSS = `
+const getEditorCSS = (colors: ThemeColors) => `
   * {
     box-sizing: border-box;
   }
 
   body {
-    background-color: ${AppColors.lightPrimary};
-    color: ${AppColors.heading};
+    background-color: ${colors.lightPrimary};
+    color: ${colors.heading};
     margin: 0;
     padding: 0;
   }
 
   p {
-    color: ${AppColors.monthTextColor};
+    color: ${colors.monthTextColor};
     font-size: 18px;
     margin: 0 0 12px 0;
   }
 
   h1 {
-    color: ${AppColors.heading};
+    color: ${colors.heading};
     font-size: 32px;
     font-weight: 700;
   }
 
   h2 {
-    color: ${AppColors.heading};
+    color: ${colors.heading};
     font-size: 26px;
     font-weight: 700;
   }
 
   ul,
   ol {
-    color: ${AppColors.monthTextColor};
+    color: ${colors.monthTextColor};
     font-size: 18px;
     line-height: 28px;
   }
 `;
 
-const TextEditor = () => {
+const TextEditor = ({
+  value,
+  onChange,
+  loadingSubmission,
+  editorContainerStyle,
+}: EditorFieldProps) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
   const [loading, setLoading] = useState(true);
   const editor = useEditorBridge({
     autofocus: false,
     avoidIosKeyboard: true,
-    bridgeExtensions: [...TenTapStartKit, CoreBridge.configureCSS(editorCSS)],
+    bridgeExtensions: [
+      ...TenTapStartKit,
+      CoreBridge.configureCSS(getEditorCSS(colors)),
+    ],
+    initialContent: value ?? '',
   });
+  const content = useEditorContent(editor, { type: 'html' });
+
+  // push editor content up into react-hook-form whenever it changes
+  useEffect(() => {
+    if (content !== undefined && content !== value) {
+      onChange(content);
+    }
+  }, [content, onChange, value]);
 
   return (
     <>
@@ -62,15 +85,19 @@ const TextEditor = () => {
 
       {loading && (
         <View style={styles.editorLoader}>
-          <ActivityIndicator size="large" color={AppColors.monthTextColor} />
+          <ActivityIndicator size="large" color={DarkColors.monthTextColor} />
         </View>
       )}
       {
-        <View style={styles.editorContainer}>
+        <View style={[styles.editorContainer, editorContainerStyle]}>
           <RichText
             editor={editor}
             onLoad={() => setLoading(false)}
-            style={!loading ? styles.editorVisible : styles.editorHidden}
+            style={[
+              styles.editor,
+              !loading ? styles.editorVisible : styles.editorHidden,
+            ]}
+            aria-disabled={loadingSubmission}
           />
         </View>
       }

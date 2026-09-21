@@ -1,18 +1,23 @@
 import React, { useRef, useState } from 'react';
 import { View, TextInput, Animated, Pressable } from 'react-native';
 import { Search, X } from 'lucide-react-native';
-import styles from './style';
-import { AppColors } from '@/theme';
-import { badgeColors } from '@/theme/colors';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
-const SearchInput = () => {
+const SearchInput = ({
+  onSearchChange,
+}: {
+  onSearchChange: (text: string) => void;
+}) => {
   const [search, setSearch] = useState('');
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
 
   const clearAnimation = useRef(new Animated.Value(0)).current;
 
   const handleSearchChange = (text: string) => {
     setSearch(text);
-
+    onSearchChange(text);
     Animated.spring(clearAnimation, {
       toValue: text.length > 0 ? 1 : 0,
       friction: 7,
@@ -23,6 +28,7 @@ const SearchInput = () => {
 
   const clearSearch = () => {
     setSearch('');
+    onSearchChange('');
 
     Animated.spring(clearAnimation, {
       toValue: 0,
@@ -46,13 +52,13 @@ const SearchInput = () => {
 
   return (
     <View style={styles.container}>
-      <Search size={21} color={AppColors.monthTextColor} strokeWidth={2} />
+      <Search size={21} color={colors.monthTextColor} strokeWidth={2} />
 
       <TextInput
         style={styles.input}
         placeholder="Search favorites..."
-        placeholderTextColor={AppColors.monthTextColor}
-        cursorColor={AppColors.monthTextColor}
+        placeholderTextColor={colors.monthTextColor}
+        cursorColor={colors.monthTextColor}
         value={search}
         onChangeText={handleSearchChange}
       />
@@ -63,7 +69,7 @@ const SearchInput = () => {
           hitSlop={10}
           style={styles.clearButton}
         >
-          <X size={21} color={badgeColors.high?.text} strokeWidth={2} />
+          <X size={21} color={colors.closeButtonColor} strokeWidth={2} />
         </Pressable>
       </Animated.View>
     </View>

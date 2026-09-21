@@ -1,32 +1,154 @@
 import { Plus, Trash2 } from 'lucide-react-native';
-import { Pressable, Text, TextInput, View } from 'react-native';
-import styles from './style';
-import { useState } from 'react';
+import {
+  Pressable,
+  ScrollView,
+  Text,
+  TextInput,
+  useWindowDimensions,
+  View,
+  type ScrollViewInstance,
+} from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
+import { CustomDropdown } from '../formComponents';
+import { CheckNoteFormData } from '@/screens/AddNotesScreen/shema';
+import { DropdownOptions } from '../general/constants';
+import { spacing } from '@/theme';
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
+import { ItemType } from './type';
+import commonStyle from '@/theme/commonStyles';
+import { useTheme } from '@/context/ThemeContext';
+import createStyles from './style';
 
-const CheckList = () => {
-  const [items, setItems] = useState(['Add your first task']);
+const CheckList = ({ loading }: { loading: boolean }) => {
+  const { colors } = useTheme();
+  const styles = createStyles(colors);
+  const scrollViewRef = useRef<ScrollViewInstance>(null);
+  const { height } = useWindowDimensions();
+  const {
+    control,
+    setValue,
+    formState: { errors },
+  } = useFormContext<CheckNoteFormData>();
+
+  const [items, setItems] = useState<ItemType[]>([
+    {
+      id: uuidv4(),
+      label: 'Add your first task',
+      isCompleted: false,
+    },
+  ]);
+
   function addItem() {
-    setItems(current => [...current, 'New checklist item']);
+    setItems(current => [
+      ...current,
+      {
+        id: uuidv4(),
+        label: '',
+        isCompleted: false,
+      },
+    ]);
   }
+
+  const deleteItem = (id: string) => {
+    setItems(current => current.filter(item => item.id !== id));
+  };
+
+  const onChangeLabel = (id: string, text: string) => {
+    setItems(current =>
+      current.map(item => (item.id === id ? { ...item, label: text } : item)),
+    );
+  };
+
+  useEffect(() => {
+    if (items.length > 0) {
+      setTimeout(() => {
+        scrollViewRef.current?.scrollToEnd({
+          animated: true,
+        });
+      }, 100);
+    }
+  }, [items.length]);
+
+  useEffect(() => {
+    setValue('checkList', JSON.stringify(items), {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+  }, [items, setValue]);
+
   return (
     <View style={styles.notePanel}>
-      <Text style={styles.panelHeading}>Checklist</Text>
-      <Text style={styles.panelHint}>
-        Turn your thoughts into small, clear steps.
-      </Text>
-      {items.map((item, index) => (
-        <View key={`${item}-${index}`} style={styles.checkRow}>
-          <View style={styles.emptyCheck} />
-          <TextInput
-            defaultValue={item}
-            style={styles.checkInput}
-            placeholderTextColor="#7E879D"
+      <Controller
+        control={control}
+        name="priority"
+        render={({ field: { onChange, value } }) => (
+          <CustomDropdown
+            placeholder="Select priority"
+            value={value}
+            onChange={onChange}
+            data={DropdownOptions}
+            disable={loading}
           />
-          <Trash2 color="#778197" size={17} />
-        </View>
-      ))}
+        )}
+      />
+      {errors.priority && (
+        <Text style={commonStyle.errorTextColor}>
+          {errors.priority.message}
+        </Text>
+      )}
+
+      <Controller
+        control={control}
+        name="title"
+        render={({ field: { onChange, value } }) => (
+          <TextInput
+            placeholder="Title"
+            style={styles.title}
+            placeholderTextColor={colors.monthTextColor}
+            value={value}
+            onChangeText={onChange}
+            aria-disabled={loading}
+          />
+        )}
+      />
+      {errors.title && (
+        <Text
+          style={[commonStyle.errorTextColor, { marginVertical: spacing.sm }]}
+        >
+          {errors.title.message}
+        </Text>
+      )}
+      <ScrollView
+        ref={scrollViewRef}
+        style={{ height: height * 0.5, marginTop: spacing.sm }}
+        showsVerticalScrollIndicator={false}
+      >
+        {items.map(item => (
+          <View key={`${item?.id}`} style={styles.checkRow}>
+            <View style={styles.emptyCheck} />
+            <TextInput
+              defaultValue={item?.label}
+              style={styles.checkInput}
+              placeholderTextColor={colors.monthTextColor}
+              onChangeText={text => onChangeLabel(item.id, text)}
+              key={item?.id}
+              placeholder="Enter label name"
+            />
+            <Pressable onPress={() => deleteItem(item?.id)}>
+              <Trash2 color="red" size={17} />
+            </Pressable>
+          </View>
+        ))}
+        {errors.checkList && (
+          <Text style={commonStyle.errorTextColor}>
+            {errors.checkList?.message}
+          </Text>
+        )}
+      </ScrollView>
       <Pressable style={styles.addItem} onPress={addItem}>
-        <Plus color="#B7B4FF" size={17} />
+        <Plus color={colors.highlightColor} size={17} />
         <Text style={styles.addItemText}>Add item</Text>
       </Pressable>
     </View>

@@ -1,6 +1,9 @@
 import { db } from '../db';
 
 export const createTables = async () => {
+  // await db.execute(`
+  //   DROP TABLE IF EXISTS notes;
+  // `);
   await db.execute(`
     CREATE TABLE IF NOT EXISTS notes (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -8,7 +11,11 @@ export const createTables = async () => {
       priority TEXT NOT NULL DEFAULT 'medium'
         CHECK(priority IN ('high','medium','low')),
       title TEXT,
+      checklist TEXT DEFAULT NULL,
       description TEXT,
+      audio_path TEXT DEFAULT NULL,
+      imageList TEXT DEFAULT NULL,
+      image_paths TEXT DEFAULT NULL,
       is_completed INTEGER NOT NULL DEFAULT 0,
       is_partial_completed INTEGER NOT NULL DEFAULT 0,
       is_deleted INTEGER NOT NULL DEFAULT 0,

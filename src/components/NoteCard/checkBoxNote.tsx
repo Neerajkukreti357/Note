@@ -1,56 +1,53 @@
-import { Text, View } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 import Card from '../card';
-import { GripVertical, EllipsisVertical } from 'lucide-react-native';
-import style from './style';
-import { AppColors } from '@/theme';
+import {
+  GripVertical,
+  EllipsisVertical,
+  ListChecks,
+} from 'lucide-react-native';
 import Badges from '../badges';
-import { CircleCheckBig, CircleMinus } from 'lucide-react-native';
+import { Note } from '@/store/type';
+import TextTruncate from '../textTruncate';
+import { badgeColors } from '@/theme/colors';
+import createStyles from './style';
+import { useTheme } from '@/context/ThemeContext';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
-const CheckBoxNote = () => {
-  const checkList = [
-    {
-      isComplete: true,
-      lable: 'Lorem Lorem',
-    },
-    {
-      isComplete: true,
-      lable: 'Lorem Lorem',
-    },
-    {
-      isComplete: false,
-      lable: 'Lorem Lorem',
-    },
-    {
-      isComplete: false,
-      lable: 'Lorem Lorem',
-    },
-  ];
+type RootStackParamList = {
+  ViewScreen: {
+    item: Note;
+  };
+};
+
+const CheckBoxNote = ({ item }: { item: Note }) => {
+  const { colors } = useTheme();
+  const style = createStyles(colors);
+  const navigate = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const goTo = () => {
+    navigate.navigate('ViewScreen', { item });
+  };
   return (
-    <Card>
-      <Card.Header>
-        <View style={style.headingBox}>
-          <GripVertical size={18} color={AppColors.lightBorder} />
-          <Text style={style.headingText}>Weekly Grocery</Text>
-        </View>
-        <EllipsisVertical size={18} color={AppColors.lightBorder} />
-      </Card.Header>
-      <Card.Body style={style.bodyStyle}>
-        {checkList?.map((item, index) => (
-          <View style={style.checkBox} key={index + 1}>
-            {item?.isComplete ? (
-              <CircleCheckBig size={20} color={AppColors.highlightColor} />
-            ) : (
-              <CircleMinus size={20} color={AppColors.lightBorder} />
-            )}
-            <Text style={style.descriptionText}>{item?.lable}</Text>
+    <TouchableWithoutFeedback onPress={goTo}>
+      <Card>
+        <Card.Header>
+          <View style={style.headingBox}>
+            <GripVertical size={18} color={colors.lightBorder} />
+            <TextTruncate numberOfLines={1} style={style.headingText}>
+              {item?.title}
+            </TextTruncate>
+            <View style={style.checkBackground}>
+              <ListChecks size={15} color={badgeColors.high.text} />
+            </View>
           </View>
-        ))}
-      </Card.Body>
-      <Card.Footer>
-        <Badges title="partial complete" />
-        <Badges title={'low'} />
-      </Card.Footer>
-    </Card>
+          <EllipsisVertical size={18} color={colors.lightBorder} />
+        </Card.Header>
+        <Card.Footer>
+          <Badges title={item?.is_completed === 0 ? 'pending' : 'complete'} />
+          <Badges title={item?.priority} />
+        </Card.Footer>
+      </Card>
+    </TouchableWithoutFeedback>
   );
 };
 
