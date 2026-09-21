@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import { CustomDayViewProps } from './type';
 import { useTheme } from '@/context/ThemeContext';
 import createStyles from './style';
+import { badgeColors } from '@/theme/colors';
 
 const CustomDayView = ({
   date,
@@ -49,7 +50,7 @@ const CustomDayView = ({
           style={[
             styles.count,
             {
-              color: colors.closeButtonColor,
+              color: badgeColors.high?.text,
             },
           ]}
         >
