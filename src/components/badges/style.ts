@@ -1,5 +1,5 @@
 import { spacing } from '@/theme';
-import { fontFamily, fontSize } from '@/theme/typography';
+import { fontFamily } from '@/theme/typography';
 import { StyleSheet } from 'react-native';
 
 const style = StyleSheet.create({
@@ -10,7 +10,7 @@ const style = StyleSheet.create({
   },
   badgeContent: {
     fontFamily: fontFamily.inter.regular,
-    fontSize: fontSize.badge,
+    fontSize: 9,
     fontWeight: 500,
   },
   high: {

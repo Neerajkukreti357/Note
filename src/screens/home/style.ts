@@ -19,7 +19,7 @@ const createStyles = (colors: ThemeColors) =>
     },
     contentContainer: {
       paddingHorizontal: spacing.sm,
-      gap: spacing.sm,
+      gap: spacing.md,
       paddingBottom: 100,
     },
   });

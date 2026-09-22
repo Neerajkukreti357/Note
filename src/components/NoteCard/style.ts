@@ -8,14 +8,14 @@ const createStyles = (colors: ThemeColors) =>
     headingBox: {
       flexDirection: 'row',
       alignItems: 'center',
-      gap: spacing.xs,
+      gap: spacing.md,
     },
     headingText: {
       fontSize: fontSize.body,
       color: colors.icon,
       fontWeight: 800,
       fontFamily: fontFamily.montserrat.regular,
-      maxWidth: 300,
+      maxWidth: 100,
     },
     descriptionText: {
       color: colors.icon,
@@ -49,24 +49,50 @@ const createStyles = (colors: ThemeColors) =>
       color: colors.highlightColor,
     },
     fileTextBackground: {
-      backgroundColor: badgeColors.pending.background,
-      padding: 4,
+      backgroundColor: badgeColors.pending.text,
+      padding: 6,
       borderRadius: spacing.sm,
     },
     ImageBackground: {
-      backgroundColor: badgeColors['partial complete'].background,
-      padding: 4,
+      backgroundColor: badgeColors['partial complete'].text,
+      padding: 6,
       borderRadius: spacing.sm,
     },
     audioBackground: {
-      backgroundColor: badgeColors.low.background,
-      padding: 4,
+      backgroundColor: badgeColors.low.text,
+      padding: 6,
       borderRadius: spacing.sm,
     },
     checkBackground: {
-      backgroundColor: badgeColors.high.background,
+      backgroundColor: badgeColors.high.text,
       padding: 4,
       borderRadius: spacing.sm,
+    },
+    timeDateFormate: {
+      color: colors.monthTextColor,
+      fontSize: fontSize.badge,
+    },
+    badgeContainer: {
+      flexDirection: 'row',
+      gap: spacing.sm,
+    },
+    headerContainer: {
+      paddingBottom: spacing.md,
+    },
+    forHighPriority: {
+      borderLeftWidth: 5,
+      borderLeftColor: badgeColors.high.text,
+      borderRadius: 5,
+    },
+    forMediumPriority: {
+      borderLeftWidth: 5,
+      borderLeftColor: badgeColors.medium.text,
+      borderRadius: 5,
+    },
+    forLowPriority: {
+      borderLeftWidth: 5,
+      borderLeftColor: badgeColors.low.text,
+      borderRadius: 5,
     },
   });
 

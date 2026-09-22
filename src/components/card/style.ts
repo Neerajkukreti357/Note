@@ -6,7 +6,7 @@ const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
     card: {
       backgroundColor: colors.secondary,
-      borderRadius: spacing.md,
+      borderRadius: 5,
       borderColor: colors.lightBorder,
     },
 

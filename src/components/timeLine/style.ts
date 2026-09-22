@@ -5,7 +5,6 @@ const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
     row: {
       flexDirection: 'row',
-      minHeight: 130,
       paddingHorizontal: 20,
     },
 

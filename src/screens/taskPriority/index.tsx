@@ -22,6 +22,13 @@ const TaskPriority = () => {
   const [notes, setNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [selectedNote, setSelectedNote] = useState<Note | null>(null);
+  const toggleSheet = (item: Note) => {
+    setSelectedNote(item);
+    setIsSheetOpen(true);
+  };
+
   const fetchNotes = async () => {
     setLoading(true);
 
@@ -42,19 +49,51 @@ const TaskPriority = () => {
   );
 
   const renderNote = ({ item }: { item: Note }) => {
-    if (item.noteType === 1) {
-      return <SimpleNoteCard item={item} />;
+    if (item?.noteType === 1) {
+      return (
+        <SimpleNoteCard
+          item={item}
+          isSheetOpen={isSheetOpen}
+          selectedNote={selectedNote}
+          toggleSheet={toggleSheet}
+          setIsSheetOpen={setIsSheetOpen}
+        />
+      );
     }
 
-    if (item.noteType === 2) {
-      return <CheckBoxNote item={item} />;
+    if (item?.noteType === 2) {
+      return (
+        <CheckBoxNote
+          item={item}
+          isSheetOpen={isSheetOpen}
+          selectedNote={selectedNote}
+          toggleSheet={toggleSheet}
+          setIsSheetOpen={setIsSheetOpen}
+        />
+      );
     }
 
-    if (item.noteType === 3) {
-      return <NoteWithAudio item={item} />;
+    if (item?.noteType === 3) {
+      return (
+        <NoteWithAudio
+          item={item}
+          isSheetOpen={isSheetOpen}
+          selectedNote={selectedNote}
+          toggleSheet={toggleSheet}
+          setIsSheetOpen={setIsSheetOpen}
+        />
+      );
     }
 
-    return <NotesWithImages item={item} />;
+    return (
+      <NotesWithImages
+        item={item}
+        isSheetOpen={isSheetOpen}
+        selectedNote={selectedNote}
+        toggleSheet={toggleSheet}
+        setIsSheetOpen={setIsSheetOpen}
+      />
+    );
   };
 
   return (

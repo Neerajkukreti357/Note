@@ -17,10 +17,16 @@ import { getAllNotes } from '@/services/notesServices/createNotesServices';
 const Search = () => {
   const { colors } = useTheme();
   const style = createStyles(colors);
-
   const [search, setSearch] = useState('');
   const [notes, setNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState(false);
+
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [selectedNote, setSelectedNote] = useState<Note | null>(null);
+  const toggleSheet = (item: Note) => {
+    setSelectedNote(item);
+    setIsSheetOpen(true);
+  };
 
   useEffect(() => {
     if (!search.trim()) {
@@ -49,19 +55,51 @@ const Search = () => {
   }, [search]);
 
   const renderNote = ({ item }: { item: Note }) => {
-    if (item.noteType === 1) {
-      return <SimpleNoteCard item={item} />;
+    if (item?.noteType === 1) {
+      return (
+        <SimpleNoteCard
+          item={item}
+          isSheetOpen={isSheetOpen}
+          selectedNote={selectedNote}
+          toggleSheet={toggleSheet}
+          setIsSheetOpen={setIsSheetOpen}
+        />
+      );
     }
 
-    if (item.noteType === 2) {
-      return <CheckBoxNote item={item} />;
+    if (item?.noteType === 2) {
+      return (
+        <CheckBoxNote
+          item={item}
+          isSheetOpen={isSheetOpen}
+          selectedNote={selectedNote}
+          toggleSheet={toggleSheet}
+          setIsSheetOpen={setIsSheetOpen}
+        />
+      );
     }
 
-    if (item.noteType === 3) {
-      return <NoteWithAudio item={item} />;
+    if (item?.noteType === 3) {
+      return (
+        <NoteWithAudio
+          item={item}
+          isSheetOpen={isSheetOpen}
+          selectedNote={selectedNote}
+          toggleSheet={toggleSheet}
+          setIsSheetOpen={setIsSheetOpen}
+        />
+      );
     }
 
-    return <NotesWithImages item={item} />;
+    return (
+      <NotesWithImages
+        item={item}
+        isSheetOpen={isSheetOpen}
+        selectedNote={selectedNote}
+        toggleSheet={toggleSheet}
+        setIsSheetOpen={setIsSheetOpen}
+      />
+    );
   };
 
   return (

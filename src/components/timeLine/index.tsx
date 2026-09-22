@@ -36,7 +36,6 @@ const TimeLineComponent = ({ notes }: { notes: Note[] }) => {
             {/* DATE */}
             <View style={styles.dateContainer}>
               <Text style={styles.day}>{day}</Text>
-
               <Text style={styles.weekday}>{weekday}</Text>
             </View>
 
