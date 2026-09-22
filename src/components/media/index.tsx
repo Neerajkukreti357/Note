@@ -1,6 +1,12 @@
 import { Camera, ImagePlus, Images, Mic, Pause } from 'lucide-react-native';
-import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
-import { useEffect, useRef, useState } from 'react';
+import {
+  Pressable,
+  Text,
+  TextInput,
+  useWindowDimensions,
+  View,
+} from 'react-native';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { MediaNoteFormData } from '@/screens/AddNotesScreen/shema';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CustomDropdown } from '../formComponents';
@@ -25,7 +31,11 @@ import {
   saveImagePermanently,
   savePersistentAudio,
 } from '@/utils';
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import BottomSheet, {
+  BottomSheetBackdrop,
+  BottomSheetBackdropProps,
+  BottomSheetView,
+} from '@gorhom/bottom-sheet';
 import ImagePreviewList from '../imagePreview';
 import {
   Asset,
@@ -34,6 +44,8 @@ import {
 } from 'react-native-image-picker';
 import { useTheme } from '@/context/ThemeContext';
 import createStyles from './styles';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { spacing } from '@/theme';
 
 const Media = ({ loading }: { loading: boolean }) => {
   const { colors } = useTheme();
@@ -44,6 +56,20 @@ const Media = ({ loading }: { loading: boolean }) => {
   const recorderRef = useRef<WaveformRecorderViewRef>(null);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [images, setImages] = useState<Asset[]>([]);
+  const { height } = useWindowDimensions();
+
+  const renderBackdrop = useCallback(
+    (props: BottomSheetBackdropProps) => (
+      <BottomSheetBackdrop
+        {...props}
+        appearsOnIndex={0}
+        disappearsOnIndex={-1}
+        pressBehavior="close" // tapping the backdrop closes the sheet
+        opacity={0.5}
+      />
+    ),
+    [],
+  );
 
   const {
     control,
@@ -146,8 +172,6 @@ const Media = ({ loading }: { loading: boolean }) => {
 
     const image = result.assets?.[0];
 
-    console.log('NEERAJ', image);
-
     if (!image) {
       return;
     }
@@ -245,7 +269,14 @@ const Media = ({ loading }: { loading: boolean }) => {
 
   return (
     <>
-      <ScrollView style={styles.mainContainer}>
+      <KeyboardAwareScrollView
+        style={{ height: height * 0.5, marginTop: spacing.sm }}
+        showsVerticalScrollIndicator={false}
+        enableOnAndroid
+        extraScrollHeight={height * 0.15}
+        enableAutomaticScroll
+        keyboardShouldPersistTaps="handled"
+      >
         <View style={styles.mediaCard}>
           <Controller
             control={control}
@@ -436,7 +467,7 @@ const Media = ({ loading }: { loading: boolean }) => {
             )}
           </View>
         ) : null}
-      </ScrollView>
+      </KeyboardAwareScrollView>
       <BottomSheet
         backgroundStyle={{
           backgroundColor: colors.secondary,
@@ -450,6 +481,7 @@ const Media = ({ loading }: { loading: boolean }) => {
         index={-1}
         enablePanDownToClose={true}
         enableDynamicSizing={false}
+        backdropComponent={renderBackdrop}
       >
         <BottomSheetView style={styles.contentBottomContainer}>
           <View style={styles.mediaOptions}>
