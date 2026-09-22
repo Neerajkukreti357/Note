@@ -9,6 +9,7 @@ interface SingleCheckboxProps {
   checked: boolean;
   onChange: (checked: boolean) => void;
   containerStyle?: StyleProp<ViewStyle>;
+  disbaled?: boolean;
 }
 
 const SingleCheckbox = ({
@@ -16,6 +17,7 @@ const SingleCheckbox = ({
   checked,
   onChange,
   containerStyle,
+  disbaled,
 }: SingleCheckboxProps) => {
   const { colors } = useTheme();
   const styles = createStyles(colors);
@@ -25,7 +27,11 @@ const SingleCheckbox = ({
   };
 
   return (
-    <Pressable style={[styles.option, containerStyle]} onPress={handlePress}>
+    <Pressable
+      disabled={disbaled}
+      style={[styles.option, containerStyle]}
+      onPress={disbaled ? () => {} : handlePress}
+    >
       <View style={[styles.checkbox, checked && styles.checked]}>
         {checked && <Check size={16} color="#fff" strokeWidth={3} />}
       </View>

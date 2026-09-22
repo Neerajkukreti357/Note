@@ -1,83 +1,52 @@
+import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, FlatList, Text, View } from 'react-native';
-import React, { useCallback, useEffect, useState } from 'react';
-import { SearchInput } from '@/components/formComponents';
 import {
+  AddMoreItem,
   CheckBoxNote,
   NoDataFound,
   NotesWithImages,
   NoteWithAudio,
+  SimpleHeader,
   SimpleNoteCard,
 } from '@/components';
-import { SearchX } from 'lucide-react-native';
+import { StickyNote } from 'lucide-react-native';
 import { useTheme } from '@/context/ThemeContext';
-import createStyles from './style';
 import { Note } from '@/store/type';
-import { getAllNotes } from '@/services/notesServices/createNotesServices';
 import { useFocusEffect } from '@react-navigation/native';
-import { useNotes } from '@/hooks/home';
+import createStyles from './style';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { getDeletedNotes } from '@/services/notesServices/createNotesServices';
 
-const Search = () => {
+function TrashScreen() {
   const { colors } = useTheme();
   const style = createStyles(colors);
-  const [search, setSearch] = useState('');
-  const [notes, setNotes] = useState<Note[]>([]);
-  const [loading, setLoading] = useState(false);
-  const { refetch } = useNotes();
-
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
+  const [notes, setNotes] = useState<Note[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const toggleSheet = (item: Note) => {
     if (isSheetOpen) {
       setIsSheetOpen(false);
       setSelectedNote(null);
       return;
     }
-
     setSelectedNote(item);
     setIsSheetOpen(true);
   };
 
-  const fetchSearchNotes = async (query: string) => {
-    if (!query.trim()) {
-      setNotes([]);
-      return;
-    }
+  const fetchDeletedNotes = async () => {
     try {
       setLoading(true);
-      const result = await getAllNotes(query.trim());
-      setNotes(result);
+
+      const deletedNotes = await getDeletedNotes();
+
+      setNotes(deletedNotes);
     } catch (error) {
-      console.log('Search error:', error);
-      setNotes([]);
+      console.log('Error fetching deleted notes:', error);
     } finally {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (!search.trim()) {
-      setNotes([]);
-      setLoading(false);
-      return;
-    }
-
-    const timer = setTimeout(() => {
-      fetchSearchNotes(search);
-    }, 500);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [search]);
-
-  useFocusEffect(
-    useCallback(() => {
-      return () => {
-        setIsSheetOpen(false);
-        setSelectedNote(null);
-      };
-    }, []),
-  );
 
   const renderNote = ({ item }: { item: Note }) => {
     if (item?.noteType === 1) {
@@ -88,10 +57,8 @@ const Search = () => {
           selectedNote={selectedNote}
           toggleSheet={toggleSheet}
           setIsSheetOpen={setIsSheetOpen}
-          refetch={() => {
-            fetchSearchNotes(search);
-            refetch();
-          }}
+          refetch={fetchDeletedNotes}
+          isPermanantTab={true}
         />
       );
     }
@@ -104,10 +71,8 @@ const Search = () => {
           selectedNote={selectedNote}
           toggleSheet={toggleSheet}
           setIsSheetOpen={setIsSheetOpen}
-          refetch={() => {
-            fetchSearchNotes(search);
-            refetch();
-          }}
+          refetch={fetchDeletedNotes}
+          isPermanantTab={true}
         />
       );
     }
@@ -120,10 +85,8 @@ const Search = () => {
           selectedNote={selectedNote}
           toggleSheet={toggleSheet}
           setIsSheetOpen={setIsSheetOpen}
-          refetch={() => {
-            fetchSearchNotes(search);
-            refetch();
-          }}
+          refetch={fetchDeletedNotes}
+          isPermanantTab={true}
         />
       );
     }
@@ -135,40 +98,53 @@ const Search = () => {
         selectedNote={selectedNote}
         toggleSheet={toggleSheet}
         setIsSheetOpen={setIsSheetOpen}
-        refetch={() => {
-          fetchSearchNotes(search);
-          refetch();
-        }}
+        refetch={fetchDeletedNotes}
+        isPermanantTab={true}
       />
     );
   };
 
-  return (
-    <View style={style.container}>
-      <SearchInput onSearchChange={setSearch} />
+  useFocusEffect(
+    useCallback(() => {
+      fetchDeletedNotes();
 
+      return () => {
+        setIsSheetOpen(false);
+        setSelectedNote(null);
+      };
+    }, []),
+  );
+
+  return (
+    <SafeAreaView style={style.container}>
+      <SimpleHeader
+        title="Trash"
+        isEditable={false}
+        containerStyle={style.sideBarContainerStyle}
+      />
       {loading ? (
         <View style={style.loaderBox}>
           <ActivityIndicator size="large" color={colors.monthTextColor} />
           <Text style={style.loadingText}>Loading ...</Text>
         </View>
-      ) : notes.length === 0 ? (
-        <NoDataFound
-          title="No Notes Found"
-          description="Try searching for something else"
-          Icon={SearchX}
-        />
-      ) : (
+      ) : notes?.length > 0 ? (
         <FlatList
           data={notes}
           renderItem={renderNote}
           keyExtractor={item => String(item.id)}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={style.contentContainer}
+          ListFooterComponent={notes.length < 3 ? <AddMoreItem /> : undefined}
+        />
+      ) : (
+        <NoDataFound
+          Icon={StickyNote}
+          title="No notes yet"
+          description="Tap the + button to create your first note"
         />
       )}
-    </View>
+    </SafeAreaView>
   );
-};
+}
 
-export default Search;
+export default TrashScreen;

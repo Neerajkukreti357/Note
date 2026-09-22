@@ -1,12 +1,10 @@
 import { Plus, Trash2 } from 'lucide-react-native';
 import {
   Pressable,
-  ScrollView,
   Text,
   TextInput,
   useWindowDimensions,
   View,
-  type ScrollViewInstance,
 } from 'react-native';
 import { useEffect, useRef, useState } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
@@ -20,11 +18,12 @@ import { ItemType } from './type';
 import commonStyle from '@/theme/commonStyles';
 import { useTheme } from '@/context/ThemeContext';
 import createStyles from './style';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const CheckList = ({ loading }: { loading: boolean }) => {
   const { colors } = useTheme();
   const styles = createStyles(colors);
-  const scrollViewRef = useRef<ScrollViewInstance>(null);
+  const scrollViewRef = useRef<KeyboardAwareScrollView>(null);
   const { height } = useWindowDimensions();
   const {
     control,
@@ -62,13 +61,13 @@ const CheckList = ({ loading }: { loading: boolean }) => {
   };
 
   useEffect(() => {
-    if (items.length > 0) {
-      setTimeout(() => {
-        scrollViewRef.current?.scrollToEnd({
-          animated: true,
-        });
-      }, 100);
-    }
+    if (items.length === 0) return;
+
+    const timer = setTimeout(() => {
+      scrollViewRef.current?.scrollToEnd(true);
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, [items.length]);
 
   useEffect(() => {
@@ -120,10 +119,14 @@ const CheckList = ({ loading }: { loading: boolean }) => {
           {errors.title.message}
         </Text>
       )}
-      <ScrollView
+      <KeyboardAwareScrollView
         ref={scrollViewRef}
         style={{ height: height * 0.5, marginTop: spacing.sm }}
         showsVerticalScrollIndicator={false}
+        enableOnAndroid
+        extraScrollHeight={height * 0.15}
+        enableAutomaticScroll
+        keyboardShouldPersistTaps="handled"
       >
         {items.map(item => (
           <View key={`${item?.id}`} style={styles.checkRow}>
@@ -146,7 +149,7 @@ const CheckList = ({ loading }: { loading: boolean }) => {
             {errors.checkList?.message}
           </Text>
         )}
-      </ScrollView>
+      </KeyboardAwareScrollView>
       <Pressable style={styles.addItem} onPress={addItem}>
         <Plus color={colors.highlightColor} size={17} />
         <Text style={styles.addItemText}>Add item</Text>

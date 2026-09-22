@@ -17,9 +17,16 @@ import { formatNoteDate } from '@/utils/date';
 import EditOrDeleteBottomTab from '../editDelComponent';
 import React from 'react';
 import { NoteCardPorps } from './type';
+import {
+  deleteNote,
+  markNoteAsCompleted,
+  permanentlyDeleteNote,
+} from '@/services/notesServices/createNotesServices';
+import PermanantDeleteTab from '../editDelComponent/PermanantDeleteTab';
 
 type RootStackParamList = {
-  ViewScreen: { item: Note };
+  ViewScreen?: { item: Note };
+  AddNote?: { item: Note };
 };
 
 const SimpleNoteCard = ({
@@ -28,6 +35,8 @@ const SimpleNoteCard = ({
   selectedNote,
   toggleSheet,
   setIsSheetOpen,
+  refetch,
+  isPermanantTab = false,
 }: NoteCardPorps) => {
   const { colors } = useTheme();
   const style = createStyles(colors);
@@ -36,6 +45,40 @@ const SimpleNoteCard = ({
   const goTo = () => {
     navigate.navigate('ViewScreen', { item });
   };
+
+  const onDelete = async (item: Note | null) => {
+    try {
+      await deleteNote(String(item?.id));
+      refetch();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsSheetOpen(false);
+    }
+  };
+
+  const onDeleteForever = async (item: Note | null) => {
+    try {
+      await permanentlyDeleteNote(String(item?.id));
+      refetch();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsSheetOpen(false);
+    }
+  };
+
+  const onMarkAsComplete = async (item: Note | null) => {
+    try {
+      await markNoteAsCompleted(String(item?.id));
+      refetch();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsSheetOpen(false);
+    }
+  };
+
   return (
     <>
       <TouchableWithoutFeedback onPress={goTo}>
@@ -75,16 +118,29 @@ const SimpleNoteCard = ({
           </Card.Header>
         </Card>
       </TouchableWithoutFeedback>
-      <EditOrDeleteBottomTab
-        isSheetOpen={isSheetOpen && selectedNote?.id === item?.id}
-        setIsSheetOpen={setIsSheetOpen}
-        onEdit={() => {
-          console.log('Edit:', selectedNote);
-        }}
-        onDelete={() => {
-          console.log('Delete:', selectedNote);
-        }}
-      />
+      {isPermanantTab ? (
+        <PermanantDeleteTab
+          isSheetOpen={isSheetOpen && selectedNote?.id === item?.id}
+          setIsSheetOpen={setIsSheetOpen}
+          onDeleteForever={() => {
+            onDeleteForever(selectedNote);
+          }}
+        />
+      ) : (
+        <EditOrDeleteBottomTab
+          isSheetOpen={isSheetOpen && selectedNote?.id === item?.id}
+          setIsSheetOpen={setIsSheetOpen}
+          onEdit={() => {
+            navigate.navigate('AddNote', { item });
+          }}
+          onDelete={() => {
+            onDelete(selectedNote);
+          }}
+          onMarkComplete={() => {
+            onMarkAsComplete(selectedNote);
+          }}
+        />
+      )}
     </>
   );
 };

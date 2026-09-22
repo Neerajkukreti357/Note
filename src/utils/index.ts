@@ -2,14 +2,24 @@ import RNFS from 'react-native-fs';
 import { type Asset } from 'react-native-image-picker';
 import ImageResizer from '@bam.tech/react-native-image-resizer';
 
-export const getCurrentRouteName = (state: any): string => {
-  const route = state.routes[state.index];
-
-  if (route.state) {
-    return getCurrentRouteName(route.state);
+export const getCurrentRouteName = (state: any): string | undefined => {
+  if (!state || !state.routes || state.index == null) {
+    return undefined;
   }
 
-  return route.name;
+  let route = state.routes[state.index];
+
+  while (route?.state) {
+    const nestedState = route.state;
+
+    if (!nestedState.routes || nestedState.index == null) {
+      break;
+    }
+
+    route = nestedState.routes[nestedState.index];
+  }
+
+  return route?.name;
 };
 
 export const isEditorEmpty = (html?: string) => {

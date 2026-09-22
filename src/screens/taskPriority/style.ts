@@ -11,7 +11,7 @@ const createStyles = (colors: ThemeColors) =>
     contentContainer: {
       paddingHorizontal: spacing.sm,
       gap: spacing.md,
-      paddingBottom: 100,
+      paddingBottom: 200,
     },
 
     loaderBox: {

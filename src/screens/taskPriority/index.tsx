@@ -14,10 +14,12 @@ import { Note } from '@/store/type';
 import { getNotesByPriority } from '@/services/notesServices/createNotesServices';
 import { SearchX } from 'lucide-react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import { useNotes } from '@/hooks/home';
 
 const TaskPriority = () => {
   const { colors } = useTheme();
   const style = createStyles(colors);
+  const { refetch } = useNotes();
 
   const [notes, setNotes] = useState<Note[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -25,6 +27,12 @@ const TaskPriority = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
   const toggleSheet = (item: Note) => {
+    if (isSheetOpen) {
+      setIsSheetOpen(false);
+      setSelectedNote(null);
+      return;
+    }
+
     setSelectedNote(item);
     setIsSheetOpen(true);
   };
@@ -48,6 +56,15 @@ const TaskPriority = () => {
     }, []),
   );
 
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        setIsSheetOpen(false);
+        setSelectedNote(null);
+      };
+    }, []),
+  );
+
   const renderNote = ({ item }: { item: Note }) => {
     if (item?.noteType === 1) {
       return (
@@ -57,6 +74,10 @@ const TaskPriority = () => {
           selectedNote={selectedNote}
           toggleSheet={toggleSheet}
           setIsSheetOpen={setIsSheetOpen}
+          refetch={() => {
+            fetchNotes();
+            refetch();
+          }}
         />
       );
     }
@@ -69,6 +90,10 @@ const TaskPriority = () => {
           selectedNote={selectedNote}
           toggleSheet={toggleSheet}
           setIsSheetOpen={setIsSheetOpen}
+          refetch={() => {
+            fetchNotes();
+            refetch();
+          }}
         />
       );
     }
@@ -81,6 +106,10 @@ const TaskPriority = () => {
           selectedNote={selectedNote}
           toggleSheet={toggleSheet}
           setIsSheetOpen={setIsSheetOpen}
+          refetch={() => {
+            fetchNotes();
+            refetch();
+          }}
         />
       );
     }
@@ -92,6 +121,10 @@ const TaskPriority = () => {
         selectedNote={selectedNote}
         toggleSheet={toggleSheet}
         setIsSheetOpen={setIsSheetOpen}
+        refetch={() => {
+          fetchNotes();
+          refetch();
+        }}
       />
     );
   };

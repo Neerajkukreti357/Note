@@ -117,10 +117,11 @@ const ViewScreen = () => {
                   onChange={checked =>
                     handleCheckboxToggle(checkItem.id, checked)
                   }
+                  disbaled={item?.is_deleted === 1}
                 />
               ))}
 
-            {checkLst?.length && (
+            {checkLst?.length && item?.is_deleted === 0 && (
               <Pressable
                 disabled={loading}
                 style={styles.button}

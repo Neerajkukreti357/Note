@@ -20,7 +20,12 @@ const createStyles = (colors: ThemeColors) =>
     contentContainer: {
       paddingHorizontal: spacing.sm,
       gap: spacing.md,
-      paddingBottom: 200,
+      paddingBottom: 50,
+      marginTop: spacing.md,
+    },
+    sideBarContainerStyle: {
+      backgroundColor: colors.primary,
+      paddingBottom: 20,
     },
   });
 

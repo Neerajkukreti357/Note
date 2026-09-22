@@ -182,3 +182,55 @@ export const getNotesByPriority = async () => {
 
   return result.rows as unknown as Note[];
 };
+
+export const deleteNote = async (id: number | string) => {
+  const now = Date.now();
+
+  await db.execute(
+    `
+      UPDATE notes
+      SET
+        is_deleted = ?,
+        updated_at = ?
+      WHERE id = ?
+    `,
+    [1, now, id],
+  );
+};
+
+export const getDeletedNotes = async () => {
+  const result = await db.execute(
+    `
+      SELECT * FROM notes
+      WHERE is_deleted = 1
+      ORDER BY updated_at DESC
+    `,
+  );
+
+  return result.rows as unknown as Note[];
+};
+
+export const markNoteAsCompleted = async (id: number | string) => {
+  const now = Date.now();
+
+  await db.execute(
+    `
+      UPDATE notes
+      SET
+        is_completed = ?,
+        updated_at = ?
+      WHERE id = ?
+    `,
+    [1, now, id],
+  );
+};
+
+export const permanentlyDeleteNote = async (id: number | string) => {
+  await db.execute(
+    `
+      DELETE FROM notes
+      WHERE id = ?
+    `,
+    [id],
+  );
+};

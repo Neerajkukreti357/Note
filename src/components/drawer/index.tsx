@@ -41,7 +41,9 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
       labels: 'Trash',
       description: 'Deleted notes',
       icon: Trash2,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('TrashScreen' as never);
+      },
     },
     {
       labels: 'Draft',

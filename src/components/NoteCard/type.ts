@@ -15,4 +15,6 @@ export interface NoteCardPorps {
   toggleSheet: (item: Note) => void;
   selectedNote: Note | null;
   setIsSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  refetch: () => void;
+  isPermanantTab?: boolean;
 }
