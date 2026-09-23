@@ -5,9 +5,9 @@ import {
   type AudioWaveformViewRef,
 } from 'react-native-waveform-player';
 import { Play, Pause, Trash2 } from 'lucide-react-native';
-import { DarkColors } from '@/theme';
 import createStyles from './style';
 import { useTheme } from '@/context/ThemeContext';
+import { DarkColors } from '@/theme';
 
 type AudioPlayerProps = {
   audioPath: string;
@@ -81,8 +81,8 @@ const AudioPlayer = ({
           showBackground={false}
           barWidth={4}
           barGap={3}
-          playedBarColor={DarkColors.highlightColor}
-          unplayedBarColor={DarkColors.icon}
+          playedBarColor={colors.highlightColor}
+          unplayedBarColor={colors.icon}
           onPlayerStateChange={e => {
             setIsPlaying(e.isPlaying);
           }}

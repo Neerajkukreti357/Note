@@ -21,7 +21,7 @@ const createStyles = (colors: ThemeColors) =>
     },
 
     weekday: {
-      fontSize: 14,
+      fontSize: 12,
       color: colors.monthTextColor,
       marginTop: 2,
     },

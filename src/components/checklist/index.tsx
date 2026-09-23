@@ -29,15 +29,31 @@ const CheckList = ({ loading }: { loading: boolean }) => {
     control,
     setValue,
     formState: { errors },
+    getValues,
   } = useFormContext<CheckNoteFormData>();
 
-  const [items, setItems] = useState<ItemType[]>([
-    {
-      id: uuidv4(),
-      label: 'Add your first task',
-      isCompleted: false,
-    },
-  ]);
+  const [items, setItems] = useState<ItemType[]>(() => {
+    const existing = getValues('checkList');
+
+    if (existing) {
+      try {
+        const parsed = JSON.parse(existing);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed;
+        }
+      } catch {
+        // fall through to default
+      }
+    }
+
+    return [
+      {
+        id: uuidv4(),
+        label: 'Add your first task',
+        isCompleted: false,
+      },
+    ];
+  });
 
   function addItem() {
     setItems(current => [

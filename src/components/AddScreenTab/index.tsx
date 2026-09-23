@@ -12,9 +12,10 @@ import { useTheme } from '@/context/ThemeContext';
 type Props = {
   active: number;
   setActive: React.Dispatch<React.SetStateAction<number>>;
+  disbaled: boolean;
 };
 
-const Tabs = ({ active, setActive }: Props) => {
+const Tabs = ({ active, setActive, disbaled }: Props) => {
   const translateX = useSharedValue(0);
   const { colors } = useTheme();
   const styles = createStyles(colors);
@@ -43,13 +44,14 @@ const Tabs = ({ active, setActive }: Props) => {
         return (
           <Pressable
             key={index}
-            onPress={() => setActive(index)}
+            onPress={disbaled ? () => {} : () => setActive(index)}
             style={styles.tabButton}
           >
             <Text
               style={[
                 styles.tabButtonText,
                 index === active && styles.activeTabText,
+                disbaled && styles.disabled,
               ]}
             >
               {item}

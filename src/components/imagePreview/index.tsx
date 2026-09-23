@@ -1,7 +1,8 @@
 import React from 'react';
-import { Image, Pressable, ScrollView, Text, View } from 'react-native';
+import { Image, Pressable, Text, View } from 'react-native';
 import { ImagePlus, X } from 'lucide-react-native';
 import type { Asset } from 'react-native-image-picker';
+import { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { useTheme } from '@/context/ThemeContext';
 import createStyles from './style';
 
@@ -22,15 +23,13 @@ const ImagePreviewList = ({ images, onRemove }: ImagePreviewListProps) => {
           <View style={styles.emptyIcon}>
             <ImagePlus size={28} color="#76D4F2" />
           </View>
-
           <Text style={styles.emptyTitle}>No images selected</Text>
-
           <Text style={styles.emptyText}>
             Images you select will appear here
           </Text>
         </View>
       ) : (
-        <ScrollView
+        <BottomSheetScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.imageList}
@@ -42,7 +41,6 @@ const ImagePreviewList = ({ images, onRemove }: ImagePreviewListProps) => {
                 style={styles.image}
                 resizeMode="cover"
               />
-
               {onRemove && (
                 <Pressable
                   style={styles.removeButton}
@@ -57,11 +55,10 @@ const ImagePreviewList = ({ images, onRemove }: ImagePreviewListProps) => {
           {images?.length > 0 && (
             <Pressable style={styles.addImageBox}>
               <ImagePlus size={24} color="#76D4F2" />
-
               <Text style={styles.addImageText}>Add More Images</Text>
             </Pressable>
           )}
-        </ScrollView>
+        </BottomSheetScrollView>
       )}
     </View>
   );

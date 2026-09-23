@@ -11,6 +11,7 @@ const EditOrDeleteBottomTab = ({
   onEdit,
   onDelete,
   onMarkComplete,
+  isCompletedOrNot,
 }: EditOrDeleteBottomTabProps) => {
   const { colors } = useTheme();
   const styles = createStyles(colors);
@@ -68,35 +69,38 @@ const EditOrDeleteBottomTab = ({
       ]}
     >
       {/* Edit */}
+      {!isCompletedOrNot && (
+        <Pressable
+          style={styles.actionButton}
+          onPress={() => {
+            if (setIsSheetOpen) setIsSheetOpen(false);
+            if (onEdit) onEdit();
+          }}
+        >
+          <View style={styles.editIconContainer}>
+            <Pencil size={16} color={colors.highlightColor} />
+          </View>
 
-      <Pressable
-        style={styles.actionButton}
-        onPress={() => {
-          if (setIsSheetOpen) setIsSheetOpen(false);
-          if (onEdit) onEdit();
-        }}
-      >
-        <View style={styles.editIconContainer}>
-          <Pencil size={16} color={colors.highlightColor} />
-        </View>
-
-        <Text style={styles.actionText}>Edit</Text>
-      </Pressable>
+          <Text style={styles.actionText}>Edit</Text>
+        </Pressable>
+      )}
 
       {/* Mark as Complete */}
-      <Pressable
-        style={styles.actionButton}
-        onPress={() => {
-          if (setIsSheetOpen) setIsSheetOpen(false);
-          if (onMarkComplete) onMarkComplete();
-        }}
-      >
-        <View style={styles.completeIconContainer}>
-          <CircleCheck size={16} color={colors.themeChanger} />
-        </View>
+      {!isCompletedOrNot && (
+        <Pressable
+          style={styles.actionButton}
+          onPress={() => {
+            if (setIsSheetOpen) setIsSheetOpen(false);
+            if (onMarkComplete) onMarkComplete();
+          }}
+        >
+          <View style={styles.completeIconContainer}>
+            <CircleCheck size={16} color={colors.themeChanger} />
+          </View>
 
-        <Text style={styles.actionText}>Mark as complete</Text>
-      </Pressable>
+          <Text style={styles.actionText}>Mark as complete</Text>
+        </Pressable>
+      )}
 
       {/* Delete */}
       <Pressable

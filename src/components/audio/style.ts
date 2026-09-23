@@ -22,7 +22,7 @@ const createStyles = (colors: ThemeColors) =>
       right: 0,
       padding: 5,
       borderRadius: '50%',
-      backgroundColor: colors.monthTextColor,
+      backgroundColor: colors.settingButtonBackgroundColor,
     },
 
     playButton: {

@@ -51,6 +51,7 @@ const createStyles = (colors: ThemeColors) =>
     activeTabText: {
       color: colors.heading,
     },
+    disabled: { opacity: 0.6 },
   });
 
 export default createStyles;

@@ -20,11 +20,13 @@ import {
   deleteNote,
   markNoteAsCompleted,
   permanentlyDeleteNote,
+  restoreNote,
 } from '@/services/notesServices/createNotesServices';
 import PermanantDeleteTab from '../editDelComponent/PermanantDeleteTab';
 
 type RootStackParamList = {
   ViewScreen: { item: Note };
+  AddNote?: { item: Note };
 };
 
 const NotesWithImages = ({
@@ -68,6 +70,17 @@ const NotesWithImages = ({
   const onDeleteForever = async (item: Note | null) => {
     try {
       await permanentlyDeleteNote(String(item?.id));
+      refetch();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsSheetOpen(false);
+    }
+  };
+
+  const onRestoreNote = async (item: Note | null) => {
+    try {
+      await restoreNote(String(item?.id));
       refetch();
     } catch (err) {
       console.log(err);
@@ -129,18 +142,20 @@ const NotesWithImages = ({
           onDeleteForever={() => {
             onDeleteForever(selectedNote);
           }}
+          onRestore={() => onRestoreNote(selectedNote)}
         />
       ) : (
         <EditOrDeleteBottomTab
           isSheetOpen={isSheetOpen && selectedNote?.id === item?.id}
           setIsSheetOpen={setIsSheetOpen}
           onEdit={() => {
-            console.log('Edit:', selectedNote);
+            navigate.navigate('AddNote', { item });
           }}
           onDelete={() => {
             onDelete(selectedNote);
           }}
           onMarkComplete={() => onMarkAsComplete(selectedNote)}
+          isCompletedOrNot={item?.is_completed === 1}
         />
       )}
     </>

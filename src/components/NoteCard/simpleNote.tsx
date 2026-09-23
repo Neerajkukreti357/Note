@@ -21,6 +21,7 @@ import {
   deleteNote,
   markNoteAsCompleted,
   permanentlyDeleteNote,
+  restoreNote,
 } from '@/services/notesServices/createNotesServices';
 import PermanantDeleteTab from '../editDelComponent/PermanantDeleteTab';
 
@@ -79,6 +80,17 @@ const SimpleNoteCard = ({
     }
   };
 
+  const onRestoreNote = async (item: Note | null) => {
+    try {
+      await restoreNote(String(item?.id));
+      refetch();
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsSheetOpen(false);
+    }
+  };
+
   return (
     <>
       <TouchableWithoutFeedback onPress={goTo}>
@@ -125,6 +137,7 @@ const SimpleNoteCard = ({
           onDeleteForever={() => {
             onDeleteForever(selectedNote);
           }}
+          onRestore={() => onRestoreNote(selectedNote)}
         />
       ) : (
         <EditOrDeleteBottomTab
@@ -139,6 +152,7 @@ const SimpleNoteCard = ({
           onMarkComplete={() => {
             onMarkAsComplete(selectedNote);
           }}
+          isCompletedOrNot={item?.is_completed === 1}
         />
       )}
     </>

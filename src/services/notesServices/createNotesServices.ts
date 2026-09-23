@@ -198,6 +198,21 @@ export const deleteNote = async (id: number | string) => {
   );
 };
 
+export const restoreNote = async (id: number | string) => {
+  const now = Date.now();
+
+  await db.execute(
+    `
+      UPDATE notes
+      SET
+        is_deleted = ?,
+        updated_at = ?
+      WHERE id = ?
+    `,
+    [0, now, id],
+  );
+};
+
 export const getDeletedNotes = async () => {
   const result = await db.execute(
     `

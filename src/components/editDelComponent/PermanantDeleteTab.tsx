@@ -1,19 +1,22 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, Pressable, Text, View } from 'react-native';
-import { Trash2 } from 'lucide-react-native';
+import { RotateCcw, Trash2 } from 'lucide-react-native';
 import { useTheme } from '@/context/ThemeContext';
 import createStyles from './style';
 import { EditOrDeleteBottomTabProps } from './type';
+import { useNotes } from '@/hooks/home';
 
 const PermanantDeleteTab = ({
   isSheetOpen,
   setIsSheetOpen,
   onDeleteForever,
+  onRestore,
 }: EditOrDeleteBottomTabProps) => {
   const { colors } = useTheme();
   const styles = createStyles(colors);
   const scale = useRef(new Animated.Value(0.8)).current;
   const opacity = useRef(new Animated.Value(0)).current;
+  const { refetch: refetchHomeData } = useNotes();
 
   useEffect(() => {
     if (isSheetOpen) {
@@ -64,6 +67,20 @@ const PermanantDeleteTab = ({
         },
       ]}
     >
+      <Pressable
+        style={styles.actionButton}
+        onPress={() => {
+          if (setIsSheetOpen) setIsSheetOpen(false);
+          if (onRestore) onRestore();
+          refetchHomeData();
+        }}
+      >
+        <View style={styles.completeIconContainer}>
+          <RotateCcw size={16} color={colors.themeChanger} />
+        </View>
+
+        <Text style={styles.actionText}>Restore</Text>
+      </Pressable>
       {/* Delete */}
       <Pressable
         style={styles.actionButton}
