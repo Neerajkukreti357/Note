@@ -179,7 +179,7 @@ const AddScreenNotes = () => {
 
   useEffect(() => {
     if (item) {
-      const activeTabNumber = item?.noteType - 1;
+      const activeTabNumber = item?.noteType <= 2 ? item?.noteType - 1 : 2;
       setActive(activeTabNumber);
       setDisabledTab(true);
       reset(mapNoteToFormValues(item, activeTabNumber));
@@ -220,7 +220,7 @@ const AddScreenNotes = () => {
         ) : active === 1 ? (
           <CheckList loading={loading} />
         ) : (
-          <Media loading={loading} />
+          <Media loading={loading} isDisabled={item ? true : false} />
         )}
       </SafeAreaView>
     </FormProvider>

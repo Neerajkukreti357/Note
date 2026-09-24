@@ -64,7 +64,7 @@ export const MediaNoteSchema = z
       .min(1, 'Description is required')
       .max(1000, 'Description too long'),
 
-    type: z.number().int().min(1).max(3),
+    type: z.number().int().min(1).max(4),
 
     priority: z.enum(['high', 'medium', 'low'], {
       error: 'Priority is required',

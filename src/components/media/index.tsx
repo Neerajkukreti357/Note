@@ -47,7 +47,13 @@ import createStyles from './styles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { spacing } from '@/theme';
 
-const Media = ({ loading }: { loading: boolean }) => {
+const Media = ({
+  loading,
+  isDisabled,
+}: {
+  loading: boolean;
+  isDisabled: boolean;
+}) => {
   const { colors } = useTheme();
   const styles = createStyles(colors);
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -55,7 +61,6 @@ const Media = ({ loading }: { loading: boolean }) => {
   const [seconds, setSeconds] = useState(0);
   const recorderRef = useRef<WaveformRecorderViewRef>(null);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [images, setImages] = useState<Asset[]>([]);
   const { height } = useWindowDimensions();
 
   const renderBackdrop = useCallback(
@@ -76,7 +81,13 @@ const Media = ({ loading }: { loading: boolean }) => {
     formState: { errors },
     watch,
     setValue,
+    getValues,
   } = useFormContext<MediaNoteFormData>();
+
+  const [images, setImages] = useState<Asset[]>(() => {
+    const existing = getValues('imageList');
+    return Array.isArray(existing) ? existing : [];
+  });
 
   const onDelete = () => {
     setValue('audioPath', '', { shouldValidate: true });
@@ -360,6 +371,7 @@ const Media = ({ loading }: { loading: boolean }) => {
                   ]}
                   selectedValues={selectedValues}
                   onChange={handleMediaChange}
+                  disabled={isDisabled}
                 />
               );
             }}

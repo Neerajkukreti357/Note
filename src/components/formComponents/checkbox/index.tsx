@@ -15,6 +15,7 @@ interface MultipleCheckboxProps {
   onChange: (values: string[]) => void;
   direction?: 'row' | 'column';
   containerStyle?: StyleProp<ViewStyle>;
+  disabled?: boolean;
 }
 
 const MultipleCheckbox = ({
@@ -23,6 +24,7 @@ const MultipleCheckbox = ({
   onChange,
   direction = 'row',
   containerStyle,
+  disabled,
 }: MultipleCheckboxProps) => {
   const { colors } = useTheme();
   const styles = createStyles(colors);
@@ -47,7 +49,8 @@ const MultipleCheckbox = ({
           <Pressable
             key={option.value}
             style={styles.option}
-            onPress={() => handlePress(option.value)}
+            onPress={disabled ? () => {} : () => handlePress(option.value)}
+            disabled={disabled}
           >
             <View style={[styles.checkbox, checked && styles.checked]}>
               {checked && <Check size={16} color="#fff" strokeWidth={3} />}
