@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 import { createTables } from '@/services/notesServices';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useTheme } from '@/context/ThemeContext';
+import Toast from 'react-native-toast-message';
+import { toastConfig } from '@/config/toastConfig';
 
 function App() {
   useEffect(() => {
@@ -31,6 +33,7 @@ function App() {
         <NavigationContainer onReady={() => BootSplash.hide({ fade: true })}>
           <RootRoutes />
         </NavigationContainer>
+        <Toast config={toastConfig} position="bottom" bottomOffset={40} />
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

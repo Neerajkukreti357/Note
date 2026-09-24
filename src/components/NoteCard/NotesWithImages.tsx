@@ -23,6 +23,7 @@ import {
   restoreNote,
 } from '@/services/notesServices/createNotesServices';
 import PermanantDeleteTab from '../editDelComponent/PermanantDeleteTab';
+import Toast from 'react-native-toast-message';
 
 type RootStackParamList = {
   ViewScreen: { item: Note };
@@ -52,6 +53,11 @@ const NotesWithImages = ({
     try {
       await deleteNote(String(item?.id));
       refetch();
+      Toast.show({
+        type: 'success',
+        text1: 'Note saved',
+        text2: 'Notes moved to trash successfully',
+      });
     } catch (err) {
       console.log(err);
     } finally {
@@ -63,6 +69,11 @@ const NotesWithImages = ({
     try {
       await markNoteAsCompleted(String(item?.id));
       refetch();
+      Toast.show({
+        type: 'success',
+        text1: 'Note saved',
+        text2: 'Note marked as complete successfully',
+      });
     } catch (err) {
       console.log(err);
     } finally {
@@ -74,6 +85,11 @@ const NotesWithImages = ({
     try {
       await permanentlyDeleteNote(String(item?.id));
       refetch();
+      Toast.show({
+        type: 'success',
+        text1: 'Note saved',
+        text2: 'Notes deleted successfully',
+      });
     } catch (err) {
       console.log(err);
     } finally {
@@ -85,6 +101,11 @@ const NotesWithImages = ({
     try {
       await restoreNote(String(item?.id));
       refetch();
+      Toast.show({
+        type: 'success',
+        text1: 'Note saved',
+        text2: 'Notes restore successfully',
+      });
     } catch (err) {
       console.log(err);
     } finally {

@@ -34,6 +34,7 @@ import createStyles from './style';
 import { AddNoteRouteProp } from './type';
 import { Note } from '@/store/type';
 import { mapNoteToFormValues } from '@/utils/formValueHandler';
+import Toast from 'react-native-toast-message';
 
 const AddScreenNotes = () => {
   const route = useRoute<AddNoteRouteProp>();
@@ -150,7 +151,13 @@ const AddScreenNotes = () => {
           console.warn('Media note submitted with no audio or images');
         }
       }
-
+      Toast.show({
+        type: 'success',
+        text1: 'Note saved',
+        text2: item
+          ? 'Your note was updated successfully'
+          : 'Your note was saved successfully',
+      });
       refetch();
       navigation.goBack();
     } catch (error) {
@@ -230,6 +237,11 @@ const AddScreenNotes = () => {
         'imageList' in values && values.imageList
           ? JSON.stringify(values.imageList)
           : undefined,
+    });
+    Toast.show({
+      type: 'success',
+      text1: 'Note saved',
+      text2: 'Your note was saved in draft.',
     });
     navigation.goBack();
   };

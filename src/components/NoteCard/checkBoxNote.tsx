@@ -23,6 +23,7 @@ import {
   restoreNote,
 } from '@/services/notesServices/createNotesServices';
 import PermanantDeleteTab from '../editDelComponent/PermanantDeleteTab';
+import Toast from 'react-native-toast-message';
 
 type RootStackParamList = {
   ViewScreen: {
@@ -55,6 +56,11 @@ const CheckBoxNote = ({
     try {
       await deleteNote(String(item?.id));
       refetch();
+      Toast.show({
+        type: 'success',
+        text1: 'Note saved',
+        text2: 'Notes moved to trash successfully',
+      });
     } catch (err) {
       console.log(err);
     } finally {
@@ -65,6 +71,11 @@ const CheckBoxNote = ({
   const onMarkAsComplete = async (item: Note | null) => {
     try {
       await markNoteAsCompleted(String(item?.id));
+      Toast.show({
+        type: 'success',
+        text1: 'Note saved',
+        text2: 'Note marked as complete successfully',
+      });
       refetch();
     } catch (err) {
       console.log(err);
@@ -77,6 +88,11 @@ const CheckBoxNote = ({
     try {
       await permanentlyDeleteNote(String(item?.id));
       refetch();
+      Toast.show({
+        type: 'success',
+        text1: 'Note saved',
+        text2: 'Notes deleted successfully',
+      });
     } catch (err) {
       console.log(err);
     } finally {
@@ -88,6 +104,11 @@ const CheckBoxNote = ({
     try {
       await restoreNote(String(item?.id));
       refetch();
+      Toast.show({
+        type: 'success',
+        text1: 'Note saved',
+        text2: 'Notes restore successfully',
+      });
     } catch (err) {
       console.log(err);
     } finally {
