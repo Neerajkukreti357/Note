@@ -58,7 +58,7 @@ const SimpleNoteCard = ({
       Toast.show({
         type: 'success',
         text1: 'Note saved',
-        text2: 'Notes moved to trash successfully',
+        text2: 'Note moved to trash successfully',
       });
     } catch (err) {
       console.log(err);
@@ -74,7 +74,7 @@ const SimpleNoteCard = ({
       Toast.show({
         type: 'success',
         text1: 'Note saved',
-        text2: 'Notes deleted successfully',
+        text2: 'Note deleted successfully',
       });
     } catch (err) {
       console.log(err);
