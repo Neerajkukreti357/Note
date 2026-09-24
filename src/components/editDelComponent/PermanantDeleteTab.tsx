@@ -11,6 +11,7 @@ const PermanantDeleteTab = ({
   setIsSheetOpen,
   onDeleteForever,
   onRestore,
+  isDraft,
 }: EditOrDeleteBottomTabProps) => {
   const { colors } = useTheme();
   const styles = createStyles(colors);
@@ -67,20 +68,23 @@ const PermanantDeleteTab = ({
         },
       ]}
     >
-      <Pressable
-        style={styles.actionButton}
-        onPress={() => {
-          if (setIsSheetOpen) setIsSheetOpen(false);
-          if (onRestore) onRestore();
-          refetchHomeData();
-        }}
-      >
-        <View style={styles.completeIconContainer}>
-          <RotateCcw size={16} color={colors.themeChanger} />
-        </View>
+      {!isDraft && (
+        <Pressable
+          style={styles.actionButton}
+          onPress={() => {
+            if (setIsSheetOpen) setIsSheetOpen(false);
+            if (onRestore) onRestore();
+            refetchHomeData();
+          }}
+        >
+          <View style={styles.completeIconContainer}>
+            <RotateCcw size={16} color={colors.themeChanger} />
+          </View>
 
-        <Text style={styles.actionText}>Restore</Text>
-      </Pressable>
+          <Text style={styles.actionText}>Restore</Text>
+        </Pressable>
+      )}
+
       {/* Delete */}
       <Pressable
         style={styles.actionButton}

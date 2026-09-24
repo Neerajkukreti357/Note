@@ -7,4 +7,5 @@ export type EditOrDeleteBottomTabProps = {
   onDeleteForever?: () => void;
   onRestore?: () => void;
   isCompletedOrNot?: boolean;
+  isDraft?: boolean;
 };

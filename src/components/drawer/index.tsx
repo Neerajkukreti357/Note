@@ -49,7 +49,9 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
       labels: 'Draft',
       description: 'Unsaved Task',
       icon: FilePenLine,
-      onPress: () => {},
+      onPress: () => {
+        navigation.navigate('DraftScreen' as never);
+      },
     },
     {
       labels: 'About',

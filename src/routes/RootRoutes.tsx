@@ -5,12 +5,14 @@ import AddScreenNotes from '@/screens/AddNotesScreen';
 import { useTheme } from '@/context/ThemeContext';
 import ViewScreen from '@/screens/ViewScreen';
 import TrashScreen from '@/screens/trashScreen';
+import DraftScreen from '@/screens/draft';
 
 export type RootStackParamList = {
   AppDrawer: undefined;
   AddNote: undefined;
   ViewScreen: undefined;
   TrashScreen: undefined;
+  DraftScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -31,6 +33,7 @@ const RootRoutes = () => {
       <Stack.Screen name="AddNote" component={AddScreenNotes} />
       <Stack.Screen name="ViewScreen" component={ViewScreen} />
       <Stack.Screen name="TrashScreen" component={TrashScreen} />
+      <Stack.Screen name="DraftScreen" component={DraftScreen} />
     </Stack.Navigator>
   );
 };

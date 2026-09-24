@@ -19,6 +19,7 @@ export const createTables = async () => {
       is_completed INTEGER NOT NULL DEFAULT 0,
       is_partial_completed INTEGER NOT NULL DEFAULT 0,
       is_deleted INTEGER NOT NULL DEFAULT 0,
+      is_draft INTEGER NOT NULL DEFAULT 0,
       created_at TEXT NOT NULL DEFAULT (datetime('now')),
       updated_at TEXT NOT NULL DEFAULT (datetime('now')),
       deleted_at TEXT

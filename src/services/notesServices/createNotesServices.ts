@@ -140,7 +140,7 @@ export const updateNote = async (
 export const getAllNotes = async (search: string = '') => {
   const result = await db.execute(
     `SELECT * FROM notes
-     WHERE is_deleted = 0
+     WHERE is_deleted = 0 AND is_draft = 0
      AND (title LIKE ? OR description LIKE ?)
      ORDER BY created_at DESC`,
     [`%${search}%`, `%${search}%`],
@@ -248,4 +248,59 @@ export const permanentlyDeleteNote = async (id: number | string) => {
     `,
     [id],
   );
+};
+
+export const saveDraft = async (fields: {
+  title: string;
+  description?: string;
+  noteType: number;
+  priority: Priority;
+  checklist?: string;
+  audio_path?: string;
+  imageList?: string;
+}) => {
+  const now = Date.now();
+
+  await db.execute(
+    `
+      INSERT INTO notes
+      (
+        title,
+        description,
+        noteType,
+        priority,
+        checklist,
+        audio_path,
+        imageList,
+        is_draft,
+        is_deleted,
+        created_at,
+        updated_at
+      )
+      VALUES (?, ?, ?, ?, ?, ?, ?, 1, 0, ?, ?)
+    `,
+    [
+      fields.title ?? null,
+      fields.description ?? null,
+      fields.noteType,
+      fields.priority,
+      fields.checklist ?? null,
+      fields.audio_path ?? null,
+      fields.imageList ?? null,
+      now,
+      now,
+    ],
+  );
+};
+
+export const getDraftNotes = async (search: string = '') => {
+  const result = await db.execute(
+    `SELECT * FROM notes
+     WHERE is_deleted = 0 AND is_draft = 1
+     AND (title LIKE ? OR description LIKE ?)
+     ORDER BY updated_at DESC`,
+    [`%${search}%`, `%${search}%`],
+  );
+
+  return result.rows as unknown as Note[];
 };

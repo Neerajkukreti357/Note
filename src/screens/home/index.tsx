@@ -91,7 +91,7 @@ function Home() {
       };
     }, []),
   );
-
+  console.log(notes);
   return (
     <View style={style.container}>
       {loading ? (

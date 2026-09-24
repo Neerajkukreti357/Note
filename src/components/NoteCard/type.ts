@@ -17,4 +17,5 @@ export interface NoteCardPorps {
   setIsSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
   refetch: () => void;
   isPermanantTab?: boolean;
+  isDraft?: boolean;
 }

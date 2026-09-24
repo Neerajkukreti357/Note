@@ -25,6 +25,7 @@ import {
   createMediaNote,
   createMediaNoteWithImage,
   createSimpleNote,
+  saveDraft,
   updateNote,
 } from '@/services/notesServices/createNotesServices';
 import { useNotes } from '@/hooks/home';
@@ -41,7 +42,6 @@ const AddScreenNotes = () => {
   const { colors } = useTheme();
   const styles = createStyles(colors);
   const [disbaled, setDisabledTab] = useState(false);
-
   const navigation = useNavigation();
   const [active, setActive] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -73,6 +73,7 @@ const AddScreenNotes = () => {
             description: simpleData.description,
             noteType: simpleData.type,
             priority: simpleData.priority,
+            is_draft: 0,
             // clear fields that belong to other note types
           });
         } else {
@@ -92,6 +93,7 @@ const AddScreenNotes = () => {
             checklist: checkData.checkList,
             noteType: 2,
             priority: checkData.priority,
+            is_draft: 0,
           });
         } else {
           await createCheckListNote(
@@ -112,6 +114,7 @@ const AddScreenNotes = () => {
               noteType: 3,
               priority: formData.priority,
               audio_path: formData.audioPath,
+              is_draft: 0,
             });
           } else {
             await createMediaNote(
@@ -132,6 +135,7 @@ const AddScreenNotes = () => {
               noteType: 4,
               priority: formData.priority,
               imageList: imageListStringify,
+              is_draft: 0,
             });
           } else {
             await createMediaNoteWithImage(
@@ -186,11 +190,55 @@ const AddScreenNotes = () => {
     }
   }, [item, reset]);
 
+  const handleSaveDraft = async () => {
+    // if (item || hasSavedDraftRef.current) return;
+
+    const values = methods.getValues();
+
+    const isEmpty =
+      !values.title &&
+      !('description' in values && values.description) &&
+      !('checkList' in values && values.checkList) &&
+      !('audioPath' in values && values.audioPath) &&
+      !('imageList' in values && values.imageList?.length);
+    console.log('hanghtis', isEmpty, values);
+
+    if (isEmpty) {
+      navigation.goBack();
+      return;
+    }
+
+    const noteType =
+      active === 0
+        ? 1
+        : active === 1
+        ? 2
+        : (values as MediaNoteFormData).audioPath
+        ? 3
+        : 4;
+
+    // hasSavedDraftRef.current = true;
+
+    await saveDraft({
+      title: values.title,
+      description: 'description' in values ? values.description : undefined,
+      noteType,
+      priority: values.priority,
+      checklist: 'checkList' in values ? values.checkList : undefined,
+      audio_path: 'audioPath' in values ? values.audioPath : undefined,
+      imageList:
+        'imageList' in values && values.imageList
+          ? JSON.stringify(values.imageList)
+          : undefined,
+    });
+    navigation.goBack();
+  };
+
   return (
     <FormProvider {...methods}>
       <SafeAreaView style={styles.container}>
         <View style={styles.headingContainer}>
-          <Pressable onPress={() => navigation.goBack()}>
+          <Pressable onPress={handleSaveDraft}>
             <X size={30} color={colors.heading} />
           </Pressable>
           <Text style={styles.title}>{item ? 'Update' : 'Add'} Notes</Text>

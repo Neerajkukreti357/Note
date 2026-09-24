@@ -47,7 +47,7 @@ const ViewScreen = () => {
   const imageList = JSON.parse(item?.imageList);
 
   const [checkLst, setCheckLst] = useState<ChecklistItem[]>(
-    JSON.parse(item?.checklist),
+    item?.checklist ? JSON.parse(item?.checklist) : null,
   );
 
   const handleCheckboxToggle = (id: string, checked: boolean) => {

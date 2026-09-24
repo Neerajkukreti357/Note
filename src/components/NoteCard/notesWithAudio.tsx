@@ -39,13 +39,16 @@ const NoteWithAudio = ({
   setIsSheetOpen,
   refetch,
   isPermanantTab = false,
+  isDraft,
 }: NoteCardPorps) => {
   const { colors } = useTheme();
   const style = createStyles(colors);
   const navigate = useNavigation<NavigationProp<RootStackParamList>>();
 
   const goTo = () => {
-    navigate.navigate('ViewScreen', { item });
+    isDraft
+      ? navigate.navigate('AddNote', { item })
+      : navigate.navigate('ViewScreen', { item });
   };
   const onDelete = async (item: Note | null) => {
     try {
@@ -142,6 +145,7 @@ const NoteWithAudio = ({
             onDeleteForever(selectedNote);
           }}
           onRestore={() => onRestoreNote(selectedNote)}
+          isDraft={isDraft}
         />
       ) : (
         <EditOrDeleteBottomTab

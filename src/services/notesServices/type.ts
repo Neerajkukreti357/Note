@@ -4,11 +4,12 @@ export type Priority = 'high' | 'medium' | 'low';
 export interface UpdateNoteFields {
   title?: string;
   description?: string;
-  checklist?: string;
+  checklist?: string | null;
   noteType?: number;
   priority?: Priority;
   audio_path?: string;
   imageList?: string;
   is_completed?: number;
   is_deleted?: number;
+  is_draft?: number;
 }
