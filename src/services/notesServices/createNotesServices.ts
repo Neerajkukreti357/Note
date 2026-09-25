@@ -304,3 +304,13 @@ export const getDraftNotes = async (search: string = '') => {
 
   return result.rows as unknown as Note[];
 };
+
+export const getNoteById = async (id: number | string) => {
+  const result = await db.execute(`SELECT * FROM notes WHERE id = ? LIMIT 1`, [
+    id,
+  ]);
+
+  const rows = result.rows as unknown as Note[];
+
+  return rows.length > 0 ? rows[0] : null;
+};

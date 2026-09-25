@@ -1,6 +1,7 @@
 import {
   KeyboardAvoidingView,
   Platform,
+  ScrollView,
   Text,
   TextInput,
   View,
@@ -25,66 +26,74 @@ const General = ({ loading }: { loading: boolean }) => {
 
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1 }}
+      style={styles.parentContainer}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <View style={styles.mainContainer}>
-        <Controller
-          control={control}
-          name="priority"
-          render={({ field: { onChange, value } }) => (
-            <CustomDropdown
-              placeholder="Select priority"
-              value={value}
-              onChange={onChange}
-              data={DropdownOptions}
-              disable={loading}
-            />
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={styles.mainContainer}>
+          <Controller
+            control={control}
+            name="priority"
+            render={({ field: { onChange, value } }) => (
+              <CustomDropdown
+                placeholder="Select priority"
+                value={value}
+                onChange={onChange}
+                data={DropdownOptions}
+                disable={loading}
+              />
+            )}
+          />
+          {errors.priority && (
+            <Text style={commonStyle.errorTextColor}>
+              {errors.priority.message}
+            </Text>
           )}
-        />
-        {errors.priority && (
-          <Text style={commonStyle.errorTextColor}>
-            {errors.priority.message}
-          </Text>
-        )}
 
-        <Controller
-          control={control}
-          name="title"
-          render={({ field: { onChange, value } }) => (
-            <TextInput
-              placeholder="Title"
-              style={styles.title}
-              placeholderTextColor={colors.monthTextColor}
-              value={value}
-              onChangeText={onChange}
-              aria-disabled={loading}
-            />
+          <Controller
+            control={control}
+            name="title"
+            render={({ field: { onChange, value } }) => (
+              <TextInput
+                placeholder="Title"
+                style={styles.title}
+                placeholderTextColor={colors.monthTextColor}
+                value={value}
+                onChangeText={onChange}
+                aria-disabled={loading}
+              />
+            )}
+          />
+          {errors.title && (
+            <Text style={commonStyle.errorTextColor}>
+              {errors.title.message}
+            </Text>
           )}
-        />
-        {errors.title && (
-          <Text style={commonStyle.errorTextColor}>{errors.title.message}</Text>
-        )}
 
-        <Controller
-          control={control}
-          name="description"
-          render={({ field: { onChange, value } }) => (
-            <TextEditor
-              value={value}
-              onChange={onChange}
-              loadingSubmission={loading}
-              editorContainerStyle={styles.editorContainerStyle}
-            />
+          <Controller
+            control={control}
+            name="description"
+            render={({ field: { onChange, value } }) => (
+              <TextEditor
+                value={value}
+                onChange={onChange}
+                loadingSubmission={loading}
+                editorContainerStyle={styles.editorContainerStyle}
+              />
+            )}
+          />
+
+          {errors.description && (
+            <Text style={commonStyle.errorTextColor}>
+              {errors.description.message}
+            </Text>
           )}
-        />
-
-        {errors.description && (
-          <Text style={commonStyle.errorTextColor}>
-            {errors.description.message}
-          </Text>
-        )}
-      </View>
+        </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };

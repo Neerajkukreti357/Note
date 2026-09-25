@@ -91,7 +91,7 @@ function Home() {
       };
     }, []),
   );
-  console.log(notes);
+
   return (
     <View style={style.container}>
       {loading ? (
@@ -109,11 +109,13 @@ function Home() {
           ListFooterComponent={notes.length < 3 ? <AddMoreItem /> : undefined}
         />
       ) : (
-        <NoDataFound
-          Icon={StickyNote}
-          title="No notes yet"
-          description="Tap the + button to create your first note"
-        />
+        !loading && (
+          <NoDataFound
+            Icon={StickyNote}
+            title="No notes yet"
+            description="Tap the + button to create your first note"
+          />
+        )
       )}
     </View>
   );

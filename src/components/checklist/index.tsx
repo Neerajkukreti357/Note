@@ -1,6 +1,7 @@
 import { Plus, Trash2 } from 'lucide-react-native';
 import {
   Pressable,
+  ScrollView,
   Text,
   TextInput,
   useWindowDimensions,
@@ -94,83 +95,89 @@ const CheckList = ({ loading }: { loading: boolean }) => {
   }, [items, setValue]);
 
   return (
-    <View style={styles.notePanel}>
-      <Controller
-        control={control}
-        name="priority"
-        render={({ field: { onChange, value } }) => (
-          <CustomDropdown
-            placeholder="Select priority"
-            value={value}
-            onChange={onChange}
-            data={DropdownOptions}
-            disable={loading}
-          />
-        )}
-      />
-      {errors.priority && (
-        <Text style={commonStyle.errorTextColor}>
-          {errors.priority.message}
-        </Text>
-      )}
-
-      <Controller
-        control={control}
-        name="title"
-        render={({ field: { onChange, value } }) => (
-          <TextInput
-            placeholder="Title"
-            style={styles.title}
-            placeholderTextColor={colors.monthTextColor}
-            value={value}
-            onChangeText={onChange}
-            aria-disabled={loading}
-          />
-        )}
-      />
-      {errors.title && (
-        <Text
-          style={[commonStyle.errorTextColor, { marginVertical: spacing.sm }]}
-        >
-          {errors.title.message}
-        </Text>
-      )}
-      <KeyboardAwareScrollView
-        ref={scrollViewRef}
-        style={{ height: height * 0.5, marginTop: spacing.sm }}
-        showsVerticalScrollIndicator={false}
-        enableOnAndroid
-        extraScrollHeight={height * 0.15}
-        enableAutomaticScroll
-        keyboardShouldPersistTaps="handled"
-      >
-        {items.map(item => (
-          <View key={`${item?.id}`} style={styles.checkRow}>
-            <View style={styles.emptyCheck} />
-            <TextInput
-              defaultValue={item?.label}
-              style={styles.checkInput}
-              placeholderTextColor={colors.monthTextColor}
-              onChangeText={text => onChangeLabel(item.id, text)}
-              key={item?.id}
-              placeholder="Enter label name"
+    <ScrollView
+      contentContainerStyle={{ flexGrow: 1 }}
+      showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="handled"
+    >
+      <View style={styles.notePanel}>
+        <Controller
+          control={control}
+          name="priority"
+          render={({ field: { onChange, value } }) => (
+            <CustomDropdown
+              placeholder="Select priority"
+              value={value}
+              onChange={onChange}
+              data={DropdownOptions}
+              disable={loading}
             />
-            <Pressable onPress={() => deleteItem(item?.id)}>
-              <Trash2 color="red" size={17} />
-            </Pressable>
-          </View>
-        ))}
-        {errors.checkList && (
+          )}
+        />
+        {errors.priority && (
           <Text style={commonStyle.errorTextColor}>
-            {errors.checkList?.message}
+            {errors.priority.message}
           </Text>
         )}
-      </KeyboardAwareScrollView>
-      <Pressable style={styles.addItem} onPress={addItem}>
-        <Plus color={colors.highlightColor} size={17} />
-        <Text style={styles.addItemText}>Add item</Text>
-      </Pressable>
-    </View>
+
+        <Controller
+          control={control}
+          name="title"
+          render={({ field: { onChange, value } }) => (
+            <TextInput
+              placeholder="Title"
+              style={styles.title}
+              placeholderTextColor={colors.monthTextColor}
+              value={value}
+              onChangeText={onChange}
+              aria-disabled={loading}
+            />
+          )}
+        />
+        {errors.title && (
+          <Text
+            style={[commonStyle.errorTextColor, { marginVertical: spacing.sm }]}
+          >
+            {errors.title.message}
+          </Text>
+        )}
+        <KeyboardAwareScrollView
+          ref={scrollViewRef}
+          style={{ height: height * 0.5, marginTop: spacing.sm }}
+          showsVerticalScrollIndicator={false}
+          enableOnAndroid
+          extraScrollHeight={height * 0.15}
+          enableAutomaticScroll
+          keyboardShouldPersistTaps="handled"
+        >
+          {items.map(item => (
+            <View key={`${item?.id}`} style={styles.checkRow}>
+              <View style={styles.emptyCheck} />
+              <TextInput
+                defaultValue={item?.label}
+                style={styles.checkInput}
+                placeholderTextColor={colors.monthTextColor}
+                onChangeText={text => onChangeLabel(item.id, text)}
+                key={item?.id}
+                placeholder="Enter label name"
+              />
+              <Pressable onPress={() => deleteItem(item?.id)}>
+                <Trash2 color="red" size={17} />
+              </Pressable>
+            </View>
+          ))}
+          {errors.checkList && (
+            <Text style={commonStyle.errorTextColor}>
+              {errors.checkList?.message}
+            </Text>
+          )}
+        </KeyboardAwareScrollView>
+        <Pressable style={styles.addItem} onPress={addItem}>
+          <Plus color={colors.highlightColor} size={17} />
+          <Text style={styles.addItemText}>Add item</Text>
+        </Pressable>
+      </View>
+    </ScrollView>
   );
 };
 export default CheckList;

@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
     notePanel: {
-      minHeight: 510,
+      flex: 1,
       borderRadius: spacing.sm,
       padding: spacing.md,
       marginTop: spacing.md,

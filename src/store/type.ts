@@ -14,6 +14,7 @@ export interface Note {
   checklist: string;
   audio_path: string;
   imageList: string;
+  is_draft: number;
 }
 
 export interface NotesState {

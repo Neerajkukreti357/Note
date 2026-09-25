@@ -31,6 +31,7 @@ const ImagePreviewList = ({ images, onRemove }: ImagePreviewListProps) => {
       ) : (
         <BottomSheetScrollView
           horizontal
+          nestedScrollEnabled
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.imageList}
         >

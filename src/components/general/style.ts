@@ -5,13 +5,18 @@ const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
     mainContainer: {
       backgroundColor: colors.lightPrimary,
-      height: '80%',
       borderRadius: spacing.sm,
       marginTop: spacing.md,
       padding: spacing.md,
+      flex: 1,
     },
     editorContainerStyle: {
       flex: 1,
+      height: 40,
+    },
+    parentContainer: {
+      flex: 1,
+      marginTop: spacing.sm,
     },
     title: {
       fontSize: 38,

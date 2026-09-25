@@ -137,7 +137,7 @@ const CheckBoxNote = ({
 
               <View>
                 <TextTruncate numberOfLines={1} style={style.headingText}>
-                  {item?.title}
+                  {item?.title || 'N/A'}
                 </TextTruncate>
 
                 <Text style={style.timeDateFormate}>

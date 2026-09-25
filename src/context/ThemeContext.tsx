@@ -14,6 +14,7 @@ import {
   ThemeColors,
   ThemeMode,
 } from '@/theme/colors';
+import { useColorScheme } from 'react-native';
 
 const THEME_KEY = '@app_theme';
 
@@ -27,7 +28,10 @@ type ThemeContextType = {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<ThemeMode>('light');
+  const deviceScheme = useColorScheme();
+  const [theme, setTheme] = useState<ThemeMode>(
+    deviceScheme === 'dark' ? 'dark' : 'light',
+  );
 
   // Load saved theme
   useEffect(() => {

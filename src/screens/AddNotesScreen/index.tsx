@@ -198,8 +198,10 @@ const AddScreenNotes = () => {
   }, [item, reset]);
 
   const handleSaveDraft = async () => {
-    // if (item || hasSavedDraftRef.current) return;
-
+    if (item && (item?.is_draft === 0 || item?.is_draft === 1)) {
+      navigation.goBack();
+      return;
+    }
     const values = methods.getValues();
 
     const isEmpty =
@@ -208,7 +210,6 @@ const AddScreenNotes = () => {
       !('checkList' in values && values.checkList) &&
       !('audioPath' in values && values.audioPath) &&
       !('imageList' in values && values.imageList?.length);
-    console.log('hanghtis', isEmpty, values);
 
     if (isEmpty) {
       navigation.goBack();

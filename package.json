@@ -50,6 +50,7 @@
     "react-native-shadow-2": "^7.1.2",
     "react-native-size-matters": "^0.4.2",
     "react-native-svg": "^15.15.5",
+    "react-native-system-navigation-bar": "^3.0.1",
     "react-native-toast-message": "^2.5.2",
     "react-native-waveform-player": "^1.0.3",
     "react-native-waveform-recorder": "github:maitrungduc1410/react-native-waveform-recorder",

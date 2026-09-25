@@ -114,8 +114,6 @@ const createStyles = (colors: ThemeColors) =>
       width: responsive.width(105),
       height: responsive.height(105),
       borderRadius: responsive.radius(12),
-
-      position: 'relative',
     },
 
     image: {

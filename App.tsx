@@ -9,10 +9,12 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useTheme } from '@/context/ThemeContext';
 import Toast from 'react-native-toast-message';
 import { toastConfig } from '@/config/toastConfig';
+import SystemNavigationBar from 'react-native-system-navigation-bar';
 
 function App() {
   useEffect(() => {
     const initializeApp = async () => {
+      SystemNavigationBar.setImmersive('sticky');
       try {
         await Promise.all([createTables()]);
       } catch (error) {

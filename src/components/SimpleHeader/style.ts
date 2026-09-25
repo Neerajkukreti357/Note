@@ -8,11 +8,16 @@ const createStyles = (colors: ThemeColors) =>
       backgroundColor: colors.viewHeaderColor,
       flexDirection: 'row',
       justifyContent: 'space-between',
+      marginTop: spacing.sm,
     },
     noteText: {
-      fontSize: fontSize.body,
+      fontSize: fontSize.title,
       fontWeight: 600,
       color: colors.monthTextColor,
+    },
+    editDeleteContainer: {
+      flexDirection: 'row',
+      gap: spacing.sm,
     },
   });
 

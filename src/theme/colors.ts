@@ -26,6 +26,8 @@ export const DarkColors = {
 
 export const LightColors = {
   lightPrimary: '#F8FAFF',
+  viewBodyColor: '',
+  viewHeaderColor: '',
   primary: '#FFFFFF',
   activeTab: '#d4d8df',
   secondary: '#F1F4FA',

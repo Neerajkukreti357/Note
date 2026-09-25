@@ -12,7 +12,6 @@ const createStyles = (colors: ThemeColors) =>
       backgroundColor: colors.lightPrimary,
     },
     editorContainer: {
-      // flex: 1,
       marginTop: spacing.lg,
       backgroundColor: colors.lightPrimary,
       overflow: 'hidden',

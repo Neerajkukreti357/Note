@@ -14,7 +14,6 @@ export const mapNoteToFormValues = (
   item: Note,
   active: number,
 ): SimpleNoteFormData | CheckNoteFormData | MediaNoteFormData => {
-  console.log('HANGTHIS', item?.title, active);
   switch (active) {
     case 0: // Simple note
       return {
