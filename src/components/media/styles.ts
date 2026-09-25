@@ -28,7 +28,6 @@ const createStyles = (colors: ThemeColors) =>
     },
     mediaCard: {
       backgroundColor: colors.lightPrimary,
-
       borderRadius: 15,
       padding: 18,
       marginBottom: 15,
