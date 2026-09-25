@@ -288,7 +288,7 @@ const Media = ({
         enableAutomaticScroll
         keyboardShouldPersistTaps="handled"
       >
-        <View style={[styles.mediaCard, { height: '110%' }]}>
+        <View style={[styles.mediaCard]}>
           <Controller
             control={control}
             name="priority"
