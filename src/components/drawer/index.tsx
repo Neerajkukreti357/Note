@@ -1,5 +1,5 @@
 import { DrawerContentComponentProps } from '@react-navigation/drawer';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   ChevronRight,
@@ -76,70 +76,72 @@ const CustomDrawerView = (props: DrawerContentComponentProps) => {
       <Text style={styles.heading}>Settings</Text>
       <Text style={styles.subHeading}>Manage your account and preferences</Text>
 
-      <View style={styles.drawerButtonContainer}>
-        {buttons?.map((item: DrawerButton, index: number) => {
-          const Icon = item?.icon;
-          return (
-            <Pressable
-              key={index}
-              style={styles.buttonContainer}
-              onPress={item?.onPress}
-            >
-              <View style={styles.innerContainer}>
-                <View style={styles.iconContainer}>
-                  <Icon
-                    size={19}
-                    color={
-                      item?.labels === 'Theme'
-                        ? colors.themeChanger
-                        : colors.heading
-                    }
-                  />
-                </View>
-                <View>
-                  <Text style={styles.label}>{item?.labels}</Text>
-                  <Text style={styles.description}>{item?.description}</Text>
-                </View>
-              </View>
-              {item?.labels === 'Theme' ? (
-                <AnimatedToggle
-                  value={theme === 'dark'}
-                  onValueChange={item?.onPress}
-                />
-              ) : (
-                <ChevronRight size={19} color={colors.icon} />
-              )}
-            </Pressable>
-          );
-        })}
-      </View>
-
-      <View style={[styles.drawerButtonContainer, { marginTop: 'auto' }]}>
-        {bottomButtons?.map((item: BottomButton, index: number) => {
-          const Icon = item?.icon;
-          return (
-            <Pressable
-              key={index}
-              style={styles.bottomButtonContainer}
-              onPress={item?.onPress}
-            >
-              <View style={styles.iconContainer}>
-                <Icon size={19} color={colors.closeButtonColor} />
-              </View>
-              <Text
-                style={[
-                  styles.bottomLabel,
-                  {
-                    color: colors.closeButtonColor,
-                  },
-                ]}
+      <ScrollView style={{ flex: 1 }} showsHorizontalScrollIndicator={false}>
+        <View style={styles.drawerButtonContainer}>
+          {buttons?.map((item: DrawerButton, index: number) => {
+            const Icon = item?.icon;
+            return (
+              <Pressable
+                key={index}
+                style={styles.buttonContainer}
+                onPress={item?.onPress}
               >
-                {item?.labels}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </View>
+                <View style={styles.innerContainer}>
+                  <View style={styles.iconContainer}>
+                    <Icon
+                      size={19}
+                      color={
+                        item?.labels === 'Theme'
+                          ? colors.themeChanger
+                          : colors.heading
+                      }
+                    />
+                  </View>
+                  <View>
+                    <Text style={styles.label}>{item?.labels}</Text>
+                    <Text style={styles.description}>{item?.description}</Text>
+                  </View>
+                </View>
+                {item?.labels === 'Theme' ? (
+                  <AnimatedToggle
+                    value={theme === 'dark'}
+                    onValueChange={item?.onPress}
+                  />
+                ) : (
+                  <ChevronRight size={19} color={colors.icon} />
+                )}
+              </Pressable>
+            );
+          })}
+        </View>
+
+        <View style={[styles.drawerButtonContainer, { marginTop: 'auto' }]}>
+          {bottomButtons?.map((item: BottomButton, index: number) => {
+            const Icon = item?.icon;
+            return (
+              <Pressable
+                key={index}
+                style={styles.bottomButtonContainer}
+                onPress={item?.onPress}
+              >
+                <View style={styles.iconContainer}>
+                  <Icon size={19} color={colors.closeButtonColor} />
+                </View>
+                <Text
+                  style={[
+                    styles.bottomLabel,
+                    {
+                      color: colors.closeButtonColor,
+                    },
+                  ]}
+                >
+                  {item?.labels}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
