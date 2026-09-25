@@ -146,35 +146,6 @@ const createStyles = (colors: ThemeColors) =>
       borderWidth: 2,
       borderColor: colors.secondary,
     },
-
-    // -------------------------
-    // Add image box
-    // -------------------------
-
-    addImageBox: {
-      width: responsive.width(105),
-      height: responsive.height(105),
-
-      borderRadius: responsive.radius(12),
-
-      borderWidth: 1,
-      borderStyle: 'dashed',
-      borderColor: colors.lightBorder,
-
-      alignItems: 'center',
-      justifyContent: 'center',
-
-      backgroundColor: colors.primary,
-    },
-
-    addImageText: {
-      marginTop: spacing.xs,
-
-      fontFamily: fontFamily.inter.medium,
-      fontSize: fontSize.caption,
-
-      color: colors.text,
-    },
   });
 
 export default createStyles;
