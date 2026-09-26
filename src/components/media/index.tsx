@@ -494,7 +494,7 @@ const Media = ({
         enablePanDownToClose={true}
         enableDynamicSizing={false}
         backdropComponent={renderBackdrop}
-        enableContentPanningGesture={false} // <-- add this
+        enableContentPanningGesture={false}
         enableHandlePanningGesture={true}
       >
         <BottomSheetView style={styles.contentBottomContainer}>
