@@ -47,7 +47,10 @@ export const saveImagePermanently = async (
       return null;
     }
 
-    const fileName = `image_${Date.now()}.jpg`;
+    // Date.now() + a random suffix guarantees uniqueness even when
+    // multiple images are saved in parallel within the same millisecond.
+    const uniqueId = `${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
+    const fileName = `image_${uniqueId}.jpg`;
 
     const destinationPath = `${RNFS.DocumentDirectoryPath}/${fileName}`;
 
