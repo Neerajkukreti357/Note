@@ -34,7 +34,7 @@ import {
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetBackdropProps,
-  BottomSheetScrollView,
+  BottomSheetView,
 } from '@gorhom/bottom-sheet';
 import ImagePreviewList from '../imagePreview';
 import {
@@ -491,16 +491,13 @@ const Media = ({
         onChange={handleSheetChanges}
         snapPoints={['50%']}
         index={-1}
-        enablePanDownToClose={false}
+        enablePanDownToClose={true}
         enableDynamicSizing={false}
         backdropComponent={renderBackdrop}
+        enableContentPanningGesture={false} // <-- add this
+        enableHandlePanningGesture={true}
       >
-        <BottomSheetScrollView
-          nestedScrollEnabled
-          contentContainerStyle={styles.contentBottomContainer}
-          keyboardShouldPersistTaps="handled"
-          showsHorizontalScrollIndicator={false}
-        >
+        <BottomSheetView style={styles.contentBottomContainer}>
           <View style={styles.mediaOptions}>
             <Pressable style={styles.mediaOption} onPress={openCamera}>
               <View style={styles.mediaIconContainer}>
@@ -529,7 +526,7 @@ const Media = ({
               });
             }}
           />
-        </BottomSheetScrollView>
+        </BottomSheetView>
       </BottomSheet>
     </>
   );

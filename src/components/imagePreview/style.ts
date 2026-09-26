@@ -38,13 +38,10 @@ const createStyles = (colors: ThemeColors) =>
       borderStyle: 'dashed',
       borderColor: colors.lightBorder,
       borderRadius: responsive.radius(14),
-
       alignItems: 'center',
       justifyContent: 'center',
-
       paddingVertical: spacing.lg,
       paddingHorizontal: spacing.md,
-
       backgroundColor: colors.primary,
     },
 
@@ -52,12 +49,9 @@ const createStyles = (colors: ThemeColors) =>
       width: responsive.width(52),
       height: responsive.height(52),
       borderRadius: responsive.radius(14),
-
       alignItems: 'center',
       justifyContent: 'center',
-
       backgroundColor: colors.iconBg,
-
       marginBottom: spacing.sm,
     },
 
@@ -84,14 +78,10 @@ const createStyles = (colors: ThemeColors) =>
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-
       gap: spacing.xs,
-
       paddingHorizontal: spacing.md,
       paddingVertical: spacing.sm,
-
       borderRadius: responsive.radius(10),
-
       backgroundColor: colors.highlightColor,
     },
 
@@ -120,7 +110,6 @@ const createStyles = (colors: ThemeColors) =>
       width: '100%',
       height: '100%',
       borderRadius: responsive.radius(12),
-
       backgroundColor: colors.iconBg,
     },
 
@@ -130,19 +119,13 @@ const createStyles = (colors: ThemeColors) =>
 
     removeButton: {
       position: 'absolute',
-
       top: -responsive.height(1),
       right: responsive.width(0),
-
       padding: responsive.width(2),
-
       borderRadius: responsive.radius(50),
-
       alignItems: 'center',
       justifyContent: 'center',
-
       backgroundColor: colors.highlightColor,
-
       borderWidth: 2,
       borderColor: colors.secondary,
     },
