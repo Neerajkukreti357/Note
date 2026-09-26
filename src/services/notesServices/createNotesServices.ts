@@ -158,6 +158,7 @@ export const getNotesByDate = async (dateString: string) => {
   const result = await db.execute(
     `SELECT * FROM notes
      WHERE is_deleted = 0
+     AND is_draft = 0
      AND created_at >= ?
      AND created_at < ?
      ORDER BY created_at DESC`,
@@ -171,6 +172,7 @@ export const getNotesByPriority = async () => {
   const result = await db.execute(
     `SELECT * FROM notes
      WHERE is_deleted = 0
+     AND is_draft = 0
      ORDER BY
        CASE priority
          WHEN 'high' THEN 1
